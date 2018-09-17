@@ -14,6 +14,8 @@ public interface RecommendApi{
     @GET("x/banner?plat=4&build=411007&channel=bilih5")
     Observable<RecommendBannerInfo> getRecommendedBannerInfo();
 
+
+
     @GET("x/show/old?platform=android&device=&build=412001")
     Observable<RecommendInfo> getRecommendedInfo();
 }
