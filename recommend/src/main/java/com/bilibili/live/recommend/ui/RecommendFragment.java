@@ -1,18 +1,49 @@
 package com.bilibili.live.recommend.ui;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.recommend.R;
+import com.bilibili.live.recommend.bean.RecommendBannerInfo;
+import com.bilibili.live.recommend.bean.RecommendInfo;
+import com.bilibili.live.recommend.mvp.presenter.IRecommendPresenter;
+import com.bilibili.live.recommend.mvp.presenter.RecommendPresenterImpl;
+import com.bilibili.live.recommend.mvp.view.IRecommendView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by jason on 2018/9/14.
  */
 
-public class RecommendFragment extends RxLazyFragment {
+public class RecommendFragment extends RxLazyFragment implements IRecommendView {
+
+    private IRecommendPresenter recommendPresenter;
+
+    @BindView(R.id.refreshLayout)
+    protected SmartRefreshLayout mRefreshLayout;
+
+    @BindView(R.id.recyclerView)
+    protected RecyclerView mRecyclerView;
+
     @Override
     public int getLayoutResId() {
-        return 0;
+        return R.layout.recommend_fragment_layout;
     }
+
+
+    @Override
+    public void loadRecommendInfo(List<RecommendBannerInfo.DataBean> mBaseBanners, List<RecommendInfo.ResultBean> results) {
+        System.out.println("@@@@@@@@========>" + mBaseBanners.get(0).getImage());
+        System.out.println("@@@@@@@@========>" + results.get(0).getBody().get(0).getCover());
+    }
+
+
+
 
     @Override
     public void finishCreateView(Bundle state) {
@@ -22,7 +53,8 @@ public class RecommendFragment extends RxLazyFragment {
 
     @Override
     protected void loadData() {
-        super.loadData();
+        recommendPresenter = new RecommendPresenterImpl(this);
+        recommendPresenter.getHomeRecommendData();
     }
 
     @Override
@@ -30,9 +62,22 @@ public class RecommendFragment extends RxLazyFragment {
         if (!isPrepared || !isVisible) {
             return;
         }
-
         loadData();
-
         isPrepared = false;
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void errorCallback(Throwable throwable) {
+
     }
 }

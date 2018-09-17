@@ -36,15 +36,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support.constraint:constraint-layout:1.1.3'
-
+    //glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    //rxandroid
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'io.reactivex.rxjava2:rxjava:2.0.7'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 
     compile "com.android.support:appcompat-v7:${rootProject.supportVersion}"
     compile "com.android.support:design:${rootProject.supportVersion}"
@@ -59,10 +62,11 @@ dependencies {
 
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 
-    compile 'com.trello:rxlifecycle-components:0.6.1'
-
+    compile 'com.trello.rxlifecycle2:rxlifecycle:2.2.2'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
     compile 'com.bilibili:magicasakura:0.1.1@aar'
 
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

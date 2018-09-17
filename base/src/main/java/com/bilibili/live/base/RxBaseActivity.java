@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import com.bilibili.live.base.utils.ThemeHelper;
 import com.bilibili.live.base.widget.CardPickerDialog;
 import com.bilibili.magicasakura.utils.ThemeUtils;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
