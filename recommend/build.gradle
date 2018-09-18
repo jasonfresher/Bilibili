@@ -1,5 +1,5 @@
 apply from: 'https://raw.githubusercontent.com/luckybilly/CC/master/cc-settings.gradle'
-
+//apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.compileVersion
     buildToolsVersion rootProject.buildVersion
@@ -29,4 +29,6 @@ android {
 
 dependencies {
     implementation project(':base')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
 }

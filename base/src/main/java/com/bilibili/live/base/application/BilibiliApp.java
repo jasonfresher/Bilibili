@@ -8,6 +8,15 @@ import android.support.annotation.ColorRes;
 import com.bilibili.live.base.R;
 import com.bilibili.live.base.utils.ThemeHelper;
 import com.bilibili.magicasakura.utils.ThemeUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -17,7 +26,6 @@ import com.squareup.leakcanary.LeakCanary;
 public class BilibiliApp extends Application implements ThemeUtils.switchColor {
 
   public static BilibiliApp mInstance;
-
 
   @Override
   public void onCreate() {

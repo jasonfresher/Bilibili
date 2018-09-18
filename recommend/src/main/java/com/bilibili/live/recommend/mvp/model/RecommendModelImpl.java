@@ -66,8 +66,13 @@ public class RecommendModelImpl implements IRecommendModel {
                 .subscribe(new Consumer<List<RecommendInfo.ResultBean>>() {
                     @Override
                     public void accept(List<RecommendInfo.ResultBean> resultBeans) throws Exception {
-                        if(mCallBackListener != null)
-                            mCallBackListener.onSuccess(bannerInfos,resultBeans);
+                        if (mCallBackListener != null)
+                            mCallBackListener.onSuccess(bannerInfos, resultBeans);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        mCallBackListener.onFailure(throwable);
                     }
                 });
     }

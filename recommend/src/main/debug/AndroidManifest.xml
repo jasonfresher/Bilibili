@@ -14,10 +14,14 @@
         android:name="com.bilibili.live.base.application.BilibiliApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/recommend_app_name"
         android:supportsRtl="true"
-        android:theme="@style/Base.Theme.AppCompat">
-        <activity android:name="debug.MainActivity">
+        android:theme="@style/AppTheme">
+
+        <activity android:name="debug.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

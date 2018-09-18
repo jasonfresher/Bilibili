@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.content,new RecommendFragment());
+        ft.replace(R.id.content,RecommendFragment.newInstance(true));
         ft.commit();
     }
 }
