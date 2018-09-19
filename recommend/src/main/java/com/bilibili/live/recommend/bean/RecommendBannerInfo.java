@@ -1,5 +1,7 @@
 package com.bilibili.live.recommend.bean;
 
+import com.bilibili.live.recommend.interfaces.RecommendEntity;
+
 import java.util.List;
 
 /**
@@ -38,7 +40,7 @@ public class RecommendBannerInfo {
   }
 
 
-  public static class DataBean {
+  public static class DataBean extends RecommendEntity {
 
     private String title;
 
@@ -54,6 +56,9 @@ public class RecommendBannerInfo {
 
     private String hash;
 
+    public DataBean() {
+      type = RecommendEntity.VIEW_TYPE_BANNER;
+    }
 
     public String getTitle() {
 

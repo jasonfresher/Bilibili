@@ -1,5 +1,6 @@
 package com.bilibili.live.recommend.bean;
 
+import com.bilibili.live.recommend.interfaces.RecommendEntity;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -153,7 +154,7 @@ public class RecommendInfo {
     }
 
 
-    public static class HeadBean {
+    public static class HeadBean extends RecommendEntity {
 
       private String param;
 
@@ -227,7 +228,7 @@ public class RecommendInfo {
       }
     }
 
-    public static class BodyBean {
+    public static class BodyBean extends RecommendEntity {
 
       private String title;
 

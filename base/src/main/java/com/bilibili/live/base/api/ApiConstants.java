@@ -29,5 +29,5 @@ public class ApiConstants {
 
   public static final String IM9_BASE_URL = "http://www.im9.com/";
 
-  public static final String COMMON_UA_STR = "OhMyBiliBili Android Client/2.1 (100332338@qq.com)";
+  public static final String COMMON_UA_STR = "OhMyBiliBili Android Client";
 }

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Bilibili.iml" filepath="$PROJECT_DIR$/Bilibili.iml" />
-      <module fileurl="file://F:\as_project\Bilibili\base\app.iml" filepath="F:\as_project\Bilibili\base\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/home/home.iml" filepath="$PROJECT_DIR$/home/home.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommend/recommend.iml" filepath="$PROJECT_DIR$/recommend/recommend.iml" />

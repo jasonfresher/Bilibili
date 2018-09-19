@@ -69,6 +69,7 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
             @Override
             public void onRefresh(RefreshLayout refreshLayout) {
                 data.clear();
+                multipleItemAdapter.notifyDataSetChanged();
                 recommendPresenter.getRecommendBannerData();
             }
         });
@@ -87,7 +88,6 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
 
     @Override
     public void loadRecommendBannerInfo(RecommendMultiItem recommendMultiItem) {
-        mRefreshLayout.finishRefresh(true);
         data.add(recommendMultiItem);
         multipleItemAdapter.notifyDataSetChanged();
         recommendPresenter.getRecommendContentData();
@@ -95,6 +95,18 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
 
     @Override
     public void loadRecommendContentInfo(List<RecommendInfo.ResultBean> results) {
+        mRefreshLayout.finishRefresh(true);
+        for (RecommendInfo.ResultBean recommendInfo : results){
+            RecommendInfo.ResultBean.HeadBean head = recommendInfo.getHead();
+            RecommendMultiItem headItem = new RecommendMultiItem<>(RecommendMultiItem.VIEW_TYPE_HEADER,4,head);
+            data.add(headItem);
+            List<RecommendInfo.ResultBean.BodyBean> bodys = recommendInfo.getBody();
+            for (RecommendInfo.ResultBean.BodyBean bodyBean :bodys){
+                RecommendMultiItem bodyItem = new RecommendMultiItem<>(RecommendMultiItem.VIEW_TYPE_ITEM_LOADED,2,bodyBean);
+                data.add(bodyItem);
+            }
+        }
+        multipleItemAdapter.notifyDataSetChanged();
 //        initEmptyLayout();
     }
 
