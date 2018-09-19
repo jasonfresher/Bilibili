@@ -7,6 +7,7 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
  */
 
 public interface IRecommendPresenter {
-    void getHomeRecommendData();
+    void getRecommendBannerData();
+    void getRecommendContentData();
     <T> LifecycleTransformer<T> bindToLifecycle();
 }

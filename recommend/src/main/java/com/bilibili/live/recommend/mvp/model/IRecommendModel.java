@@ -2,6 +2,7 @@ package com.bilibili.live.recommend.mvp.model;
 
 import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
+import com.bilibili.live.recommend.entity.RecommendMultiItem;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.List;
@@ -11,10 +12,14 @@ import java.util.List;
  */
 
 public interface IRecommendModel {
-    public void getRecommendInfo();
+    public void getRecommendBannerInfos();
+
+    public void getRecommendContentInfos();
 
     public interface RecommendDataCallBackListener{
-        void onSuccess(List<RecommendBannerInfo.DataBean> mBaseBanners, List<RecommendInfo.ResultBean> results);
+        void onBannerInfoSuccess(RecommendMultiItem recommendMultiItem);
+        void onContentInfoSuccess(List<RecommendInfo.ResultBean> resultBeans);
+//        void onSuccess(List<RecommendBannerInfo.DataBean> mBaseBanners, List<RecommendInfo.ResultBean> results);
         void onFailure(Throwable throwable);
         <T> LifecycleTransformer<T> bindToLifecycle();
     }

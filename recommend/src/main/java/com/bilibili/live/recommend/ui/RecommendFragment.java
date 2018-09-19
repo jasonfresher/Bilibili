@@ -1,26 +1,25 @@
 package com.bilibili.live.recommend.ui;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.bilibili.live.recommend.R;
-import com.bilibili.live.recommend.bean.RecommendBannerInfo;
+import com.bilibili.live.recommend.adapter.RecommendAdapter;
 import com.bilibili.live.recommend.bean.RecommendInfo;
+import com.bilibili.live.recommend.entity.RecommendMultiItem;
 import com.bilibili.live.recommend.mvp.presenter.IRecommendPresenter;
 import com.bilibili.live.recommend.mvp.presenter.RecommendPresenterImpl;
 import com.bilibili.live.recommend.mvp.view.IRecommendView;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,8 +30,6 @@ import butterknife.BindView;
 
 public class RecommendFragment extends RxLazyFragment implements IRecommendView {
 
-    private IRecommendPresenter recommendPresenter;
-
     @BindView(R.id.empty_layout)
     protected CustomEmptyView mEmptyView;
 
@@ -41,6 +38,12 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
 
     @BindView(R.id.recyclerView)
     protected RecyclerView mRecyclerView;
+
+    private IRecommendPresenter recommendPresenter;
+
+    private List<RecommendMultiItem> data;
+
+    private RecommendAdapter multipleItemAdapter;
 
     public static RecommendFragment newInstance(boolean isLazyLoad) {
         Bundle args = new Bundle();
@@ -56,41 +59,43 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
     }
 
     @Override
-    protected void onResumeLazy() {
-
-    }
-
-    @Override
     protected void init() {
-        mRefreshLayout.setRefreshHeader(new ClassicsHeader(getContext()));
-        mRefreshLayout.setRefreshFooter(new BallPulseFooter(getContext()).setSpinnerStyle(SpinnerStyle.Scale));
+        data = new ArrayList<>();
+        recommendPresenter = new RecommendPresenterImpl(this);
+        mRefreshLayout.setEnableLoadMore(false);
+        mRefreshLayout.setHeaderMaxDragRate(2f);
+        mRefreshLayout.setEnableNestedScroll(true);
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshLayout) {
-                recommendPresenter.getHomeRecommendData();
-            }
-        });
-        mRefreshLayout.setHeaderMaxDragRate(1.5f);
-        mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(RefreshLayout refreshLayout) {
-
+                data.clear();
+                recommendPresenter.getRecommendBannerData();
             }
         });
         mRefreshLayout.autoRefresh();
-        recommendPresenter = new RecommendPresenterImpl(this);
+        multipleItemAdapter = new RecommendAdapter(getActivity(), data);
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
+        mRecyclerView.setLayoutManager(manager);
+        multipleItemAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
+                return data.get(position).getSpanSize();
+            }
+        });
+        mRecyclerView.setAdapter(multipleItemAdapter);
     }
 
     @Override
-    public void loadRecommendInfo(List<RecommendBannerInfo.DataBean> mBaseBanners, List<RecommendInfo.ResultBean> mResultBeans) {
-        hideEmptyView();
-        if(mBaseBanners != null && mBaseBanners.size() > 0){
-            mRefreshLayout.finishRefresh(true);
-        }else if(mResultBeans != null && mResultBeans.size() > 0){
-//            mRefreshLayout.finishRefresh(true);
-        }else{
-            initEmptyLayout();
-        }
+    public void loadRecommendBannerInfo(RecommendMultiItem recommendMultiItem) {
+        mRefreshLayout.finishRefresh(true);
+        data.add(recommendMultiItem);
+        multipleItemAdapter.notifyDataSetChanged();
+        recommendPresenter.getRecommendContentData();
+    }
+
+    @Override
+    public void loadRecommendContentInfo(List<RecommendInfo.ResultBean> results) {
+//        initEmptyLayout();
     }
 
     @Override
@@ -105,11 +110,13 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
 
     @Override
     public void errorCallback(Throwable throwable) {
-        initEmptyLayout();
+        if(data.size() == 0) {
+            initEmptyLayout();
+        }
     }
 
     public void initEmptyLayout() {
-        mRefreshLayout.finishRefresh();
+        mRefreshLayout.finishRefresh(false);
         mRecyclerView.setVisibility(View.GONE);
         mEmptyView.setVisibility(View.VISIBLE);
         mEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);

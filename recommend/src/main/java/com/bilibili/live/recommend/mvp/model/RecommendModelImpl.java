@@ -5,6 +5,7 @@ import com.bilibili.live.base.helper.RetrofitHelper;
 import com.bilibili.live.recommend.api.RecommendApi;
 import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
+import com.bilibili.live.recommend.entity.RecommendMultiItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,9 @@ import io.reactivex.schedulers.Schedulers;
 public class RecommendModelImpl implements IRecommendModel {
 
     private RecommendDataCallBackListener mCallBackListener;
-    private List<RecommendBannerInfo.DataBean> bannerInfos;
+    private List<RecommendBannerInfo.DataBean> bannerInfos = new ArrayList<>();
     private RecommendApi recommendApi;
+    private RecommendMultiItem<List<RecommendBannerInfo.DataBean>> recommendMultiItem;
 
     public RecommendModelImpl(RecommendDataCallBackListener callBackListener){
         this.mCallBackListener = callBackListener;
@@ -33,12 +35,7 @@ public class RecommendModelImpl implements IRecommendModel {
     }
 
     @Override
-    public void getRecommendInfo() {
-
-        Observable<RecommendInfo> recommendedInfo = recommendApi.getRecommendedInfo();
-        System.out.println(recommendedInfo.toString());
-
-
+    public void getRecommendBannerInfos() {
         recommendApi.getRecommendedBannerInfo()
                 .subscribeOn(Schedulers.io())
                 .flatMap(new Function<RecommendBannerInfo, ObservableSource<RecommendInfo>>() {
@@ -48,10 +45,36 @@ public class RecommendModelImpl implements IRecommendModel {
                         if(code == 0){
                             bannerInfos = recommendBannerInfo.getData();
                         }
+                        recommendMultiItem =
+                                new RecommendMultiItem<>(RecommendMultiItem.VIEW_TYPE_BANNER,4,bannerInfos);
                         return recommendApi.getRecommendedInfo();
                     }
                 })
                 .compose(mCallBackListener.<RecommendInfo>bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<RecommendInfo>() {
+                    @Override
+                    public void accept(RecommendInfo recommendInfo) throws Exception {
+                        if (mCallBackListener != null) {
+                            mCallBackListener.onBannerInfoSuccess(recommendMultiItem);
+                            if(recommendInfo != null && recommendInfo.getCode() == 0) {
+                                mCallBackListener.onContentInfoSuccess(recommendInfo.getResult());
+                            }
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        if (mCallBackListener != null)
+                            mCallBackListener.onFailure(throwable);
+                    }
+                });
+    }
+
+    @Override
+    public void getRecommendContentInfos() {
+        recommendApi.getRecommendedInfo()
+                .subscribeOn(Schedulers.io())
                 .map(new Function<RecommendInfo, List<RecommendInfo.ResultBean>>() {
                     @Override
                     public List<RecommendInfo.ResultBean> apply(RecommendInfo recommendInfo) throws Exception {
@@ -61,26 +84,20 @@ public class RecommendModelImpl implements IRecommendModel {
                         return resultBeans;
                     }
                 })
-                .subscribeOn(Schedulers.io())
+                .compose(mCallBackListener.<List<RecommendInfo.ResultBean>>bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<RecommendInfo.ResultBean>>() {
                     @Override
                     public void accept(List<RecommendInfo.ResultBean> resultBeans) throws Exception {
                         if (mCallBackListener != null)
-                            mCallBackListener.onSuccess(bannerInfos, resultBeans);
+                            mCallBackListener.onContentInfoSuccess(resultBeans);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        mCallBackListener.onFailure(throwable);
+                        if (mCallBackListener != null)
+                            mCallBackListener.onFailure(throwable);
                     }
                 });
     }
-
-
-//    public interface RecommendDataCallBackListener{
-//        void onSuccess(List<RecommendBannerInfo.DataBean> mBaseBanners,List<RecommendInfo.ResultBean> results);
-//        void onFailure(Throwable throwable);
-//        <T> LifecycleTransformer<T> bindToLifecycle();
-//    }
 }

@@ -24,6 +24,7 @@
     <color name="media_controller_bg">#99000000</color>
     <color name="font_normal">#555555</color>
     <color name="font_gray">#656565</color>
+    <color name="colorTextContent">#444444</color>
     <color name="line_bg">#e6e6e6</color>
     <color name="navigation_background_light">#FFF8F8F8</color>
     <color name="navigation_subtitle_primary_text">#FFFFFFFF</color>

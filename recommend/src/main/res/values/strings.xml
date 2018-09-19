@@ -1,3 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
     <string name="recommend_app_name">recommend_demo</string>
+
+    <string name="rank" >rank</string>
+    <string name="home_tab_more">more</string>
+    <string name="look_more">look more</string>
+    <string name="change_recommend">change recommend</string>
 </resources>

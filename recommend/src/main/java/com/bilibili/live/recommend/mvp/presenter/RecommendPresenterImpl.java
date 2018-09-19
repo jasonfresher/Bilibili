@@ -1,7 +1,7 @@
 package com.bilibili.live.recommend.mvp.presenter;
 
-import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
+import com.bilibili.live.recommend.entity.RecommendMultiItem;
 import com.bilibili.live.recommend.mvp.model.IRecommendModel;
 import com.bilibili.live.recommend.mvp.model.RecommendModelImpl;
 import com.bilibili.live.recommend.mvp.view.IRecommendView;
@@ -23,16 +23,26 @@ public class RecommendPresenterImpl implements IRecommendPresenter,IRecommendMod
         mRecommendModel = new RecommendModelImpl(this);
     }
 
-
     @Override
-    public void getHomeRecommendData() {
-        mRecommendModel.getRecommendInfo();
+    public void getRecommendBannerData() {
+        mRecommendModel.getRecommendBannerInfos();
     }
 
     @Override
-    public void onSuccess(List<RecommendBannerInfo.DataBean> mBaseBanners, List<RecommendInfo.ResultBean> results) {
+    public void getRecommendContentData() {
+        mRecommendModel.getRecommendContentInfos();
+    }
+
+    @Override
+    public void onBannerInfoSuccess(RecommendMultiItem recommendMultiItem) {
         if(mRecommendView != null)
-            mRecommendView.loadRecommendInfo(mBaseBanners,results);
+            mRecommendView.loadRecommendBannerInfo(recommendMultiItem);
+    }
+
+    @Override
+    public void onContentInfoSuccess(List<RecommendInfo.ResultBean> resultBeans) {
+        if(mRecommendView != null)
+            mRecommendView.loadRecommendContentInfo(resultBeans);
     }
 
     @Override
