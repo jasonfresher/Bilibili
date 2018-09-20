@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.bean.RecommendBannerInfo;
-import com.bilibili.live.recommend.interfaces.RecommendEntity;
+import com.bilibili.live.recommend.entity.RecommendEntity;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.provider.BaseItemProvider;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
 
-public class BannerProvider extends BaseItemProvider<List<RecommendBannerInfo.DataBean>,BaseViewHolder> {
+public class BannerProvider extends BaseItemProvider<RecommendBannerInfo,BaseViewHolder> {
     @Override
     public int viewType() {
         return RecommendEntity.VIEW_TYPE_BANNER;
@@ -27,7 +27,7 @@ public class BannerProvider extends BaseItemProvider<List<RecommendBannerInfo.Da
     }
 
     @Override
-    public void convert(BaseViewHolder helper, List<RecommendBannerInfo.DataBean> data, int position) {
+    public void convert(BaseViewHolder helper,RecommendBannerInfo data, int position) {
         BGABanner mContentBanner = helper.getView(R.id.banner_guide_content);
         mContentBanner.setAutoPlayAble(true);
         mContentBanner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
@@ -43,7 +43,7 @@ public class BannerProvider extends BaseItemProvider<List<RecommendBannerInfo.Da
             }
         });
         List<String> imageUris = new ArrayList<>();
-        for (RecommendBannerInfo.DataBean content : data){
+        for (RecommendBannerInfo.DataBean content : data.getData()){
             imageUris.add(content.getImage());
         }
         mContentBanner.setData(imageUris, null);

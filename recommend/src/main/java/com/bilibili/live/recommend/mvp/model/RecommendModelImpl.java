@@ -7,6 +7,7 @@ import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
 import com.bilibili.live.recommend.entity.RecommendMultiItem;
 
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +26,9 @@ import io.reactivex.schedulers.Schedulers;
 public class RecommendModelImpl implements IRecommendModel {
 
     private RecommendDataCallBackListener mCallBackListener;
-    private List<RecommendBannerInfo.DataBean> bannerInfos = new ArrayList<>();
     private RecommendApi recommendApi;
-    private RecommendMultiItem<List<RecommendBannerInfo.DataBean>> recommendMultiItem;
+//    private RecommendMultiItem<List<RecommendBannerInfo.DataBean>> recommendMultiItem;
+    private RecommendBannerInfo mRecommendBannerInfo;
 
     public RecommendModelImpl(RecommendDataCallBackListener callBackListener){
         this.mCallBackListener = callBackListener;
@@ -43,10 +44,8 @@ public class RecommendModelImpl implements IRecommendModel {
                     public ObservableSource<RecommendInfo> apply(RecommendBannerInfo recommendBannerInfo) throws Exception {
                         int code = recommendBannerInfo.getCode();
                         if(code == 0){
-                            bannerInfos = recommendBannerInfo.getData();
+                            mRecommendBannerInfo = recommendBannerInfo;
                         }
-                        recommendMultiItem =
-                                new RecommendMultiItem<>(RecommendMultiItem.VIEW_TYPE_BANNER,4,bannerInfos);
                         return recommendApi.getRecommendedInfo();
                     }
                 })
@@ -56,7 +55,7 @@ public class RecommendModelImpl implements IRecommendModel {
                     @Override
                     public void accept(RecommendInfo recommendInfo) throws Exception {
                         if (mCallBackListener != null) {
-                            mCallBackListener.onBannerInfoSuccess(recommendMultiItem);
+                            mCallBackListener.onBannerInfoSuccess(mRecommendBannerInfo);
                             if(recommendInfo != null && recommendInfo.getCode() == 0) {
                                 mCallBackListener.onContentInfoSuccess(recommendInfo.getResult());
                             }
@@ -73,6 +72,7 @@ public class RecommendModelImpl implements IRecommendModel {
 
     @Override
     public void getRecommendContentInfos() {
+
         recommendApi.getRecommendedInfo()
                 .subscribeOn(Schedulers.io())
                 .map(new Function<RecommendInfo, List<RecommendInfo.ResultBean>>() {

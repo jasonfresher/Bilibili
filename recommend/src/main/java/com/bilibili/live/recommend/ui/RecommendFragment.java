@@ -8,9 +8,11 @@ import android.view.View;
 import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.bilibili.live.recommend.R;
-import com.bilibili.live.recommend.adapter.RecommendAdapter;
+import com.bilibili.live.recommend.adapter.RecommendRvAdapter;
+import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
 import com.bilibili.live.recommend.entity.RecommendMultiItem;
+import com.bilibili.live.recommend.entity.RecommendEntity;
 import com.bilibili.live.recommend.mvp.presenter.IRecommendPresenter;
 import com.bilibili.live.recommend.mvp.presenter.RecommendPresenterImpl;
 import com.bilibili.live.recommend.mvp.view.IRecommendView;
@@ -41,9 +43,9 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
 
     private IRecommendPresenter recommendPresenter;
 
-    private List<RecommendMultiItem> data;
+    private List<RecommendEntity> data;
 
-    private RecommendAdapter multipleItemAdapter;
+    private RecommendRvAdapter multipleItemAdapter;
 
     public static RecommendFragment newInstance(boolean isLazyLoad) {
         Bundle args = new Bundle();
@@ -74,21 +76,32 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
             }
         });
         mRefreshLayout.autoRefresh();
-        multipleItemAdapter = new RecommendAdapter(getActivity(), data);
+        multipleItemAdapter = new RecommendRvAdapter(data);
+
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
         mRecyclerView.setLayoutManager(manager);
         multipleItemAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
             @Override
             public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
-                return data.get(position).getSpanSize();
+                int type = data.get(position).getItemType();
+                if (type == RecommendEntity.VIEW_TYPE_BANNER) {
+                    return RecommendEntity.BANNER_SPAN_SIZE;
+                } else if (type == RecommendEntity.VIEW_TYPE_HEADER) {
+                    return RecommendEntity.HEADER_SPAN_SIZE;
+                } else if (type == RecommendEntity.VIEW_TYPE_FOOTER) {
+                    return RecommendEntity.FOOTER_SPAN_SIZE;
+                } else {
+                    return RecommendEntity.ITEM_LOADED_SPAN_SIZE;
+                }
             }
         });
         mRecyclerView.setAdapter(multipleItemAdapter);
     }
 
     @Override
-    public void loadRecommendBannerInfo(RecommendMultiItem recommendMultiItem) {
-        data.add(recommendMultiItem);
+    public void loadRecommendBannerInfo(RecommendEntity recommendBannerEntity) {
+//        mRefreshLayout.finishRefresh(true);
+        data.add(recommendBannerEntity);
         multipleItemAdapter.notifyDataSetChanged();
         recommendPresenter.getRecommendContentData();
     }
@@ -98,16 +111,14 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
         mRefreshLayout.finishRefresh(true);
         for (RecommendInfo.ResultBean recommendInfo : results){
             RecommendInfo.ResultBean.HeadBean head = recommendInfo.getHead();
-            RecommendMultiItem headItem = new RecommendMultiItem<>(RecommendMultiItem.VIEW_TYPE_HEADER,4,head);
-            data.add(headItem);
+            head.setTitleType(recommendInfo.getType());
+            data.add(head);
             List<RecommendInfo.ResultBean.BodyBean> bodys = recommendInfo.getBody();
             for (RecommendInfo.ResultBean.BodyBean bodyBean :bodys){
-                RecommendMultiItem bodyItem = new RecommendMultiItem<>(RecommendMultiItem.VIEW_TYPE_ITEM_LOADED,2,bodyBean);
-                data.add(bodyItem);
+                data.add(bodyBean);
             }
         }
         multipleItemAdapter.notifyDataSetChanged();
-//        initEmptyLayout();
     }
 
     @Override
@@ -124,6 +135,8 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
     public void errorCallback(Throwable throwable) {
         if(data.size() == 0) {
             initEmptyLayout();
+        }else{
+            mRefreshLayout.finishRefresh(true);
         }
     }
 

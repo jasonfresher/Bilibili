@@ -1,6 +1,6 @@
 package com.bilibili.live.recommend.bean;
 
-import com.bilibili.live.recommend.interfaces.RecommendEntity;
+import com.bilibili.live.recommend.entity.RecommendEntity;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * 首页Banner推荐
  */
 
-public class RecommendBannerInfo {
+public class RecommendBannerInfo extends RecommendEntity{
 
   private int code;
 
@@ -39,8 +39,13 @@ public class RecommendBannerInfo {
     this.data = data;
   }
 
+  @Override
+  public int getItemType() {
+    return VIEW_TYPE_BANNER;
+  }
 
-  public static class DataBean extends RecommendEntity {
+
+  public static class DataBean{
 
     private String title;
 

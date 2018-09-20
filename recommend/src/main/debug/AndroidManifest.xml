@@ -8,6 +8,7 @@
 
     <uses-permission android:name="cc.permission.com.billy.cc.demo.REMOTE_CC" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         tools:replace="android:label,android:icon,android:theme,android:allowBackup"

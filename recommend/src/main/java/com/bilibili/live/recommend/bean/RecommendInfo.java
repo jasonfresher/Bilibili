@@ -1,6 +1,7 @@
 package com.bilibili.live.recommend.bean;
 
-import com.bilibili.live.recommend.interfaces.RecommendEntity;
+import com.bilibili.live.recommend.entity.RecommendEntity;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -167,6 +168,8 @@ public class RecommendInfo {
 
       private int count;
 
+      @Expose
+      private String titleType;
 
       public String getParam() {
 
@@ -226,6 +229,19 @@ public class RecommendInfo {
 
         this.count = count;
       }
+
+      public String getTitleType() {
+        return titleType;
+      }
+
+      public void setTitleType(String titleType) {
+        this.titleType = titleType;
+      }
+
+      @Override
+      public int getItemType() {
+        return VIEW_TYPE_HEADER;
+      }
     }
 
     public static class BodyBean extends RecommendEntity {
@@ -258,6 +274,8 @@ public class RecommendInfo {
 
       private String desc1;
 
+      @Expose
+      private int titleType;
 
       public String getTitle() {
 
@@ -412,6 +430,19 @@ public class RecommendInfo {
       public void setDesc1(String desc1) {
 
         this.desc1 = desc1;
+      }
+
+      public int getTitleType() {
+        return titleType;
+      }
+
+      public void setTitleType(int titleType) {
+        this.titleType = titleType;
+      }
+
+      @Override
+      public int getItemType() {
+        return VIEW_TYPE_ITEM_LOADED;
       }
     }
   }

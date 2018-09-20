@@ -2,7 +2,7 @@ package com.bilibili.live.recommend.mvp.view;
 
 import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
-import com.bilibili.live.recommend.entity.RecommendMultiItem;
+import com.bilibili.live.recommend.entity.RecommendEntity;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface IRecommendView {
     void showProgress();
     void hideProgress();
     void errorCallback(Throwable throwable);
-    void loadRecommendBannerInfo(RecommendMultiItem recommendMultiItem);
+    void loadRecommendBannerInfo(RecommendEntity recommendBannerEntity);
     void loadRecommendContentInfo(List<RecommendInfo.ResultBean> results);
     <T> LifecycleTransformer<T> bindToLifecycle();
 }

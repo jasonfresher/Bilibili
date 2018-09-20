@@ -2,7 +2,7 @@ package com.bilibili.live.recommend.adapter;
 
 import android.support.annotation.Nullable;
 
-import com.bilibili.live.recommend.interfaces.RecommendEntity;
+import com.bilibili.live.recommend.entity.RecommendEntity;
 import com.bilibili.live.recommend.itemproviders.BannerProvider;
 import com.bilibili.live.recommend.itemproviders.BodyProvider;
 import com.bilibili.live.recommend.itemproviders.FooterProvider;
@@ -21,7 +21,7 @@ public class RecommendRvAdapter extends MultipleItemRvAdapter<RecommendEntity,Ba
 
     @Override
     protected int getViewType(RecommendEntity entity) {
-        return entity.type;
+        return entity.getItemType();
     }
 
 

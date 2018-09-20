@@ -7,6 +7,8 @@ import com.bilibili.live.base.utils.CommonUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -53,7 +55,18 @@ public class RetrofitHelper {
    * 初始化OKHttpClient,设置缓存,设置超时时间,设置打印日志,设置UA拦截器
    */
   private static void initOkHttpClient() {
-    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+    HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+      @Override
+      public void log(String message) {
+        try {
+          String text = URLDecoder.decode(message, "utf-8");
+          System.out.println("OKHttp-----" + text);
+        } catch (UnsupportedEncodingException e) {
+          e.printStackTrace();
+          System.out.println("OKHttp-----" + message);
+        }
+      }
+    });
     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     if (mOkHttpClient == null) {
       synchronized (RetrofitHelper.class) {

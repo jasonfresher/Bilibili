@@ -1,6 +1,8 @@
 package com.bilibili.live.recommend.mvp.presenter;
 
+import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
+import com.bilibili.live.recommend.entity.RecommendEntity;
 import com.bilibili.live.recommend.entity.RecommendMultiItem;
 import com.bilibili.live.recommend.mvp.model.IRecommendModel;
 import com.bilibili.live.recommend.mvp.model.RecommendModelImpl;
@@ -34,9 +36,9 @@ public class RecommendPresenterImpl implements IRecommendPresenter,IRecommendMod
     }
 
     @Override
-    public void onBannerInfoSuccess(RecommendMultiItem recommendMultiItem) {
+    public void onBannerInfoSuccess(RecommendEntity recommendBannerInfo) {
         if(mRecommendView != null)
-            mRecommendView.loadRecommendBannerInfo(recommendMultiItem);
+            mRecommendView.loadRecommendBannerInfo(recommendBannerInfo);
     }
 
     @Override
