@@ -7,6 +7,7 @@ import com.bilibili.live.recommend.itemproviders.BannerProvider;
 import com.bilibili.live.recommend.itemproviders.BodyProvider;
 import com.bilibili.live.recommend.itemproviders.FooterProvider;
 import com.bilibili.live.recommend.itemproviders.HeaderProvider;
+import com.bilibili.live.recommend.itemproviders.SpecialProvider;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.MultipleItemRvAdapter;
 
@@ -31,5 +32,6 @@ public class RecommendRvAdapter extends MultipleItemRvAdapter<RecommendEntity,Ba
         mProviderDelegate.registerProvider(new HeaderProvider());
         mProviderDelegate.registerProvider(new BodyProvider());
         mProviderDelegate.registerProvider(new FooterProvider());
+        mProviderDelegate.registerProvider(new SpecialProvider());
     }
 }

@@ -6,4 +6,7 @@
     <string name="home_tab_more">more</string>
     <string name="look_more">look more</string>
     <string name="change_recommend">change recommend</string>
+    <string name="activity_center">Activity Center</string>
+    <string name="goto_look">Go in and look at it</string>
+
 </resources>

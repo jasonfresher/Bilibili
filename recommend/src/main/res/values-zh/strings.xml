@@ -6,4 +6,7 @@
     <string name="home_tab_more">更多</string>
     <string name="look_more">查看更多</string>
     <string name="change_recommend">换一波推荐</string>
+    <string name="activity_center">活动中心</string>
+    <string name="goto_look">进去看看</string>
+
 </resources>
