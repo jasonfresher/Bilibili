@@ -115,7 +115,13 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
             data.add(head);
             List<RecommendInfo.ResultBean.BodyBean> bodys = recommendInfo.getBody();
             for (RecommendInfo.ResultBean.BodyBean bodyBean :bodys){
+                bodyBean.setTitleType(recommendInfo.getType());
                 data.add(bodyBean);
+            }
+            if(!recommendInfo.getType().equals("activity")){
+                RecommendInfo.ResultBean.FootBean footBean = new RecommendInfo.ResultBean.FootBean();
+                footBean.setTitleType(recommendInfo.getType());
+                data.add(footBean);
             }
         }
         multipleItemAdapter.notifyDataSetChanged();
