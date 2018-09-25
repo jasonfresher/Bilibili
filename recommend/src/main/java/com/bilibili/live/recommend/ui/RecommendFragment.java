@@ -90,6 +90,8 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
                     return RecommendEntity.HEADER_SPAN_SIZE;
                 } else if (type == RecommendEntity.VIEW_TYPE_FOOTER) {
                     return RecommendEntity.FOOTER_SPAN_SIZE;
+                } else if(type == RecommendEntity.VIEW_TYPE_SPECIAL_LOADED){
+                    return RecommendEntity.SPECIAL_LOADED_SPAN_SIZE;
                 } else {
                     return RecommendEntity.ITEM_LOADED_SPAN_SIZE;
                 }
@@ -110,14 +112,14 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
     public void loadRecommendContentInfo(List<RecommendInfo.ResultBean> results) {
         mRefreshLayout.finishRefresh(true);
         for (RecommendInfo.ResultBean recommendInfo : results){
-            RecommendInfo.ResultBean.HeadBean head = recommendInfo.getHead();
-            head.setTitleType(recommendInfo.getType());
-            data.add(head);
-            List<RecommendInfo.ResultBean.BodyBean> bodys = recommendInfo.getBody();
             if(recommendInfo.getType().equals("activity")){
-
+                data.add(recommendInfo);
             }else{
-                for (RecommendInfo.ResultBean.BodyBean bodyBean :bodys){
+                RecommendInfo.ResultBean.HeadBean head = recommendInfo.getHead();
+                head.setTitleType(recommendInfo.getType());
+                data.add(head);
+                List<RecommendInfo.ResultBean.BodyBean> bodys = recommendInfo.getBody();
+                for (RecommendInfo.ResultBean.BodyBean bodyBean : bodys){
                     bodyBean.setTitleType(recommendInfo.getType());
                     data.add(bodyBean);
                 }

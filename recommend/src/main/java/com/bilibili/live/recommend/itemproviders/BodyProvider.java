@@ -1,20 +1,12 @@
 package com.bilibili.live.recommend.itemproviders;
 
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.bean.RecommendInfo;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.provider.BaseItemProvider;
-import com.scwang.smartrefresh.header.waveswipe.DisplayUtil;
-
-import butterknife.BindView;
 
 public class BodyProvider extends BaseItemProvider<RecommendInfo.ResultBean.BodyBean,BaseViewHolder> {
 

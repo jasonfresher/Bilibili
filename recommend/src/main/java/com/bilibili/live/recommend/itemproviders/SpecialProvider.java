@@ -16,7 +16,7 @@ import java.util.List;
  * Created by jason on 2018/9/21.
  */
 
-public class SpecialProvider extends BaseItemProvider<List<RecommendInfo.ResultBean.BodyBean>,BaseViewHolder> {
+public class SpecialProvider extends BaseItemProvider<RecommendInfo.ResultBean,BaseViewHolder> {
     @Override
     public int viewType() {
         return RecommendEntity.VIEW_TYPE_SPECIAL_LOADED;
@@ -28,12 +28,13 @@ public class SpecialProvider extends BaseItemProvider<List<RecommendInfo.ResultB
     }
 
     @Override
-    public void convert(BaseViewHolder helper, List<RecommendInfo.ResultBean.BodyBean> datas, int position) {
+    public void convert(BaseViewHolder helper, RecommendInfo.ResultBean data, int position) {
+        List<RecommendInfo.ResultBean.BodyBean> datas = data.getBody();
         RecyclerView mRecyclerView = helper.getView(R.id.recycle);
         mRecyclerView.setHasFixedSize(false);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,
                 LinearLayoutManager.HORIZONTAL, false));
-        mRecyclerView.setAdapter(new ActivityCenterRecyclerAdapter(R.layout.recommend_item_body_layout,datas));
+        mRecyclerView.setAdapter(new ActivityCenterRecyclerAdapter(R.layout.recommend_item_activity_layout,datas));
     }
 }

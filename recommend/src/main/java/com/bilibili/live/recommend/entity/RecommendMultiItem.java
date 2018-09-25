@@ -5,7 +5,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 /**
  * Created by jason on 2018/9/19.
  */
-
+@Deprecated
 public class RecommendMultiItem<T> implements MultiItemEntity {
 
     public static final int VIEW_TYPE_BANNER = 1;

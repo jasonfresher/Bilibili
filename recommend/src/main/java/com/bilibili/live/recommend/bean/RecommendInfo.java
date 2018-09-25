@@ -91,7 +91,7 @@ public class RecommendInfo {
     }
 
 
-    public static class ResultBean {
+    public static class ResultBean extends RecommendEntity{
 
         private String type;
 
@@ -152,6 +152,11 @@ public class RecommendInfo {
         public void setBody(List<BodyBean> body) {
 
             this.body = body;
+        }
+
+        @Override
+        public int getItemType() {
+            return VIEW_TYPE_SPECIAL_LOADED;
         }
 
 
