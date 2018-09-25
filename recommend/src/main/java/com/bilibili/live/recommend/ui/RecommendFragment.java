@@ -8,10 +8,9 @@ import android.view.View;
 import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.bilibili.live.recommend.R;
+import com.bilibili.live.recommend.R2;
 import com.bilibili.live.recommend.adapter.RecommendRvAdapter;
-import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
-import com.bilibili.live.recommend.entity.RecommendMultiItem;
 import com.bilibili.live.recommend.entity.RecommendEntity;
 import com.bilibili.live.recommend.mvp.presenter.IRecommendPresenter;
 import com.bilibili.live.recommend.mvp.presenter.RecommendPresenterImpl;
@@ -32,13 +31,13 @@ import butterknife.BindView;
 
 public class RecommendFragment extends RxLazyFragment implements IRecommendView {
 
-    @BindView(R.id.empty_layout)
+    @BindView(R2.id.empty_layout)
     protected CustomEmptyView mEmptyView;
 
-    @BindView(R.id.refreshLayout)
+    @BindView(R2.id.refreshLayout)
     protected SmartRefreshLayout mRefreshLayout;
 
-    @BindView(R.id.recyclerView)
+    @BindView(R2.id.recyclerView)
     protected RecyclerView mRecyclerView;
 
     private IRecommendPresenter recommendPresenter;

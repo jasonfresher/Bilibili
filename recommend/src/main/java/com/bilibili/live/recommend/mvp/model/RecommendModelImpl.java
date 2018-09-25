@@ -5,13 +5,10 @@ import com.bilibili.live.base.helper.RetrofitHelper;
 import com.bilibili.live.recommend.api.RecommendApi;
 import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
-import com.bilibili.live.recommend.entity.RecommendMultiItem;
 
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;

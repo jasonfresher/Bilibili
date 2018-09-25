@@ -22,7 +22,7 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 /**
  * Created by jason on 2018/9/19.
  */
-
+@Deprecated
 public class RecommendAdapter extends BaseMultiItemQuickAdapter<RecommendMultiItem,BaseViewHolder> {
 
     private Context mContext;

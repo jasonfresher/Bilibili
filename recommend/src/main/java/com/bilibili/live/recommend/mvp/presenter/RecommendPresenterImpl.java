@@ -1,9 +1,7 @@
 package com.bilibili.live.recommend.mvp.presenter;
 
-import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
 import com.bilibili.live.recommend.entity.RecommendEntity;
-import com.bilibili.live.recommend.entity.RecommendMultiItem;
 import com.bilibili.live.recommend.mvp.model.IRecommendModel;
 import com.bilibili.live.recommend.mvp.model.RecommendModelImpl;
 import com.bilibili.live.recommend.mvp.view.IRecommendView;
