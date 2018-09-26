@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <!--home live size-->
+    <dimen name="live_video_player_height">280dp</dimen>
+    <dimen name="live_button_margin_bottom">60dp</dimen>
+    <dimen name="live_entrance_image_size">50dp</dimen>
+    <dimen name="live_item_layout_height">190dp</dimen>
+    <dimen name="live_item_image_height">120dp</dimen>
+    <dimen name="live_item_title_image_size">25dp</dimen>
+
+    <dimen name="default_tiny_margin">3dp</dimen>
+    <dimen name="default_tiny_padding">5dp</dimen>
+    <dimen name="default_tiny_text_size">12sp</dimen>
+    <dimen name="default_grow_margin">20dp</dimen>
+
+    <!-- Card -->
+    <dimen name="touch_raise">6dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_small_radius">2dp</dimen>
+    <dimen name="card_small_elevation">0dp</dimen>
+    <dimen name="card_title_margin">5dp</dimen>
+    <dimen name="title_margin_small">8dp</dimen>
+    <dimen name="card_charging_width">110dp</dimen>
+
+    <!-- Layouts' special resources -->
+    <dimen name="video_info_mini_icons_size">12dp</dimen>
+    <dimen name="video_info_count_text_margin_start">4dp</dimen>
+    <dimen name="video_info_sp_layout_height">150dp</dimen>
+
+    <dimen name="circle_default_width">1dp</dimen>
+    <dimen name="user_avatar_small_size">30dp</dimen>
+</resources>
