@@ -8,6 +8,7 @@ import android.support.annotation.ColorRes;
 import com.bilibili.live.base.R;
 import com.bilibili.live.base.utils.ThemeHelper;
 import com.bilibili.magicasakura.utils.ThemeUtils;
+import com.billy.cc.core.component.CC;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
@@ -34,6 +35,9 @@ public class BilibiliApp extends Application implements ThemeUtils.switchColor {
 
     mInstance = this;
     init();
+    CC.enableVerboseLog(true);
+    CC.enableDebug(true);
+    CC.enableRemoteCC(true);
   }
 
 

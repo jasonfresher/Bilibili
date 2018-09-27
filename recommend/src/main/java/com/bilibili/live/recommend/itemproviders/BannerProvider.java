@@ -29,7 +29,6 @@ public class BannerProvider extends BaseItemProvider<RecommendBannerInfo,BaseVie
     @Override
     public void convert(BaseViewHolder helper,RecommendBannerInfo data, int position) {
         BGABanner mContentBanner = helper.getView(R.id.banner_guide_content);
-        mContentBanner.setAutoPlayAble(true);
         mContentBanner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
             @Override
             public void fillBannerItem(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
@@ -46,6 +45,8 @@ public class BannerProvider extends BaseItemProvider<RecommendBannerInfo,BaseVie
         for (RecommendBannerInfo.DataBean content : data.getData()){
             imageUris.add(content.getImage());
         }
+        if(imageUris.size() > 1)
+            mContentBanner.setAutoPlayAble(true);
         mContentBanner.setData(imageUris, null);
     }
 }

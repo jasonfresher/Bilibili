@@ -1,0 +1,6 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <string name="app_name">bangumi</string>
+
+    <string name="hot_recommend">热门推荐</string>
+    <string name="rank">排行榜</string>
+</resources>

@@ -1,11 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="recommend_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="netcasting_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/demo_a_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/demo_a_colorPrimaryDark</item>
-        <item name="colorAccent">@color/demo_a_colorAccent</item>
+        <item name="colorPrimary">@color/netcasting_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/netcasting_colorPrimaryDark</item>
+        <item name="colorAccent">@color/netcasting_colorAccent</item>
     </style>
 
 </resources>

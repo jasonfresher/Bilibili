@@ -3,6 +3,7 @@ package com.bilibili.live.netcasting.ui;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.widget.CustomEmptyView;
@@ -90,7 +91,6 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
         mRefreshLayout.autoRefresh();
 
         multipleItemAdapter = new NetcastingRvAdapter(datas);
-
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
         mRecyclerView.setLayoutManager(manager);
         multipleItemAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
@@ -121,7 +121,7 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
         datas.clear();
         mRefreshLayout.finishRefresh(true);
         List<LiveAppIndexInfo.DataBean.BannerBean> banners = liveDataBean.getBanner();
-        NetcastingEntity bannersEntity = new NetcastingEntity(banners) {
+        NetcastingEntity bannersEntity = new NetcastingEntity<List<LiveAppIndexInfo.DataBean.BannerBean>>(banners) {
             @Override
             public int getItemType() {
                 return VIEW_TYPE_BANNER;
@@ -130,7 +130,7 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
         datas.add(bannersEntity);
         List<EntranceInfo> entranceInfos = initEntrance();
         for (EntranceInfo entranceInfo : entranceInfos){
-            NetcastingEntity entranceEntity = new NetcastingEntity(entranceInfo) {
+            NetcastingEntity entranceEntity = new NetcastingEntity<EntranceInfo>(entranceInfo) {
                 @Override
                 public int getItemType() {
                     return NetcastingEntity.VIEW_TYPE_ENTRANCE;
@@ -142,7 +142,7 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
         List<LiveAppIndexInfo.DataBean.PartitionsBean> partitions = liveDataBean.getPartitions();
         for (LiveAppIndexInfo.DataBean.PartitionsBean partitionsBean : partitions){
             LiveAppIndexInfo.DataBean.PartitionsBean.PartitionBean partition = partitionsBean.getPartition();
-            NetcastingEntity partitionHeader = new NetcastingEntity(partition) {
+            NetcastingEntity partitionHeader = new NetcastingEntity<LiveAppIndexInfo.DataBean.PartitionsBean.PartitionBean>(partition) {
                 @Override
                 public int getItemType() {
                     return NetcastingEntity.VIEW_TYPE_HEADER;
@@ -151,7 +151,7 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
             datas.add(partitionHeader);
             List<LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean> lives = partitionsBean.getLives();
             for (LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean livesBean : lives){
-                NetcastingEntity partitionEntity = new NetcastingEntity(livesBean) {
+                NetcastingEntity partitionEntity = new NetcastingEntity<LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean>(livesBean) {
                     @Override
                     public int getItemType() {
                         return NetcastingEntity.VIEW_TYPE_ITEM_LOADED;
@@ -184,6 +184,24 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
 
     @Override
     public void errorCallback(Throwable throwable) {
+        if(datas.size() == 0) {
+            initEmptyLayout();
+        }else{
+            mRefreshLayout.finishRefresh(true);
+        }
+    }
 
+    public void initEmptyLayout() {
+        mRefreshLayout.finishRefresh(false);
+        mRecyclerView.setVisibility(View.GONE);
+        mEmptyView.setVisibility(View.VISIBLE);
+        mEmptyView.setEmptyImage(R.drawable.img_tips_error_load_error);
+        mEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+    }
+
+
+    public void hideEmptyView() {
+        mEmptyView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 }
