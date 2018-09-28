@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.bilibili.live.bangumi.entity.BangumiEntity;
 import com.bilibili.live.bangumi.itemprovider.BangumiBannerProvider;
 import com.bilibili.live.bangumi.itemprovider.BangumiHeaderProvider;
+import com.bilibili.live.bangumi.itemprovider.BangumiRecommendProvider;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.MultipleItemRvAdapter;
 
@@ -30,5 +31,6 @@ public class BangumiRvAdapter extends MultipleItemRvAdapter<BangumiEntity,BaseVi
     public void registerItemProvider() {
         mProviderDelegate.registerProvider(new BangumiBannerProvider());
         mProviderDelegate.registerProvider(new BangumiHeaderProvider());
+        mProviderDelegate.registerProvider(new BangumiRecommendProvider());
     }
 }

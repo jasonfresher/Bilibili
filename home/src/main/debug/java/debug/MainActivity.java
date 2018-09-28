@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.home.R;
+import com.bilibili.live.home.ui.HomeFragment;
 import com.billy.cc.core.component.CC;
 import com.billy.cc.core.component.CCResult;
 
@@ -23,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        CCResult result = CC.obtainBuilder(RouteInfo.RECOMMEND_COMPONENT_NAME).build().call();
-        Fragment recommendFragment = result.getDataItem("recommend");
-        ft.replace(R.id.content,recommendFragment);
+        ft.replace(R.id.content, HomeFragment.newInstance(true));
         ft.commit();
     }
 }

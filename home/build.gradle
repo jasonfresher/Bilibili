@@ -1,4 +1,5 @@
 apply from: 'https://raw.githubusercontent.com/luckybilly/CC/master/cc-settings.gradle'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion rootProject.compileVersion
@@ -31,6 +32,10 @@ android {
 dependencies {
     implementation project(':base')
     addComponent 'recommend' //会默认添加依赖：project(':demo_component_a')
+    addComponent 'netcasting'
+    addComponent 'bangumi'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    implementation 'com.jakewharton:butterknife:8.4.0'
 //    addComponent 'demo_component_kt', project(':demo_component_kt') //module方式
 //    addComponent 'demo_component_b', 'com.billy.demo:demo_b:1.1.0'  //maven方式
 

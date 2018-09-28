@@ -63,6 +63,7 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
     protected void init() {
         data = new ArrayList<>();
         recommendPresenter = new RecommendPresenterImpl(this);
+        mRefreshLayout.setHeaderHeight(66);
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.setHeaderMaxDragRate(2f);
         mRefreshLayout.setEnableNestedScroll(true);

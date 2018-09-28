@@ -20,4 +20,22 @@
 
     <dimen name="region_recommend_icon_size">40dp</dimen>
 
+
+    <dimen name="touch_raise">6dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_small_radius">2dp</dimen>
+    <dimen name="card_small_elevation">0dp</dimen>
+    <dimen name="card_title_margin">5dp</dimen>
+    <dimen name="title_margin_small">8dp</dimen>
+    <dimen name="card_charging_width">110dp</dimen>
+
+    <dimen name="card_default_height">190dp</dimen>
+    <dimen name="card_image_default_height">120dp</dimen>
+
+    <!-- Layouts' special resources -->
+    <dimen name="video_info_mini_icons_size">12dp</dimen>
+    <dimen name="video_info_count_text_margin_start">4dp</dimen>
+    <dimen name="video_info_sp_layout_height">150dp</dimen>
 </resources>

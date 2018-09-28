@@ -22,7 +22,7 @@ public class RecommendComponent implements IComponent {
     public boolean onCall(CC cc) {
         Context context = cc.getContext();
         String callId = cc.getCallId();
-        CCResult ccResult = CCResult.success("recommend", new RecommendFragment());
+        CCResult ccResult = CCResult.success(RouteInfo.RECOMMEND_COMPONENT_NAME, new RecommendFragment());
         CC.sendCCResult(callId,ccResult);
         return false;
     }

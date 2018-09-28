@@ -78,7 +78,7 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
     protected void init() {
         datas = new ArrayList<>();
         presenter = new NetcastingPresenter(this);
-
+        mRefreshLayout.setHeaderHeight(66);
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.setHeaderMaxDragRate(2f);
         mRefreshLayout.setEnableNestedScroll(true);

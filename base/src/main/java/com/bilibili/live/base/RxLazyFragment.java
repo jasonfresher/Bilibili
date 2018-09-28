@@ -85,6 +85,7 @@ public abstract class RxLazyFragment extends BaseFragment {
         else {
             super.setContentView(layoutResID);
         }
+        bind = ButterKnife.bind(this, getContentView());
     }
 
     @Override
@@ -99,7 +100,6 @@ public abstract class RxLazyFragment extends BaseFragment {
             super.setContentView(view);
         }
         bind = ButterKnife.bind(this, getContentView());
-        init();
     }
 
 
@@ -152,13 +152,15 @@ public abstract class RxLazyFragment extends BaseFragment {
     }
 
     protected void onResumeLazy() {
+        init();
     }
 
     protected void onPauseLazy() {
     }
 
     protected void onDestroyViewLazy() {
-        bind.unbind();
+        if(bind != null)
+            bind.unbind();
     }
 
     @Override

@@ -7,4 +7,5 @@ package com.bilibili.live.base.constants;
 public class RouteInfo {
     public static final String RECOMMEND_COMPONENT_NAME = "com.bilibili.live.recommend";
     public static final String NETCASTING_COMPONENT_NAME = "com.bilibili.live.netcasting";
+    public static final String BANGUMI_COMPONENT_NAME = "com.bilibili.live.bangumi";
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import com.bilibili.live.bangumi.R;
 import com.bilibili.live.bangumi.R2;
 import com.bilibili.live.bangumi.adapter.BangumiRvAdapter;
+import com.bilibili.live.bangumi.bean.RegionHeaderInfo;
 import com.bilibili.live.bangumi.bean.RegionRecommendInfo;
 import com.bilibili.live.bangumi.entity.BangumiEntity;
 import com.bilibili.live.bangumi.mvp.presenter.BangumiPresenter;
@@ -65,6 +66,7 @@ public class BangumiRecommendFragment extends RxLazyFragment implements BangumiV
         datas.clear();
         presenter = new BangumiPresenterImpl(this);
 
+        mRefreshLayout.setHeaderHeight(66);
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.setHeaderMaxDragRate(2f);
         mRefreshLayout.setEnableNestedScroll(true);
@@ -115,24 +117,74 @@ public class BangumiRecommendFragment extends RxLazyFragment implements BangumiV
 
     @Override
     public void onBangumiRecommendSuccess(List<RegionRecommendInfo.DataBean.RecommendBean> bangumiRecommends) {
-        BangumiEntity bangumiEntity = new BangumiEntity(165) {
+        RegionHeaderInfo regionHeaderInfo = new RegionHeaderInfo(R.drawable.ic_category_promo,
+                getString(R.string.hot_recommend),R.drawable.ic_header_indicator_rank,getString(R.string.rank));
+        BangumiEntity bangumiEntity = new BangumiEntity(regionHeaderInfo) {
             @Override
             public int getItemType() {
                 return BangumiEntity.VIEW_TYPE_HEADER;
             }
         };
         datas.add(bangumiEntity);
+
+        for (RegionRecommendInfo.DataBean.RecommendBean recommendBean : bangumiRecommends){
+            BangumiEntity recommendEntity = new BangumiEntity(recommendBean) {
+                @Override
+                public int getItemType() {
+                    return BangumiEntity.VIEW_TYPE_ITEM_LOADED;
+                }
+            };
+            datas.add(recommendEntity);
+        }
         multipleItemAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onBangumiNewsSuccess(List<RegionRecommendInfo.DataBean.NewBean> bangumiNews) {
+        RegionHeaderInfo regionHeaderInfo = new RegionHeaderInfo(R.drawable.ic_header_new,
+                getString(R.string.new_videos),0,getString(R.string.goin_and_see));
+        BangumiEntity bangumiEntity = new BangumiEntity(regionHeaderInfo) {
+            @Override
+            public int getItemType() {
+                return BangumiEntity.VIEW_TYPE_HEADER;
+            }
+        };
+        datas.add(bangumiEntity);
 
+        for (RegionRecommendInfo.DataBean.NewBean newBean : bangumiNews){
+            BangumiEntity newEntity = new BangumiEntity(newBean) {
+                @Override
+                public int getItemType() {
+                    return BangumiEntity.VIEW_TYPE_ITEM_LOADED;
+                }
+            };
+            datas.add(newEntity);
+        }
+        multipleItemAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onBangumiDynamicSuccess(List<RegionRecommendInfo.DataBean.DynamicBean> bangumiDynamics) {
+        RegionHeaderInfo regionHeaderInfo = new RegionHeaderInfo(R.drawable.ic_header_ding,
+                getString(R.string.all_dynamic),0,"");
+        BangumiEntity bangumiEntity = new BangumiEntity(regionHeaderInfo) {
+            @Override
+            public int getItemType() {
+                return BangumiEntity.VIEW_TYPE_HEADER;
+            }
+        };
+        datas.add(bangumiEntity);
 
+        for (RegionRecommendInfo.DataBean.DynamicBean bangumiDynamic : bangumiDynamics){
+            BangumiEntity bangumiDynamicEntity = new BangumiEntity(bangumiDynamic) {
+                @Override
+                public int getItemType() {
+                    return BangumiEntity.VIEW_TYPE_ITEM_LOADED;
+                }
+            };
+            datas.add(bangumiDynamicEntity);
+        }
+        multipleItemAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -15,7 +15,7 @@
         android:name="com.bilibili.live.base.application.BilibiliApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/home_demo"
+        android:label="@string/home_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 

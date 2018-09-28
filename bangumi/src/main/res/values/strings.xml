@@ -3,4 +3,7 @@
 
     <string name="hot_recommend">Hot recommend</string>
     <string name="rank">Ranking</string>
+    <string name="new_videos">New video</string>
+    <string name="goin_and_see">Goin and see</string>
+    <string name="all_dynamic">All dynamic</string>
 </resources>
