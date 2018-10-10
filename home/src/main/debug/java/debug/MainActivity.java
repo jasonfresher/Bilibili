@@ -13,6 +13,8 @@ import com.bilibili.live.home.ui.HomeFragment;
 import com.billy.cc.core.component.CC;
 import com.billy.cc.core.component.CCResult;
 
+import java.lang.reflect.Method;
+
 /**
  * Created by jason on 2018/9/17.
  */

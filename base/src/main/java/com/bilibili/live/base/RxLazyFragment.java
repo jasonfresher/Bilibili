@@ -125,6 +125,7 @@ public abstract class RxLazyFragment extends BaseFragment {
 
     //当Fragment被滑到可见的位置时，调用
     protected void onFragmentStartLazy() {
+
     }
 
     //当Fragment被滑到不可见的位置，offScreen时，调用

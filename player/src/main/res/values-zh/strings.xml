@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+    <string name="danmaku_switch">弹幕开</string>
+    <string name="quality_medium">清晰</string>
+    <string name="lock">锁屏</string>
+
+    <string name="video_error_title">播放失败</string>
+    <string name="video_error_text_invalid_progressive_playback">抱歉，此视频无法流式传输到此设备</string>
+    <string name="video_error_text_unknown">抱歉，这部影片无法播放.</string>
+    <string name="video_error_button">好的</string>
+
+    <string name="video_loading">加载中...</string>
+    <string name="video_init">初始化播放器...</string>
+
+</resources>

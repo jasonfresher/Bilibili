@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <string name="app_name">player</string>
+    <string name="danmaku_switch">open</string>
+    <string name="lock">lock</string>
+
+    <string name="video_error_title">Cannot play video</string>
+    <string name="video_error_text_invalid_progressive_playback">Sorry, this video is not valid for streaming tothis device.</string>
+    <string name="video_error_text_unknown">Sorry, this video cannot be played.</string>
+    <string name="video_error_button">OK</string>
+
+    <string name="video_loading">loading…</string>
+    <string name="video_init">init player…</string>
+</resources>
