@@ -6,6 +6,7 @@
     tools:ignore="ResourceName">
 
     <RelativeLayout
+        android:id="@+id/media_controller_header"
         android:focusable="true"
         android:clickable="true"
         android:layout_width="match_parent"

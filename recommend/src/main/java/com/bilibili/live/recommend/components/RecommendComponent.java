@@ -1,7 +1,5 @@
 package com.bilibili.live.recommend.components;
 
-import android.content.Context;
-
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.recommend.ui.RecommendFragment;
 import com.billy.cc.core.component.CC;
@@ -20,7 +18,6 @@ public class RecommendComponent implements IComponent {
 
     @Override
     public boolean onCall(CC cc) {
-        Context context = cc.getContext();
         String callId = cc.getCallId();
         CCResult ccResult = CCResult.success(RouteInfo.RECOMMEND_COMPONENT_NAME, new RecommendFragment());
         CC.sendCCResult(callId,ccResult);

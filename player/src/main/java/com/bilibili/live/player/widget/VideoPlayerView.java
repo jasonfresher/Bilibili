@@ -584,7 +584,6 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
 
   @Override
   public boolean onTouchEvent(MotionEvent ev) {
-    System.out.println("@@@@@@@111111111");
     if (isInPlaybackState() && mMediaController != null) {
       toggleMediaControlsVisiblity();
     }

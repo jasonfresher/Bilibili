@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     private AnimationDrawable mLoadingAnim;
 
-    private int cid;
+    private String playUrl;
 
     private String title = "";
 
@@ -53,15 +54,20 @@ public class VideoPlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setBackgroundDrawable(null);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_video_player);
         ButterKnife.bind(this);
         Intent intent = getIntent();
         if (intent != null) {
-            cid = intent.getIntExtra("cid", 0);
+            playUrl = intent.getStringExtra("playUrl");
             title = intent.getStringExtra("title");
         }
         initAnimation();
         initMediaPlayer();
+
     }
 
     /**
@@ -134,8 +140,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-        mPlayerView.setVideoPath("http://ivi.bupt.edu.cn/hls/btv1hd.m3u8");
+        mPlayerView.setVideoPath(playUrl);
         mPlayerView.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(IMediaPlayer iMediaPlayer) {

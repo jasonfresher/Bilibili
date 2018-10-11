@@ -19,10 +19,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name="debug.MainActivity"
+            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ui.VideoPlayerActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:theme="@style/ColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
