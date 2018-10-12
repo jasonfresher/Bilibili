@@ -51,6 +51,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     private String startText;
 
+    private boolean hardDecode;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         if (intent != null) {
             playUrl = intent.getStringExtra("playUrl");
             title = intent.getStringExtra("title");
+            hardDecode = intent.getBooleanExtra("hardDecode",false);
         }
         initAnimation();
         initMediaPlayer();
@@ -86,6 +89,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         MediaController mMediaController = new MediaController(this);
         mMediaController.setTitle(title);
         mPlayerView.setMediaController(mMediaController);
+        mPlayerView.setHardDecode(hardDecode);
         mPlayerView.setMediaBufferingIndicator(mBufferingIndicator);
         mPlayerView.requestFocus();
         mPlayerView.setOnInfoListener(new IMediaPlayer.OnInfoListener() {

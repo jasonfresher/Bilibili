@@ -2,7 +2,9 @@ package com.bilibili.live.player.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
@@ -214,7 +216,8 @@ public class MediaController extends FrameLayout {
     private void initFloatingWindow() {
         mWindow = new PopupWindow(mContext);
         mWindow.setFocusable(false);
-        mWindow.setBackgroundDrawable(null);
+        mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        mWindow.setBackgroundDrawable(null);
         mWindow.setOutsideTouchable(true);
         mAnimStyle = android.R.style.Animation;
     }
@@ -456,9 +459,9 @@ public class MediaController extends FrameLayout {
         }
 
         if (mShowing) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                mAnchor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-            }
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+//                mAnchor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//            }
             try {
                 mHandler.removeMessages(SHOW_PROGRESS);
                 if (mFromXml) {

@@ -11,12 +11,9 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-/**
- * Created by hcc on 16/9/14 21:37
- * 100332338@qq.com
- */
+
 @SuppressLint("DrawAllocation")
-public class OutlineTextView extends TextView {
+public class OutlineTextView extends android.support.v7.widget.AppCompatTextView {
 
   private TextPaint mTextPaint;
 

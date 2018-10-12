@@ -18,7 +18,7 @@ import android.view.ViewGroup.LayoutParams;
 
 
 import com.bilibili.live.player.R;
-import com.bilibili.live.player.ScreenResolution;
+import com.bilibili.live.player.utils.ScreenResolution;
 import com.bilibili.live.player.listener.MediaPlayerListener;
 
 import java.io.IOException;
@@ -27,9 +27,6 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
- * Created by hcc on 16/8/31 19:50
- * 100332338@qq.com
- * <p/>
  * 自定义VideoView
  */
 public class VideoPlayerView extends SurfaceView implements MediaPlayerListener {
@@ -120,6 +117,8 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
 
   private boolean mCanSeekForward = true;
 
+  private boolean mHardDecode;
+
   private Context mContext;
 
   IMediaPlayer.OnVideoSizeChangedListener mSizeChangedListener = new IMediaPlayer.OnVideoSizeChangedListener() {
@@ -134,6 +133,9 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
       }
     }
   };
+
+
+
 
   IMediaPlayer.OnPreparedListener mPreparedListener = new IMediaPlayer.OnPreparedListener() {
     public void onPrepared(IMediaPlayer mp) {
@@ -468,6 +470,14 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", "48");
         //ijkMediaPlayer.setAvCodecOption("skip_loop_filter", "48");
         //ijkMediaPlayer.setFrameDrop(12);
+        if(mHardDecode){
+          ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec", 1);
+          ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-auto-rotate", 1);
+          ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "mediacodec-handle-resolution-change", 1);
+        }
+
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"framedrop",5);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"max-fps",30);
         if (mUserAgent != null) {
           //ijkMediaPlayer.setAvFormatOption("user_agent", mUserAgent);
         }
@@ -600,6 +610,9 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
   }
 
 
+
+
+
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {
     boolean isKeyCodeSupported = keyCode != KeyEvent.KEYCODE_BACK
@@ -653,6 +666,9 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
   }
 
 
+
+
+
   @Override
   public void pause() {
     if (isInPlaybackState()) {
@@ -673,6 +689,9 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
       openVideo();
     }
   }
+
+
+
 
 
   @Override
@@ -755,6 +774,10 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
     return mCanSeekForward;
   }
 
+
+  public void setHardDecode(boolean hardDecode) {
+    this.mHardDecode = hardDecode;
+  }
 
   public interface OnControllerEventsListener {
     void onVideoPause();

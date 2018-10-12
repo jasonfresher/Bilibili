@@ -1,5 +1,5 @@
 
-package com.bilibili.live.player;
+package com.bilibili.live.player.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;

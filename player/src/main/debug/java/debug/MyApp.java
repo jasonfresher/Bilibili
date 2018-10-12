@@ -1,6 +1,8 @@
 package debug;
 
 import android.app.Application;
+import android.support.v4.util.ArrayMap;
+import android.util.SparseArray;
 
 import com.billy.cc.core.component.CC;
 
