@@ -17,9 +17,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * Created by hcc on 16/8/7 21:18
- * 100332338@qq.com
- * <p/>
  * Activity基类
  */
 public abstract class RxBaseActivity extends RxAppCompatActivity

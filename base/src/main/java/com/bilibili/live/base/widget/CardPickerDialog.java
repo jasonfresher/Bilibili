@@ -14,9 +14,6 @@ import com.bilibili.live.base.utils.ThemeHelper;
 
 
 /**
- * Created by hcc on 16/9/16 13:14
- * 100332338@qq.com
- * <p/>
  * 主题切换选择对话框
  */
 public class CardPickerDialog extends DialogFragment implements View.OnClickListener {

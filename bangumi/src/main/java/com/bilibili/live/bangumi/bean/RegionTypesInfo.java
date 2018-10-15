@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hcc on 2016/10/11 18:20
- * 100332338@qq.com
- * <p>
  * 分区数据模型类
  */
 

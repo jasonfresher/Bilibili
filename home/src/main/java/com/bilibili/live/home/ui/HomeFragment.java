@@ -39,9 +39,12 @@ public class HomeFragment extends RxLazyFragment {
     @BindView(R2.id.tab_layout)
     protected SlidingTabLayout mTabLayout;
 
-    private String[] fragmentRes = {RouteInfo.NETCASTING_COMPONENT_NAME,
+    private String[] fragmentRes = {
+            RouteInfo.NETCASTING_COMPONENT_NAME,
             RouteInfo.RECOMMEND_COMPONENT_NAME,
-            RouteInfo.BANGUMI_COMPONENT_NAME};
+            RouteInfo.BANGUMI_COMPONENT_NAME,
+            RouteInfo.REGION_COMPONENT_NAME
+    };
 
     private List<Fragment> fragments;
 
@@ -81,6 +84,9 @@ public class HomeFragment extends RxLazyFragment {
                 .subscribe(new Consumer<List<Fragment>>() {
                     @Override
                     public void accept(List<Fragment> fragments) throws Exception {
+                        for (Fragment fragment:fragments){
+                            System.out.println("@@@===>" + fragment.toString());
+                        }
                         HomePagerAdapter mHomeAdapter = new HomePagerAdapter(getChildFragmentManager(),
                                 getApplicationContext(),fragments);
                         mViewPager.setOffscreenPageLimit(5);

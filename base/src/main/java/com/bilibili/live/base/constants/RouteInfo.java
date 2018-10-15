@@ -9,4 +9,5 @@ public class RouteInfo {
     public static final String NETCASTING_COMPONENT_NAME = "com.bilibili.live.netcasting";
     public static final String BANGUMI_COMPONENT_NAME = "com.bilibili.live.bangumi";
     public static final String PLAYER_COMPONENT_NAME = "com.bilibili.live.player";
+    public static final String REGION_COMPONENT_NAME = "com.bilibili.live.region";
 }

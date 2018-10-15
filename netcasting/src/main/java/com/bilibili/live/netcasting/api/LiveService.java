@@ -10,9 +10,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * Created by hcc on 16/8/4 12:03
- * 100332338@qq.com
- * <p>
  * 直播相关api
  */
 public interface LiveService {

@@ -3,9 +3,6 @@ package com.bilibili.live.netcasting.bean;
 import java.util.List;
 
 /**
- * Created by hcc on 2016/10/19 18:31
- * 100332338@qq.com
- * <p>
  * 直播模型类
  */
 

@@ -4,9 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by hcc on 2016/10/14 11:46
- * 100332338@qq.com
- * <p>
  * 用户详情界面的直播状态模型类
  */
 

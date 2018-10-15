@@ -4,6 +4,7 @@
         <item>@string/section_live</item>
         <item>@string/section_recommend</item>
         <item>@string/section_bangumi</item>
+        <item>@string/section_more</item>
     </string-array>
 
     <string name="home_app_name">Home</string>

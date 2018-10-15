@@ -1,4 +1,4 @@
-include ':base', ':bangumi', ':player'
+include ':base', ':bangumi', ':player', ':region'
 include ':recommend'
 include ':home'
 include ':netcasting'

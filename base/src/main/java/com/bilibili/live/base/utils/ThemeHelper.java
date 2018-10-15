@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by hcc on 16/9/16 13:14
- * 100332338@qq.com
  * <p/>
  * 主题切换帮助类
  */

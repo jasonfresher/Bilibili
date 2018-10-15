@@ -34,6 +34,7 @@ dependencies {
     addComponent 'recommend' //会默认添加依赖：project(':demo_component_a')
     addComponent 'netcasting'
     addComponent 'bangumi'
+    addComponent 'region'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation 'com.jakewharton:butterknife:8.4.0'
 //    addComponent 'demo_component_kt', project(':demo_component_kt') //module方式

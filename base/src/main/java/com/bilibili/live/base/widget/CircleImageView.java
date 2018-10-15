@@ -24,9 +24,6 @@ import com.bilibili.live.base.R;
 
 
 /**
- * Created by hcc on 16/8/7 21:18
- * 100332338@qq.com
- * <p/>
  * 圆形头像
  */
 public class CircleImageView extends ImageView {

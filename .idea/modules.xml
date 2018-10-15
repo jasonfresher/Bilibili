@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/netcasting/netcasting.iml" filepath="$PROJECT_DIR$/netcasting/netcasting.iml" />
       <module fileurl="file://$PROJECT_DIR$/player/player.iml" filepath="$PROJECT_DIR$/player/player.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommend/recommend.iml" filepath="$PROJECT_DIR$/recommend/recommend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/region/region.iml" filepath="$PROJECT_DIR$/region/region.iml" />
     </modules>
   </component>
 </project>
