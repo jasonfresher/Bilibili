@@ -29,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.bilibili.live.region.ui.RegionTypeDetailsActivity"
+            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <receiver
             android:name="com.billy.cc.core.component.ComponentBroadcastReceiver"
             android:permission="cc.permission.com.billy.cc.demo.REMOTE_CC" />

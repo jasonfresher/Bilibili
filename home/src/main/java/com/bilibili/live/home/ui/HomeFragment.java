@@ -46,8 +46,6 @@ public class HomeFragment extends RxLazyFragment {
             RouteInfo.REGION_COMPONENT_NAME
     };
 
-    private List<Fragment> fragments;
-
     public static HomeFragment newInstance(boolean isLazyLoad) {
         Bundle args = new Bundle();
         args.putBoolean(RxLazyFragment.INTENT_BOOLEAN_LAZYLOAD, isLazyLoad);
@@ -63,7 +61,6 @@ public class HomeFragment extends RxLazyFragment {
 
     @Override
     protected void init() {
-        fragments = new ArrayList<>();
         Observable.fromArray(fragmentRes)
                 .map(new Function<String, Fragment>() {
                     @Override
@@ -72,21 +69,12 @@ public class HomeFragment extends RxLazyFragment {
                         Fragment fragment = result.getDataItem(components);
                         return fragment;
                     }
-                }).map(new Function<Fragment, List<Fragment>>() {
-                    @Override
-                    public List<Fragment> apply(Fragment fragment) throws Exception {
-                        fragments.add(fragment);
-                        return fragments;
-                    }
-                })
+                }).toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Fragment>>() {
                     @Override
                     public void accept(List<Fragment> fragments) throws Exception {
-                        for (Fragment fragment:fragments){
-                            System.out.println("@@@===>" + fragment.toString());
-                        }
                         HomePagerAdapter mHomeAdapter = new HomePagerAdapter(getChildFragmentManager(),
                                 getApplicationContext(),fragments);
                         mViewPager.setOffscreenPageLimit(5);
@@ -95,6 +83,5 @@ public class HomeFragment extends RxLazyFragment {
                         mViewPager.setCurrentItem(1);
                     }
                 });
-
     }
 }

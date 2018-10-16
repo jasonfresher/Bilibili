@@ -60,20 +60,15 @@ public class RegionHomeModelImpl implements IRegionHomeModel{
                     }
                 })
                 .compose(mCallbackListener.<RegionHomeItemBean>bindToLifecycle())
+                .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doFinally(new Action() {
+                .subscribe(new Consumer<List<RegionHomeItemBean>>() {
                     @Override
-                    public void run() throws Exception {
-                        if(mCallbackListener != null)
+                    public void accept(List<RegionHomeItemBean> regionHomeItemBeans) throws Exception {
+                        if (mCallbackListener != null)
                             mCallbackListener.onContentInfoSuccess(regionHomeItemBeans);
                     }
-                }).subscribe(new Consumer<RegionHomeItemBean>() {
-                    @Override
-                    public void accept(RegionHomeItemBean regionHomeItemBean) throws Exception {
-                        System.out.println(regionHomeItemBean.getName());
-                        regionHomeItemBeans.add(regionHomeItemBean);
-                    }
-        });
+                });
     }
 }
