@@ -13,9 +13,9 @@ import java.util.List;
  * Created by jason on 2018/10/15.
  */
 
-public class RegionAdapter extends BaseQuickAdapter<RegionHomeItemBean,BaseViewHolder> {
+public class RegionHomeAdapter extends BaseQuickAdapter<RegionHomeItemBean,BaseViewHolder> {
 
-    public RegionAdapter(int layoutResId, @Nullable List<RegionHomeItemBean> data) {
+    public RegionHomeAdapter(int layoutResId, @Nullable List<RegionHomeItemBean> data) {
         super(layoutResId, data);
     }
 

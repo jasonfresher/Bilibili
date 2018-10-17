@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <string name="region_app_name">分类</string>
+
+    <string name="hot_videos">最热视频</string>
+    <string name="news_videos">最新视频</string>
+</resources>

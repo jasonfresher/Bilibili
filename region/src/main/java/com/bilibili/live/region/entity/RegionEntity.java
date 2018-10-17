@@ -11,16 +11,17 @@ public abstract class RegionEntity<T> implements MultiItemEntity {
     public static final int VIEW_TYPE_BANNER = 1;
     public static final int VIEW_TYPE_HEADER = 2;
     public static final int VIEW_TYPE_FOOTER = 3;
-    public static final int VIEW_TYPE_ITEM_LOADED = 4;
-    public static final int VIEW_TYPE_SPECIAL_LOADED = 5;
-    public static  final int VIEW_TYPE_ENTRANCE = 6;
+    public static final int VIEW_TYPE_ITEM_RECOMMEND_LOADED = 4;
+    public static final int VIEW_TYPE_ITEM_NEWSX_LOADED = 5;
+    public static final int VIEW_TYPE_SPECIAL_LOADED = 6;
+    public static  final int VIEW_TYPE_ENTRANCE = 7;
 
     public static final int BANNER_SPAN_SIZE = 4;
     public static final int HEADER_SPAN_SIZE = 4;
     public static final int FOOTER_SPAN_SIZE = 4;
     public static final int ITEM_LOADED_SPAN_SIZE = 2;
     public static final int SPECIAL_LOADED_SPAN_SIZE = 4;
-    public static final int ENTRANCE_SPAN_SIZE = 1;
+    public static final int ENTRANCE_SPAN_SIZE = 4;
 
     public T content;
 

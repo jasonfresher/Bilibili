@@ -11,7 +11,6 @@ import com.bilibili.live.region.R;
 import com.bilibili.live.region.R2;
 import com.bilibili.live.region.adapter.RegionRecommendAdapter;
 import com.bilibili.live.region.bean.RegionRecommendInfo;
-import com.bilibili.live.region.bean.RegionTypesInfo;
 import com.bilibili.live.region.entity.RegionEntity;
 import com.bilibili.live.region.mvp.presenter.RegionRecommendPresenter;
 import com.bilibili.live.region.mvp.view.IRegionRecommendView;
@@ -31,10 +30,10 @@ import butterknife.BindView;
 
 public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegionRecommendView {
 
-    public static RegionTypeRecommendFragment newInstance(boolean isLazyLoad,RegionTypesInfo.DataBean dataBean) {
+    public static RegionTypeRecommendFragment newInstance(boolean isLazyLoad,int rid) {
         Bundle args = new Bundle();
         args.putBoolean(RxLazyFragment.INTENT_BOOLEAN_LAZYLOAD, isLazyLoad);
-        args.putParcelable("DataBean",dataBean);
+        args.putInt("rid",rid);
         RegionTypeRecommendFragment fragment = new RegionTypeRecommendFragment();
         fragment.setArguments(args);
         return fragment;
@@ -55,7 +54,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
 
     private RegionRecommendPresenter recommendPresenter;
 
-    private RegionTypesInfo.DataBean dataBean;
+    private int rid;
 
     @Override
     protected int getLayoutResId() {
@@ -66,7 +65,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
     protected void init() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            dataBean  = bundle.getParcelable("DataBean");
+            rid  = bundle.getInt("rid");
         }
         data = new ArrayList<>();
         recommendPresenter = new RegionRecommendPresenter(this);
@@ -79,7 +78,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
             public void onRefresh(RefreshLayout refreshLayout) {
                 data.clear();
                 multipleItemAdapter.notifyDataSetChanged();
-                recommendPresenter.getRegionRecommendsInfo(dataBean.getReid());
+                recommendPresenter.getRegionRecommendsInfo(rid);
             }
         });
         mRefreshLayout.autoRefresh();
@@ -99,7 +98,10 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
                     return RegionEntity.FOOTER_SPAN_SIZE;
                 } else if(type == RegionEntity.VIEW_TYPE_SPECIAL_LOADED){
                     return RegionEntity.SPECIAL_LOADED_SPAN_SIZE;
-                } else {
+                } else if(type == RegionEntity.VIEW_TYPE_ENTRANCE){
+                    return RegionEntity.ENTRANCE_SPAN_SIZE;
+                }
+                else {
                     return RegionEntity.ITEM_LOADED_SPAN_SIZE;
                 }
             }
@@ -120,13 +122,13 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
 
     @Override
     public void loadRecommendInfo(List<RegionRecommendInfo.DataBean.RecommendBean> recommends) {
-//        data.add(new RegionEntity(recommends) {
-//            @Override
-//            public int getItemType() {
-//                return RegionEntity.VIEW_TYPE_ITEM_LOADED;
-//            }
-//        });
-//        multipleItemAdapter.notifyDataSetChanged();
+        data.add(new RegionEntity(null) {
+            @Override
+            public int getItemType() {
+                return RegionEntity.VIEW_TYPE_ENTRANCE;
+            }
+        });
+        multipleItemAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -142,6 +144,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
 
     @Override
     public void loadDynamicInfo(List<RegionRecommendInfo.DataBean.DynamicBean> dynamics) {
+        mRefreshLayout.finishRefresh(true);
 //        data.add(new RegionEntity(dynamics) {
 //            @Override
 //            public int getItemType() {

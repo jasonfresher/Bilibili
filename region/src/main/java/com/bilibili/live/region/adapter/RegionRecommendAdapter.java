@@ -3,7 +3,8 @@ package com.bilibili.live.region.adapter;
 import android.support.annotation.Nullable;
 
 import com.bilibili.live.region.entity.RegionEntity;
-import com.bilibili.live.region.itemprovider.BannerProvider;
+import com.bilibili.live.region.itemprovider.RecommendBannerProvider;
+import com.bilibili.live.region.itemprovider.RecommendTypeProvider;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.MultipleItemRvAdapter;
 
@@ -27,6 +28,7 @@ public class RegionRecommendAdapter extends MultipleItemRvAdapter<RegionEntity,B
 
     @Override
     public void registerItemProvider() {
-        mProviderDelegate.registerProvider(new BannerProvider());
+        mProviderDelegate.registerProvider(new RecommendBannerProvider());
+        mProviderDelegate.registerProvider(new RecommendTypeProvider());
     }
 }

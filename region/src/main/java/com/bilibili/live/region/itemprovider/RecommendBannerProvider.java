@@ -19,7 +19,7 @@ import cn.bingoogolapple.bgabanner.BGABanner;
  * Created by jason on 2018/9/26.
  */
 
-public class BannerProvider extends BaseItemProvider<RegionEntity<List<RegionRecommendInfo.DataBean.BannerBean.TopBean>>,BaseViewHolder> {
+public class RecommendBannerProvider extends BaseItemProvider<RegionEntity<List<RegionRecommendInfo.DataBean.BannerBean.TopBean>>,BaseViewHolder> {
 
     @Override
     public int viewType() {
