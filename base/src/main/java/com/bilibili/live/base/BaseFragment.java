@@ -44,6 +44,7 @@ public class BaseFragment extends RxFragment {
 
     @Override
     public void onDestroyView() {
+
         super.onDestroyView();
         contentView = null;
         container = null;

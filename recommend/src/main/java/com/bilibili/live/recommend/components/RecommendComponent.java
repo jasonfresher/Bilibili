@@ -19,7 +19,7 @@ public class RecommendComponent implements IComponent {
     @Override
     public boolean onCall(CC cc) {
         String callId = cc.getCallId();
-        CCResult ccResult = CCResult.success(RouteInfo.RECOMMEND_COMPONENT_NAME, new RecommendFragment());
+        CCResult ccResult = CCResult.success(RouteInfo.RECOMMEND_COMPONENT_NAME, RecommendFragment.newInstance(true));
         CC.sendCCResult(callId,ccResult);
         return false;
     }

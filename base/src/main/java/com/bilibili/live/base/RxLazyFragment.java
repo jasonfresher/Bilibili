@@ -54,7 +54,6 @@ public abstract class RxLazyFragment extends BaseFragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         //一旦isVisibleToUser==true即可进行对真正需要的显示内容的加载
-
         //可见，但还没被初始化
         if (isVisibleToUser && !isInit && getContentView() != null) {
             onCreateViewLazy(savedInstanceState);
@@ -141,6 +140,7 @@ public abstract class RxLazyFragment extends BaseFragment {
             throw new IllegalStateException("should implements getLayoutResId or getLayoutResView first");
         }
         bind = ButterKnife.bind(this, getContentView());
+        init();
     }
 
     protected abstract int getLayoutResId();
@@ -152,7 +152,7 @@ public abstract class RxLazyFragment extends BaseFragment {
     }
 
     protected void onResumeLazy() {
-        init();
+
     }
 
     protected void onPauseLazy() {

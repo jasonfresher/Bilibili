@@ -74,7 +74,7 @@ public class RetrofitHelper {
 
           mOkHttpClient = new OkHttpClient.Builder()
               .cache(cache)
-              .addInterceptor(interceptor)
+//              .addInterceptor(interceptor)
               .addNetworkInterceptor(new CacheInterceptor())
               .retryOnConnectionFailure(true)
               .connectTimeout(30, TimeUnit.SECONDS)
