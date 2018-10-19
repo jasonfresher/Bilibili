@@ -9,15 +9,16 @@ import com.chad.library.adapter.base.provider.BaseItemProvider;
  * Created by jason on 2018/10/17.
  */
 
-public class DetailsHeaderProvider extends BaseItemProvider {
+public class RecommendDynamicHeaderProvider extends BaseItemProvider {
+
     @Override
     public int viewType() {
-        return RegionEntity.VIEW_TYPE_HEADER;
+        return RegionEntity.VIEW_TYPE_DYNAMIC_HEADER;
     }
 
     @Override
     public int layout() {
-        return R.layout.layout_region_details_hot_head;
+        return R.layout.layout_region_recommend_dynamic_head;
     }
 
     @Override

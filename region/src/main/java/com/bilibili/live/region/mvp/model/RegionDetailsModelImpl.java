@@ -43,12 +43,28 @@ public class RegionDetailsModelImpl implements IRegionDetailsModel {
                 .subscribe(new Consumer<RegionDetailsInfo.DataBean>() {
                     @Override
                     public void accept(RegionDetailsInfo.DataBean dataBean) throws Exception {
+                        if(dataBean == null)
+                            throw new NullPointerException("RegionDetailsInfo DataBean is null");
                         List<RegionDetailsInfo.DataBean.RecommendBean> recommends = dataBean.getRecommend();
                         List<RegionDetailsInfo.DataBean.NewBean> newXs = dataBean.getNewX();
-                        if(mCallBackListener != null){
-                            mCallBackListener.onRecommendInfoSuccess(recommends);
-                            mCallBackListener.onNewXInfoSuccess(newXs);
+                        if (mCallBackListener != null) {
+                            if (recommends != null) {
+                                mCallBackListener.onRecommendInfoSuccess(recommends);
+                            } else {
+                                throw new NullPointerException("RegionDetailsInfo recommends is null");
+                            }
+                            if (newXs != null) {
+                                mCallBackListener.onNewXInfoSuccess(newXs);
+                            } else {
+                                throw new NullPointerException("RegionDetailsInfo newXs is null");
+                            }
                         }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        if(mCallBackListener != null)
+                            mCallBackListener.onFailure(throwable);
                     }
                 });
     }

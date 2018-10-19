@@ -92,12 +92,13 @@ public class RegionTypeDetailsFragment extends RxLazyFragment implements IRegion
 
     @Override
     public void loadRecommendInfo(List<RegionDetailsInfo.DataBean.RecommendBean> recommends) {
-        datas.add(new RegionEntity(null) {
+        datas.add(new RegionEntity("最热视频") {
             @Override
             public int getItemType() {
-                return RegionEntity.VIEW_TYPE_HEADER;
+                return RegionEntity.VIEW_TYPE_DETAILS_RECOMMEDN_HEADER;
             }
         });
+
         Observable.fromIterable(recommends)
                 .map(new Function<RegionDetailsInfo.DataBean.RecommendBean, RegionEntity<RegionDetailsInfo.DataBean.RecommendBean>>() {
                     @Override
@@ -105,7 +106,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment implements IRegion
                         return new RegionEntity(recommendBean) {
                             @Override
                             public int getItemType() {
-                                return RegionEntity.VIEW_TYPE_ITEM_RECOMMEND_LOADED;
+                                return RegionEntity.VIEW_TYPE_DETAILS_ITEM_RECOMMEND_LOADED;
                             }
                         };
                     }
@@ -123,10 +124,10 @@ public class RegionTypeDetailsFragment extends RxLazyFragment implements IRegion
 
     @Override
     public void loadNewXInfo(List<RegionDetailsInfo.DataBean.NewBean> newXs) {
-        datas.add(new RegionEntity(null) {
+        datas.add(new RegionEntity("最新视频") {
             @Override
             public int getItemType() {
-                return RegionEntity.VIEW_TYPE_HEADER;
+                return RegionEntity.VIEW_TYPE_DETAILS_RECOMMEDN_HEADER;
             }
         });
         Observable.fromIterable(newXs)
@@ -136,7 +137,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment implements IRegion
                         return new RegionEntity(newsBean) {
                             @Override
                             public int getItemType() {
-                                return RegionEntity.VIEW_TYPE_ITEM_NEWSX_LOADED;
+                                return RegionEntity.VIEW_TYPE_DETAILS_ITEM_NEWSX_LOADED;
                             }
                         };
                     }

@@ -17,7 +17,7 @@ import com.chad.library.adapter.base.provider.BaseItemProvider;
 public class DetailsRecommendProvider extends BaseItemProvider<RegionEntity<RegionDetailsInfo.DataBean.RecommendBean>,BaseViewHolder> {
     @Override
     public int viewType() {
-        return RegionEntity.VIEW_TYPE_ITEM_RECOMMEND_LOADED;
+        return RegionEntity.VIEW_TYPE_DETAILS_ITEM_RECOMMEND_LOADED;
     }
 
     @Override

@@ -3,4 +3,8 @@
 
     <string name="hot_videos">Hot Videos</string>
     <string name="news_videos">News Videos</string>
+    <string name="goin_and_see">Go And See</string>
+    <string name="all_dynamic">All Dynamix</string>
+    <string name="hot_recommend">Hot Recommend</string>
+    <string name="rank">Rank</string>
 </resources>

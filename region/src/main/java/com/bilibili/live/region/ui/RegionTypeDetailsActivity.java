@@ -9,17 +9,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.bilibili.live.base.RxBaseActivity;
-import com.bilibili.live.base.constants.RouteInfo;
+import com.bilibili.live.base.rx.RxBus;
 import com.bilibili.live.region.R;
 import com.bilibili.live.region.R2;
 import com.bilibili.live.region.adapter.RegionRecommendPagerAdapter;
 import com.bilibili.live.region.bean.RegionTypesInfo;
-import com.billy.cc.core.component.CC;
-import com.billy.cc.core.component.CCResult;
-import com.billy.cc.core.component.IComponentCallback;
 import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
@@ -27,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
@@ -75,6 +75,25 @@ public class RegionTypeDetailsActivity extends RxBaseActivity {
             mDataBean = mBundle.getParcelable("extra_partition");
             initViewPager(mDataBean);
         }
+        initRxbus();
+    }
+
+    private void initRxbus() {
+        RxBus.getInstance().toObservable()
+                .map(new Function<Object, Integer>() {
+                    @Override
+                    public Integer apply(Object o) throws Exception {
+                        return (Integer) o;
+                    }
+                })
+                .compose(this.<Integer>bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        switchPager(integer);
+                    }
+                });
     }
 
     private void initViewPager(RegionTypesInfo.DataBean mDataBean) {
@@ -95,11 +114,12 @@ public class RegionTypeDetailsActivity extends RxBaseActivity {
                     public void accept(List<String> titles) throws Exception {
                         mTitles.addAll(titles);
                         viewPager.setAdapter(new RegionRecommendPagerAdapter(getSupportFragmentManager(),fragments,mTitles));
-                        viewPager.setOffscreenPageLimit(5);
+                        viewPager.setOffscreenPageLimit(7);
                         tabLayout.setViewPager(viewPager);
                     }
                 });
     }
+
 
     @Override
     public void initToolBar() {
@@ -108,6 +128,39 @@ public class RegionTypeDetailsActivity extends RxBaseActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    private void switchPager(int position) {
+
+        switch (position) {
+            case 0:
+                viewPager.setCurrentItem(1);
+                break;
+
+            case 1:
+                viewPager.setCurrentItem(2);
+                break;
+
+            case 2:
+                viewPager.setCurrentItem(3);
+                break;
+
+            case 3:
+                viewPager.setCurrentItem(4);
+                break;
+
+            case 4:
+                viewPager.setCurrentItem(5);
+                break;
+
+            case 5:
+                viewPager.setCurrentItem(6);
+                break;
+
+            case 6:
+                viewPager.setCurrentItem(7);
+                break;
         }
     }
 

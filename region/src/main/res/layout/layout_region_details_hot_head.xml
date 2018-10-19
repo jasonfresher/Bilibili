@@ -11,10 +11,10 @@
         android:id="@+id/item_type_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_tiny_padding"
         android:gravity="center"
         android:text="@string/hot_videos"
         android:textColor="@color/font_normal"
-        android:textSize="@dimen/default_small_text_size"
-        android:layout_marginLeft="@dimen/default_tiny_padding" />
+        android:textSize="@dimen/default_small_text_size" />
 
 </LinearLayout>

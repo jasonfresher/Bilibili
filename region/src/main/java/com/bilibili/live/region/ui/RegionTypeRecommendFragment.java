@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 /**
  * Created by jason on 2018/10/16.
@@ -92,7 +95,11 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
                 int type = data.get(position).getItemType();
                 if (type == RegionEntity.VIEW_TYPE_BANNER) {
                     return RegionEntity.BANNER_SPAN_SIZE;
-                } else if (type == RegionEntity.VIEW_TYPE_HEADER) {
+                } else if (type == RegionEntity.VIEW_TYPE_HOT_HEADER) {
+                    return RegionEntity.HEADER_SPAN_SIZE;
+                } else if(type == RegionEntity.VIEW_TYPE_NEWSX_HEADER){
+                    return RegionEntity.HEADER_SPAN_SIZE;
+                } else if(type == RegionEntity.VIEW_TYPE_DYNAMIC_HEADER){
                     return RegionEntity.HEADER_SPAN_SIZE;
                 } else if (type == RegionEntity.VIEW_TYPE_FOOTER) {
                     return RegionEntity.FOOTER_SPAN_SIZE;
@@ -100,8 +107,7 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
                     return RegionEntity.SPECIAL_LOADED_SPAN_SIZE;
                 } else if(type == RegionEntity.VIEW_TYPE_ENTRANCE){
                     return RegionEntity.ENTRANCE_SPAN_SIZE;
-                }
-                else {
+                } else {
                     return RegionEntity.ITEM_LOADED_SPAN_SIZE;
                 }
             }
@@ -122,36 +128,104 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
 
     @Override
     public void loadRecommendInfo(List<RegionRecommendInfo.DataBean.RecommendBean> recommends) {
-        data.add(new RegionEntity(null) {
+        data.add(new RegionEntity(rid) {
             @Override
             public int getItemType() {
                 return RegionEntity.VIEW_TYPE_ENTRANCE;
             }
         });
-        multipleItemAdapter.notifyDataSetChanged();
+
+        data.add(new RegionEntity(null) {
+            @Override
+            public int getItemType() {
+                return RegionEntity.VIEW_TYPE_HOT_HEADER;
+            }
+        });
+
+        Observable.fromIterable(recommends)
+                .compose(this.<RegionRecommendInfo.DataBean.RecommendBean>bindToLifecycle())
+                .map(new Function<RegionRecommendInfo.DataBean.RecommendBean, RegionEntity<RegionRecommendInfo.DataBean.RecommendBean>>() {
+                    @Override
+                    public RegionEntity<RegionRecommendInfo.DataBean.RecommendBean> apply(RegionRecommendInfo.DataBean.RecommendBean recommendBean) throws Exception {
+                        return new RegionEntity<RegionRecommendInfo.DataBean.RecommendBean>(recommendBean) {
+                            @Override
+                            public int getItemType() {
+                                return RegionEntity.VIEW_TYPE_ITEM_RECOMMEND_LOADED;
+                            }
+                        };
+                    }
+                })
+                .toList()
+                .subscribe(new Consumer<List<RegionEntity<RegionRecommendInfo.DataBean.RecommendBean>>>() {
+                    @Override
+                    public void accept(List<RegionEntity<RegionRecommendInfo.DataBean.RecommendBean>> regionEntities) throws Exception {
+                        data.addAll(regionEntities);
+                        multipleItemAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     @Override
     public void loadNewXInfo(List<RegionRecommendInfo.DataBean.NewBean> newXs) {
-//        data.add(new RegionEntity(newXs) {
-//            @Override
-//            public int getItemType() {
-//                return RegionEntity.VIEW_TYPE_ITEM_LOADED;
-//            }
-//        });
-//        multipleItemAdapter.notifyDataSetChanged();
+        data.add(new RegionEntity(null) {
+            @Override
+            public int getItemType() {
+                return RegionEntity.VIEW_TYPE_NEWSX_HEADER;
+            }
+        });
+        Observable.fromIterable(newXs)
+                .compose(this.<RegionRecommendInfo.DataBean.NewBean>bindToLifecycle())
+                .map(new Function<RegionRecommendInfo.DataBean.NewBean, RegionEntity<RegionRecommendInfo.DataBean.NewBean>>() {
+                    @Override
+                    public RegionEntity<RegionRecommendInfo.DataBean.NewBean> apply(RegionRecommendInfo.DataBean.NewBean newBean) throws Exception {
+                        return new RegionEntity<RegionRecommendInfo.DataBean.NewBean>(newBean) {
+                            @Override
+                            public int getItemType() {
+                                return RegionEntity.VIEW_TYPE_ITEM_RECOMMEND_LOADED;
+                            }
+                        };
+                    }
+                })
+                .toList()
+                .subscribe(new Consumer<List<RegionEntity<RegionRecommendInfo.DataBean.NewBean>>>() {
+                    @Override
+                    public void accept(List<RegionEntity<RegionRecommendInfo.DataBean.NewBean>> regionEntities) throws Exception {
+                        data.addAll(regionEntities);
+                        multipleItemAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     @Override
     public void loadDynamicInfo(List<RegionRecommendInfo.DataBean.DynamicBean> dynamics) {
         mRefreshLayout.finishRefresh(true);
-//        data.add(new RegionEntity(dynamics) {
-//            @Override
-//            public int getItemType() {
-//                return RegionEntity.VIEW_TYPE_ITEM_LOADED;
-//            }
-//        });
-//        multipleItemAdapter.notifyDataSetChanged();
+        data.add(new RegionEntity(null) {
+            @Override
+            public int getItemType() {
+                return RegionEntity.VIEW_TYPE_DYNAMIC_HEADER;
+            }
+        });
+        Observable.fromIterable(dynamics)
+                .compose(this.<RegionRecommendInfo.DataBean.DynamicBean>bindToLifecycle())
+                .map(new Function<RegionRecommendInfo.DataBean.DynamicBean, RegionEntity<RegionRecommendInfo.DataBean.DynamicBean>>() {
+                    @Override
+                    public RegionEntity<RegionRecommendInfo.DataBean.DynamicBean> apply(RegionRecommendInfo.DataBean.DynamicBean dynamicBean) throws Exception {
+                        return new RegionEntity<RegionRecommendInfo.DataBean.DynamicBean>(dynamicBean) {
+                            @Override
+                            public int getItemType() {
+                                return RegionEntity.VIEW_TYPE_ITEM_RECOMMEND_LOADED;
+                            }
+                        };
+                    }
+                })
+                .toList()
+                .subscribe(new Consumer<List<RegionEntity<RegionRecommendInfo.DataBean.DynamicBean>>>() {
+                    @Override
+                    public void accept(List<RegionEntity<RegionRecommendInfo.DataBean.DynamicBean>> regionEntities) throws Exception {
+                        data.addAll(regionEntities);
+                        multipleItemAdapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     @Override

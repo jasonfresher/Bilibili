@@ -154,34 +154,42 @@ public class RegionFragment extends RxLazyFragment implements IRegionHomeView,Ba
 
             case 2:
                 //动画
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(2));
                 break;
 
             case 3:
                 //音乐
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(3));
                 break;
 
             case 4:
                 //舞蹈
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(4));
                 break;
 
             case 5:
                 //游戏
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(5));
                 break;
 
             case 6:
                 //科技
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(6));
                 break;
 
             case 7:
                 //生活
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(7));
                 break;
 
             case 8:
                 //鬼畜
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(8));
                 break;
 
             case 9:
                 //时尚
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(9));
                 break;
 
             case 10:
@@ -190,14 +198,17 @@ public class RegionFragment extends RxLazyFragment implements IRegionHomeView,Ba
 
             case 11:
                 //娱乐
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(10));
                 break;
 
             case 12:
                 //电影
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(11));
                 break;
 
             case 13:
                 //电视剧
+                RegionTypeDetailsActivity.launch(getActivity(),regionTypes.get(12));
                 break;
 
             case 14:

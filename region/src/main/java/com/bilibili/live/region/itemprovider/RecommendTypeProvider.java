@@ -1,10 +1,11 @@
 package com.bilibili.live.region.itemprovider;
 
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.bilibili.live.base.rx.RxBus;
 import com.bilibili.live.region.R;
 import com.bilibili.live.region.bean.RegionTypeItemBean;
 import com.bilibili.live.region.entity.RegionEntity;
@@ -12,6 +13,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.provider.BaseItemProvider;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -22,7 +25,7 @@ import io.reactivex.functions.Consumer;
  * Created by jason on 2018/10/17.
  */
 
-public class RecommendTypeProvider extends BaseItemProvider {
+public class RecommendTypeProvider extends BaseItemProvider<RegionEntity<Integer>,BaseViewHolder> {
 
     //番剧类型Icons
     private Integer[] bangumiIcons = new Integer[] {
@@ -153,11 +156,78 @@ public class RecommendTypeProvider extends BaseItemProvider {
     }
 
     @Override
-    public void convert(BaseViewHolder helper, Object data, int position) {
+    public void convert(BaseViewHolder helper, RegionEntity<Integer> data, int position) {
+        Integer rid = data.content;
+
         final RecyclerView recyclerView = helper.getView(R.id.type_recyclerview);
         GridLayoutManager layoutManager = new GridLayoutManager(recyclerView.getContext(),4);
         recyclerView.setLayoutManager(layoutManager);
-        Observable.zip(Observable.fromArray(bangumiIcons), Observable.fromArray(bangumiTitles),
+        List<String> titles = new ArrayList<>();
+        List<Integer> icons = new ArrayList<>();
+        switch (rid) {
+            case 13:
+                //番剧
+                titles = Arrays.asList(bangumiTitles);
+                icons =Arrays.asList(bangumiIcons) ;
+                break;
+            case 1:
+                //动画
+                titles = Arrays.asList(animationTitles);
+                icons =Arrays.asList(animationIcons) ;
+                break;
+            case 3:
+                //音乐
+                titles = Arrays.asList(musicTitles);
+                icons =Arrays.asList(musicIcons) ;
+                break;
+            case 129:
+                //舞蹈
+                titles = Arrays.asList(danceTitles);
+                icons =Arrays.asList(danceIcons) ;
+                break;
+            case 4:
+                //游戏
+                titles = Arrays.asList(gameTitles);
+                icons =Arrays.asList(gameIcons) ;
+                break;
+            case 36:
+                //科技
+                titles = Arrays.asList(scienceTitles);
+                icons =Arrays.asList(scienceIcons) ;
+                break;
+            case 160:
+                //生活
+                titles = Arrays.asList(lifeTitles);
+                icons =Arrays.asList(lifeIcons) ;
+                break;
+            case 119:
+                //鬼畜
+                titles = Arrays.asList(kichikuTitles);
+                icons =Arrays.asList(kichikuIcons) ;
+                break;
+            case 155:
+                //时尚
+                titles = Arrays.asList(fashionTitles);
+                icons =Arrays.asList(fashionIcons) ;
+                break;
+            case 5:
+                //娱乐
+                titles = Arrays.asList(entertainmentTitles);
+                icons =Arrays.asList(entertainmentIcons) ;
+                break;
+            case 23:
+                //电影
+                titles = Arrays.asList(movieTitles);
+                icons =Arrays.asList(movieIcons) ;
+                break;
+            case 11:
+                //电视剧
+                titles = Arrays.asList(tvTitles);
+                icons =Arrays.asList(tvIcons) ;
+                break;
+        }
+
+        Observable.zip(Observable.fromIterable(icons), Observable.fromIterable(titles),
                 new BiFunction<Integer, String, RegionTypeItemBean>() {
                     @Override
                     public RegionTypeItemBean apply(Integer iconRes, String name) throws Exception {
@@ -170,11 +240,17 @@ public class RecommendTypeProvider extends BaseItemProvider {
                 .subscribe(new Consumer<List<RegionTypeItemBean>>() {
                     @Override
                     public void accept(List<RegionTypeItemBean> regionTypeItemBeans) throws Exception {
-                        recyclerView.setAdapter(new TypeItemAdapter(R.layout.item_types_icon,regionTypeItemBeans));
+                        TypeItemAdapter typeItemAdapter = new TypeItemAdapter(R.layout.item_types_icon,regionTypeItemBeans);
+                        typeItemAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                RxBus.getInstance().send(position);
+                            }
+                        });
+                        recyclerView.setAdapter(typeItemAdapter);
                     }
                 });
     }
-
 
     private class TypeItemAdapter extends BaseQuickAdapter<RegionTypeItemBean,BaseViewHolder>{
 

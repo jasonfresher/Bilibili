@@ -17,7 +17,7 @@ import com.chad.library.adapter.base.provider.BaseItemProvider;
 public class DetailsNewsXProvider extends BaseItemProvider<RegionEntity<RegionDetailsInfo.DataBean.NewBean>,BaseViewHolder> {
     @Override
     public int viewType() {
-        return RegionEntity.VIEW_TYPE_ITEM_NEWSX_LOADED;
+        return RegionEntity.VIEW_TYPE_DETAILS_ITEM_NEWSX_LOADED;
     }
 
     @Override
