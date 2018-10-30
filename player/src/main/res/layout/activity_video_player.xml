@@ -1,7 +1,7 @@
-<FrameLayout xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/playerFrame"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playerFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="ResourceName">
@@ -11,6 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
+
+    <com.bilibili.live.player.widget.VideoGestureRelativeLayout
+        android:id="@+id/video_gesture_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <com.bilibili.live.player.widget.MediaController
+        android:id="@+id/media_controller"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
 
     <RelativeLayout
         android:id="@+id/buffering_indicator"
@@ -54,7 +68,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:background="@color/white_30"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/bili_anim"

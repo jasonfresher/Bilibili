@@ -10,4 +10,6 @@
 
     <string name="video_loading">loading…</string>
     <string name="video_init">init player…</string>
+
+    <string name="show_change_time_separator">/</string>
 </resources>

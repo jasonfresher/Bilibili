@@ -197,6 +197,7 @@ public class MediaController extends FrameLayout {
         mRoot = this;
         mFromXml = true;
         initController(context);
+        makeControllerView();
     }
 
 
@@ -217,7 +218,6 @@ public class MediaController extends FrameLayout {
         mWindow = new PopupWindow(mContext);
         mWindow.setFocusable(false);
         mWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        mWindow.setBackgroundDrawable(null);
         mWindow.setOutsideTouchable(true);
         mAnimStyle = android.R.style.Animation;
     }
@@ -441,8 +441,8 @@ public class MediaController extends FrameLayout {
         updatePausePlay();
         mHandler.sendEmptyMessage(SHOW_PROGRESS);
 
+        mHandler.removeMessages(FADE_OUT);
         if (timeout != 0) {
-            mHandler.removeMessages(FADE_OUT);
             mHandler.sendMessageDelayed(mHandler.obtainMessage(FADE_OUT),
                     timeout);
         }
@@ -518,19 +518,17 @@ public class MediaController extends FrameLayout {
         return position;
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (isShowing())
-            hide();
-        else
-            show(sDefaultTimeout);
-        return true;
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+//            if (isShowing()) {
+//                hide();
+//            } else {
+//                show(sDefaultTimeout);
+//            }
+//        }
+//        return true;
+//    }
 
 
     @Override

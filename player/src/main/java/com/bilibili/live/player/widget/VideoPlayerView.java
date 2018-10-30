@@ -14,10 +14,12 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 
 
 import com.bilibili.live.player.R;
+import com.bilibili.live.player.ui.VideoPlayerActivity;
 import com.bilibili.live.player.utils.ScreenResolution;
 import com.bilibili.live.player.listener.MediaPlayerListener;
 
@@ -90,6 +92,8 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
   private int mSurfaceHeight;
 
   private MediaController mMediaController;
+
+  private VideoGestureRelativeLayout mVideoGestureRelativeLayout;
 
   private View mMediaBufferingIndicator;
 
@@ -590,28 +594,32 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
     }
   }
 
-
-
   @Override
-  public boolean onTouchEvent(MotionEvent ev) {
-    if (isInPlaybackState() && mMediaController != null) {
+  public boolean onTouchEvent(MotionEvent event) {
+    if(event.getAction() == MotionEvent.ACTION_DOWN) {
       toggleMediaControlsVisiblity();
     }
-    return false;
+    return true;
   }
 
 
   @Override
-  public boolean onTrackballEvent(MotionEvent ev) {
+  public boolean onTrackballEvent(MotionEvent event) {
+    toggleMediaControl();
+    return true;
+  }
+
+  public void toggleMediaControl() {
     if (isInPlaybackState() && mMediaController != null) {
       toggleMediaControlsVisiblity();
     }
-    return false;
   }
 
-
-
-
+  public void setVideoGestureView(VideoGestureRelativeLayout videoGestureView) {
+    mVideoGestureRelativeLayout = videoGestureView;
+    mVideoGestureRelativeLayout.setVisibility(View.VISIBLE);
+    mVideoGestureRelativeLayout.attachMediaPlayer(this);
+  }
 
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -654,6 +662,11 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
     }
   }
 
+  public void showMediaControls(int timeout){
+    if (isInPlaybackState() && mMediaController != null) {
+      mMediaController.show(timeout);
+    }
+  }
 
   @Override
   public void start() {
@@ -778,6 +791,7 @@ public class VideoPlayerView extends SurfaceView implements MediaPlayerListener 
   public void setHardDecode(boolean hardDecode) {
     this.mHardDecode = hardDecode;
   }
+
 
   public interface OnControllerEventsListener {
     void onVideoPause();

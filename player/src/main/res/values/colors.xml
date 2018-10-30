@@ -2,4 +2,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
     <color name="media_controller_bg">#99000000</color>
     <color name="white">#FFFFFF</color>
+
+    <!--show change view-->
+    <color name="show_change_bg">#66333333</color>
+    <color name="show_change_background_startColor">#ff9d9e9d</color>
+    <color name="show_change_background_centerColor">#ff5a5d5a</color>
+    <color name="show_change_background_endColor">#ff747674</color>
+
+    <color name="show_change_progress_startColor">#ffdddddd</color>
+    <color name="show_change_progress_centerColor">#ffdddddd</color>
+    <color name="show_change_progress_endColor">#ffdddddd</color>
+
+
+    <color name="player_progress_bg">#ffdddddd</color>
 </resources>

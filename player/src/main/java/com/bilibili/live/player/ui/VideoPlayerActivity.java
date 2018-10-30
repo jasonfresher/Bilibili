@@ -16,6 +16,7 @@ import com.bilibili.live.player.R2;
 import com.bilibili.live.player.listener.DanmukuSwitchListener;
 import com.bilibili.live.player.listener.VideoBackListener;
 import com.bilibili.live.player.widget.MediaController;
+import com.bilibili.live.player.widget.VideoGestureRelativeLayout;
 import com.bilibili.live.player.widget.VideoPlayerView;
 
 import butterknife.BindView;
@@ -26,10 +27,16 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * Created by jason on 2018/10/10.
  */
 
-public class VideoPlayerActivity extends AppCompatActivity {
+public class VideoPlayerActivity extends AppCompatActivity{
 
     @BindView(R2.id.playerView)
     VideoPlayerView mPlayerView;
+
+    @BindView(R2.id.media_controller)
+    MediaController mMediaController;
+
+    @BindView(R2.id.video_gesture_view)
+    VideoGestureRelativeLayout mVideoGestureView;
 
     @BindView(R2.id.buffering_indicator)
     View mBufferingIndicator;
@@ -70,7 +77,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
         }
         initAnimation();
         initMediaPlayer();
-
     }
 
     /**
@@ -86,7 +92,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     private void initMediaPlayer() {
         //配置播放器
-        MediaController mMediaController = new MediaController(this);
         mMediaController.setTitle(title);
         mPlayerView.setMediaController(mMediaController);
         mPlayerView.setHardDecode(hardDecode);
@@ -152,7 +157,11 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 startText = startText + "【完成】\n视频缓冲中...";
                 mPrepareText.setText(startText);
                 mVideoPrepareLayout.setVisibility(View.GONE);
+                if(iMediaPlayer.getDuration() > 0){
+                    mPlayerView.setVideoGestureView(mVideoGestureView);
+                }
             }
         });
     }
+
 }
