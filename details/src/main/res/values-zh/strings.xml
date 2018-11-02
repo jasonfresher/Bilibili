@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <string name="app_name">details_demo</string>
+    <string name="play_immediately">立即播放</string>
+    <string name="about_menu_action_share">分享</string>
+    <string name="coin">投硬币</string>
+    <string name="collection">收藏</string>
+    <string name="cache">缓存</string>
+    <string name="add_follow">+关注</string>
+    <string name="about_tag">标签相关</string>
+    <string name="tag_edit">编辑</string>
+    <string name="video_about">视频相关</string>
+    <string name="charging">请赐予我电量吧 !</string>
+    <string name="charg">充电</string>
+    <string name="more_charging">更多电量,更多灵感哟  o(*≧▽≦)ツ</string>
+</resources>

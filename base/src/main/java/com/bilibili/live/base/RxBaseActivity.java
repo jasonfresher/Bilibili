@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.utils.ThemeHelper;
 import com.bilibili.live.base.widget.CardPickerDialog;
 import com.bilibili.magicasakura.utils.ThemeUtils;
@@ -19,11 +20,12 @@ import butterknife.Unbinder;
 /**
  * Activity基类
  */
-public abstract class RxBaseActivity extends RxAppCompatActivity
+public abstract class RxBaseActivity<V,P extends BasePresenter<V>> extends RxAppCompatActivity
         implements CardPickerDialog.ClickListener {
 
-    private Unbinder bind;
+    protected Unbinder bind;
 
+    protected P mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,12 @@ public abstract class RxBaseActivity extends RxAppCompatActivity
         super.onCreate(savedInstanceState);
         //设置布局内容
         setContentView(getLayoutId());
+        //创建Presenter
+        mPresenter = createPresenter();
+        //关联View
+        if(mPresenter != null)
+            mPresenter.attachView((V) this);
+
         //初始化黄油刀控件绑定框架
         bind = ButterKnife.bind(this);
         //初始化控件
@@ -39,37 +47,13 @@ public abstract class RxBaseActivity extends RxAppCompatActivity
         initToolBar();
     }
 
+    protected abstract P createPresenter();
 
-    public abstract int getLayoutId();
+    protected abstract int getLayoutId();
 
-    public abstract void initViews(Bundle savedInstanceState);
+    protected abstract void initViews(Bundle savedInstanceState);
 
-    public abstract void initToolBar();
-
-
-    public void loadData() {
-    }
-
-
-    public void showProgressBar() {
-    }
-
-
-    public void hideProgressBar() {
-    }
-
-
-    public void initRecyclerView() {
-    }
-
-
-    public void initRefreshLayout() {
-    }
-
-
-    public void finishTask() {
-    }
-
+    protected abstract void initToolBar();
 
     @Override
     public void onConfirm(int currentTheme) {
@@ -116,6 +100,9 @@ public abstract class RxBaseActivity extends RxAppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        bind.unbind();
+        if(bind != null)
+            bind.unbind();
+        if(mPresenter != null)
+            mPresenter.detachView();
     }
 }

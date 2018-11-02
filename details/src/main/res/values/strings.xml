@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <string name="app_name">details_demo</string>
+    <string name="play_immediately">play immediately</string>
+    <string name="about_menu_action_share">share</string>
+    <string name="coin">coin</string>
+    <string name="collection">collection</string>
+    <string name="cache">cache</string>
+    <string name="add_follow">+follow</string>
+    <string name="about_tag">about tag</string>
+    <string name="tag_edit">edit</string>
+    <string name="video_about">About video</string>
+    <string name="charging">give me more power !</string>
+    <string name="charg">charge</string>
+    <string name="more_charging">more power,more inspiration  o(*≧▽≦)ツ</string>
+</resources>

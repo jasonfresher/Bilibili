@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.bilibili.live.region.R;
 import com.bilibili.live.region.R2;
@@ -31,7 +32,7 @@ import io.reactivex.functions.Function;
  * Created by jason on 2018/10/16.
  */
 
-public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegionRecommendView {
+public class RegionTypeRecommendFragment extends RxLazyFragment<IRegionRecommendView,BasePresenter<IRegionRecommendView>> implements IRegionRecommendView {
 
     public static RegionTypeRecommendFragment newInstance(boolean isLazyLoad,int rid) {
         Bundle args = new Bundle();
@@ -60,6 +61,12 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
     private int rid;
 
     @Override
+    protected BasePresenter createPresenter() {
+        recommendPresenter = new RegionRecommendPresenter();
+        return recommendPresenter;
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.region_recommend_layout;
     }
@@ -71,7 +78,6 @@ public class RegionTypeRecommendFragment extends RxLazyFragment implements IRegi
             rid  = bundle.getInt("rid");
         }
         data = new ArrayList<>();
-        recommendPresenter = new RegionRecommendPresenter(this);
         mRefreshLayout.setHeaderHeight(66);
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.setHeaderMaxDragRate(2f);

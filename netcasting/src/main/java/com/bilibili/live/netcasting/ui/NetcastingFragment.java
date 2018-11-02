@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.bilibili.live.netcasting.R;
 import com.bilibili.live.netcasting.R2;
@@ -13,7 +14,6 @@ import com.bilibili.live.netcasting.adapter.NetcastingRvAdapter;
 import com.bilibili.live.netcasting.bean.EntranceInfo;
 import com.bilibili.live.netcasting.bean.LiveAppIndexInfo;
 import com.bilibili.live.netcasting.entity.NetcastingEntity;
-import com.bilibili.live.netcasting.mvp.presenter.INetcastingPresenter;
 import com.bilibili.live.netcasting.mvp.presenter.NetcastingPresenter;
 import com.bilibili.live.netcasting.mvp.view.INetcastingView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -30,7 +30,7 @@ import butterknife.BindView;
  * Created by jason on 2018/9/25.
  */
 
-public class NetcastingFragment extends RxLazyFragment implements INetcastingView {
+public class NetcastingFragment extends RxLazyFragment<INetcastingView,BasePresenter<INetcastingView>> implements INetcastingView {
 
     private int[] entranceIconRes = new int[] {
             R.drawable.live_home_follow_anchor,
@@ -53,7 +53,7 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
     @BindView(R2.id.recyclerView)
     protected RecyclerView mRecyclerView;
 
-    private INetcastingPresenter presenter;
+    private NetcastingPresenter presenter;
 
     private List<NetcastingEntity> datas;
 
@@ -70,6 +70,12 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
     }
 
     @Override
+    protected BasePresenter createPresenter() {
+        presenter = new NetcastingPresenter();
+        return presenter;
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.netcasting_fragment_layout;
     }
@@ -77,7 +83,7 @@ public class NetcastingFragment extends RxLazyFragment implements INetcastingVie
     @Override
     protected void init() {
         datas = new ArrayList<>();
-        presenter = new NetcastingPresenter(this);
+
         mRefreshLayout.setHeaderHeight(66);
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.setHeaderMaxDragRate(2f);

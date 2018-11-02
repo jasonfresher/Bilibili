@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.widget.CircleProgressView;
 import com.bilibili.live.region.R;
 import com.bilibili.live.region.R2;
@@ -28,7 +29,7 @@ import io.reactivex.functions.Function;
  * Created by jason on 2018/10/17.
  */
 
-public class RegionTypeDetailsFragment extends RxLazyFragment implements IRegionDetailsView {
+public class RegionTypeDetailsFragment extends RxLazyFragment<IRegionDetailsView,BasePresenter<IRegionDetailsView>> implements IRegionDetailsView {
 
     public static RegionTypeDetailsFragment newInstance(boolean isLazyLoad, int rid) {
         Bundle args = new Bundle();
@@ -51,6 +52,14 @@ public class RegionTypeDetailsFragment extends RxLazyFragment implements IRegion
 
     private RegionDetailsAdapter multipleItemAdapter;
 
+    private RegionDetailsPresenter presenter;
+
+    @Override
+    protected BasePresenter createPresenter() {
+        presenter = new RegionDetailsPresenter();
+        return presenter;
+    }
+
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_region_details;
@@ -69,7 +78,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment implements IRegion
         mRecyclerView.setLayoutManager(linearLayoutManager);
         multipleItemAdapter = new RegionDetailsAdapter(datas);
         mRecyclerView.setAdapter(multipleItemAdapter);
-        IRegionDetailsPresenter presenter = new RegionDetailsPresenter(this);
+
         presenter.getRegionDetailsInfo(rid);
     }
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.constants.RouteInfo;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.home.R;
 import com.bilibili.live.home.R2;
 import com.bilibili.live.home.adapter.HomePagerAdapter;
@@ -52,6 +53,11 @@ public class HomeFragment extends RxLazyFragment {
         HomeFragment fragment = new HomeFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
     @Override

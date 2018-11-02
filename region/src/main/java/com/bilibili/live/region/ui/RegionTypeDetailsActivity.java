@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bilibili.live.base.RxBaseActivity;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.rx.RxBus;
 import com.bilibili.live.region.R;
 import com.bilibili.live.region.R2;
@@ -62,6 +63,11 @@ public class RegionTypeDetailsActivity extends RxBaseActivity {
     private List<Fragment> fragments;
 
     private List<String> mTitles;
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
 
     @Override
     public int getLayoutId() {

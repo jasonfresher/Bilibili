@@ -6,15 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.constants.RouteInfo;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.R2;
 import com.bilibili.live.recommend.adapter.RecommendRvAdapter;
 import com.bilibili.live.recommend.bean.RecommendInfo;
 import com.bilibili.live.recommend.entity.RecommendEntity;
-import com.bilibili.live.recommend.mvp.presenter.IRecommendPresenter;
-import com.bilibili.live.recommend.mvp.presenter.RecommendPresenterImpl;
+import com.bilibili.live.recommend.mvp.presenter.RecommendPresenter;
 import com.bilibili.live.recommend.mvp.view.IRecommendView;
+import com.billy.cc.core.component.CC;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -29,7 +31,7 @@ import butterknife.BindView;
  * Created by jason on 2018/9/14.
  */
 
-public class RecommendFragment extends RxLazyFragment implements IRecommendView {
+public class RecommendFragment extends RxLazyFragment<IRecommendView,BasePresenter<IRecommendView>> implements IRecommendView {
 
     @BindView(R2.id.empty_layout)
     protected CustomEmptyView mEmptyView;
@@ -40,7 +42,7 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
     @BindView(R2.id.recyclerView)
     protected RecyclerView mRecyclerView;
 
-    private IRecommendPresenter recommendPresenter;
+    private RecommendPresenter recommendPresenter;
 
     private List<RecommendEntity> data;
 
@@ -55,6 +57,12 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
     }
 
     @Override
+    protected BasePresenter createPresenter() {
+        recommendPresenter = new RecommendPresenter();
+        return recommendPresenter;
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.recommend_fragment_layout;
     }
@@ -62,7 +70,7 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
     @Override
     protected void init() {
         data = new ArrayList<>();
-        recommendPresenter = new RecommendPresenterImpl(this);
+
         mRefreshLayout.setHeaderHeight(66);
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.setHeaderMaxDragRate(2f);
@@ -77,7 +85,6 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
         });
         mRefreshLayout.autoRefresh();
         multipleItemAdapter = new RecommendRvAdapter(data);
-
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
         mRecyclerView.setLayoutManager(manager);
         multipleItemAdapter.setSpanSizeLookup(new BaseQuickAdapter.SpanSizeLookup() {
@@ -94,6 +101,22 @@ public class RecommendFragment extends RxLazyFragment implements IRecommendView 
                     return RecommendEntity.SPECIAL_LOADED_SPAN_SIZE;
                 } else {
                     return RecommendEntity.ITEM_LOADED_SPAN_SIZE;
+                }
+            }
+        });
+        multipleItemAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                RecommendEntity recommendEntity = data.get(position);
+                if(recommendEntity instanceof  RecommendInfo.ResultBean.BodyBean){
+                    RecommendInfo.ResultBean.BodyBean item = (RecommendInfo.ResultBean.BodyBean) recommendEntity;
+                    String param = item.getParam();
+                    String cover = item.getCover();
+                    CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
+                                .addParam("extra_av",Integer.parseInt(param))
+                                .addParam("extra_img_url",cover)
+                                .build()
+                                .call();
                 }
             }
         });

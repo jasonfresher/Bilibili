@@ -1,9 +1,15 @@
 package com.bilibili.live.recommend.itemproviders;
 
+import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.ImageView;
 
+import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.bean.RecommendInfo;
+import com.billy.cc.core.component.CC;
+import com.billy.cc.core.component.CCResult;
+import com.billy.cc.core.component.IComponentCallback;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.provider.BaseItemProvider;
@@ -28,7 +34,7 @@ public class BodyProvider extends BaseItemProvider<RecommendInfo.ResultBean.Body
     }
 
     @Override
-    public void convert(BaseViewHolder helper, RecommendInfo.ResultBean.BodyBean bodyBean, int position) {
+    public void convert(BaseViewHolder helper, final RecommendInfo.ResultBean.BodyBean bodyBean, int position) {
         switch (bodyBean.getTitleType()) {
             case TYPE_LIVE:
                 //直播item

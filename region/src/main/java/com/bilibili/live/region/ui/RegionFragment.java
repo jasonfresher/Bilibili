@@ -7,13 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.region.R;
 import com.bilibili.live.region.R2;
 import com.bilibili.live.region.adapter.RegionHomeAdapter;
 import com.bilibili.live.region.bean.RegionHomeItemBean;
 import com.bilibili.live.region.bean.RegionTypesInfo;
-import com.bilibili.live.region.mvp.presenter.IRegionHomePresenter;
-import com.bilibili.live.region.mvp.presenter.RegionHomePresenterImpl;
+import com.bilibili.live.region.mvp.presenter.RegionHomePresenter;
 import com.bilibili.live.region.mvp.view.IRegionHomeView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
@@ -36,7 +36,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by jason on 2018/10/15.
  */
 
-public class RegionFragment extends RxLazyFragment implements IRegionHomeView,BaseQuickAdapter.OnItemClickListener {
+public class RegionFragment extends RxLazyFragment<IRegionHomeView,BasePresenter<IRegionHomeView>> implements IRegionHomeView,BaseQuickAdapter.OnItemClickListener {
 
     @BindView(R2.id.recyclerview)
     protected RecyclerView mRecyclerView;
@@ -47,6 +47,8 @@ public class RegionFragment extends RxLazyFragment implements IRegionHomeView,Ba
 
     private RegionHomeAdapter regionAdapter;
 
+    private RegionHomePresenter homePresenter;
+
     public static RegionFragment newInstance(boolean isLazyLoad) {
         Bundle args = new Bundle();
         args.putBoolean(RxLazyFragment.INTENT_BOOLEAN_LAZYLOAD, isLazyLoad);
@@ -56,6 +58,11 @@ public class RegionFragment extends RxLazyFragment implements IRegionHomeView,Ba
     }
 
 
+    @Override
+    protected BasePresenter createPresenter() {
+        homePresenter = new RegionHomePresenter();
+        return homePresenter;
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -64,7 +71,6 @@ public class RegionFragment extends RxLazyFragment implements IRegionHomeView,Ba
 
     @Override
     protected void init() {
-        IRegionHomePresenter homePresenter = new RegionHomePresenterImpl(this);
         homePresenter.getRegionHomeData();
         mLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(mLayoutManager);

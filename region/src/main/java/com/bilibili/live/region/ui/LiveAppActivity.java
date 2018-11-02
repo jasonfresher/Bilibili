@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.bilibili.live.base.RxBaseActivity;
 import com.bilibili.live.base.constants.RouteInfo;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.region.R;
 import com.bilibili.live.region.R2;
 import com.bilibili.live.region.bean.RegionTypesInfo;
@@ -45,6 +46,11 @@ public class LiveAppActivity extends RxBaseActivity {
     private FragmentTransaction ft;
 
     @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.region_live_layout;
     }
@@ -60,17 +66,11 @@ public class LiveAppActivity extends RxBaseActivity {
                 .callAsyncCallbackOnMainThread(new IComponentCallback() {
                     @Override
                     public void onResult(CC cc, CCResult result) {
-                        CC.obtainBuilder(RouteInfo.NETCASTING_COMPONENT_NAME).build()
-                                .callAsyncCallbackOnMainThread(new IComponentCallback() {
-                                    @Override
-                                    public void onResult(CC cc, CCResult result) {
-                                        fm = getSupportFragmentManager();
-                                        ft = fm.beginTransaction();
-                                        Fragment fragment = result.getDataItem(RouteInfo.NETCASTING_COMPONENT_NAME);
-                                        ft.replace(R.id.content, fragment);
-                                        ft.commit();
-                                    }
-                                });
+                        fm = getSupportFragmentManager();
+                        ft = fm.beginTransaction();
+                        Fragment fragment = result.getDataItem(RouteInfo.NETCASTING_COMPONENT_NAME);
+                        ft.replace(R.id.content, fragment);
+                        ft.commit();
                     }
                 });
     }

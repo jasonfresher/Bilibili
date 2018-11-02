@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"  tools:ignore="ResourceName">
+
+    <dimen name="appbar_parallax_max_height">226dp</dimen>
+    <dimen name="floating_action_button_margin">16dp</dimen>
+    <dimen name="floating_action_button_size_half">32dp</dimen>
+    <dimen name="shadow_gradient_height">90dp</dimen>
+
+    <dimen name="head_image_bg_height">128dp</dimen>
+
+    <dimen name="default_medium_text_size">16sp</dimen>
+
+    <dimen name="default_tiny_margin">3dp</dimen>
+
+    <dimen name="tab_layout_small_height">40dp</dimen>
+    <dimen name="tab_indicator_corner_tiny_radius">1dp</dimen>
+    <dimen name="tab_indicator_corner_small_radius">1.5dp</dimen>
+    <dimen name="tab_indicator_default_height">3dp</dimen>
+    <dimen name="line_height">1dp</dimen>
+
+    <dimen name="fab_margin_height">190dp</dimen>
+    <dimen name="fab_default_elevation">4dp</dimen>
+
+    <dimen name="video_details_margin_top">26dp</dimen>
+    <dimen name="video_details_text_width">70dp</dimen>
+    <dimen name="video_details_text_height">30dp</dimen>
+
+    <dimen name="default_small_padding">8dp</dimen>
+    <dimen name="title_margin_small">8dp</dimen>
+
+    <dimen name="video_info_mini_icons_size">12dp</dimen>
+    <dimen name="video_info_count_text_margin_start">4dp</dimen>
+    <dimen name="video_info_sp_layout_height">150dp</dimen>
+    <dimen name="default_tiny_text_size">12sp</dimen>
+    <dimen name="default_tiny_padding">5dp</dimen>
+
+    <dimen name="card_charging_width">110dp</dimen>
+    <dimen name="default_grow_margin">20dp</dimen>
+    <dimen name="default_general_margin">10dp</dimen>
+    <dimen name="card_small_radius">2dp</dimen>
+    <dimen name="card_small_elevation">0dp</dimen>
+    <dimen name="card_charging_tv_margin_start">90dp</dimen>
+
+    <dimen name="user_avatar_size">38dp</dimen>
+    <dimen name="user_avatar_margin">4dp</dimen>
+    <dimen name="user_name_min_width">72dp</dimen>
+
+    <dimen name="daily_video_action_size">24dp</dimen>
+
+    <dimen name="video_item_layout_height">90dp</dimen>
+    <dimen name="video_item_image_width">140dp</dimen>
+    <dimen name="video_item_layout_small_height">90dp</dimen>
+    <dimen name="video_item_image_small_width">120dp</dimen>
+</resources>

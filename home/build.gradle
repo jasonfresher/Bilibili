@@ -16,7 +16,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
     }
 
     resourcePrefix "home_"
@@ -27,7 +27,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 
+}
+repositories {
+    flatDir {
+        dirs project(':player').file('libs')
+        dirs 'libs'
+    }
 }
 
 dependencies {
@@ -36,8 +47,11 @@ dependencies {
     addComponent 'netcasting'
     addComponent 'bangumi'
     addComponent 'region'
+    addComponent 'details'
+    addComponent 'player'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.android.support:multidex:1.0.1'
 //    addComponent 'demo_component_kt', project(':demo_component_kt') //module方式
 //    addComponent 'demo_component_b', 'com.billy.demo:demo_b:1.1.0'  //maven方式
 

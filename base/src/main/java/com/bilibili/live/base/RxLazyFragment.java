@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.bilibili.live.base.mvp.BasePresenter;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -12,7 +14,7 @@ import butterknife.Unbinder;
  * Created by jason on 2018/9/18.
  */
 
-public abstract class RxLazyFragment extends BaseFragment {
+public abstract class RxLazyFragment<V,P extends BasePresenter<V>> extends BaseFragment {
     private boolean isInit = false;//真正要显示的View是否已经被初始化（正常加载）
     private Bundle savedInstanceState;
     public static final String INTENT_BOOLEAN_LAZYLOAD = "intent_boolean_lazyLoad";
@@ -20,6 +22,7 @@ public abstract class RxLazyFragment extends BaseFragment {
     private FrameLayout layout;
     private boolean isStart = false;//是否处于可见状态，in the screen
     private Unbinder bind;
+    protected P mPresenter;
 
     @Override
     protected final void onCreateView(Bundle savedInstanceState) {
@@ -28,6 +31,11 @@ public abstract class RxLazyFragment extends BaseFragment {
         if (bundle != null) {
             isLazyLoad = bundle.getBoolean(INTENT_BOOLEAN_LAZYLOAD, isLazyLoad);
         }
+        //创建Presenter
+        mPresenter = createPresenter();
+        //关联View
+        if(mPresenter != null)
+            mPresenter.attachView((V) this);
         //判断是否懒加载
         if (isLazyLoad) {
             //一旦isVisibleToUser==true即可对真正需要的显示内容进行加载
@@ -49,6 +57,8 @@ public abstract class RxLazyFragment extends BaseFragment {
             isInit = true;
         }
     }
+
+    protected abstract P createPresenter();
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -189,5 +199,12 @@ public abstract class RxLazyFragment extends BaseFragment {
             onDestroyViewLazy();
         }
         isInit = false;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mPresenter != null)
+            mPresenter.detachView();
     }
 }

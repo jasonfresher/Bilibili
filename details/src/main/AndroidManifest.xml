@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bilibili.live.details">
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        tools:replace="android:label">
+        <activity
+            android:name="com.bilibili.live.details.ui.VideoDetailsActivity"
+            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+    </application>
+</manifest>

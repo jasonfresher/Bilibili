@@ -12,8 +12,7 @@ import com.bilibili.live.bangumi.bean.RegionHeaderInfo;
 import com.bilibili.live.bangumi.bean.RegionRecommendInfo;
 import com.bilibili.live.bangumi.entity.BangumiEntity;
 import com.bilibili.live.bangumi.mvp.presenter.BangumiPresenter;
-import com.bilibili.live.bangumi.mvp.presenter.BangumiPresenterImpl;
-import com.bilibili.live.bangumi.mvp.view.BangumiView;
+import com.bilibili.live.bangumi.mvp.view.IBangumiView;
 import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -31,7 +30,7 @@ import butterknife.BindView;
  * Created by jason on 2018/9/27.
  */
 
-public class BangumiRecommendFragment extends RxLazyFragment implements BangumiView {
+public class BangumiRecommendFragment extends RxLazyFragment<IBangumiView,BangumiPresenter> implements IBangumiView {
 
     @BindView(R2.id.empty_layout)
     protected CustomEmptyView mEmptyView;
@@ -57,6 +56,12 @@ public class BangumiRecommendFragment extends RxLazyFragment implements BangumiV
     }
 
     @Override
+    protected BangumiPresenter createPresenter() {
+        presenter = new BangumiPresenter();
+        return presenter;
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.bangumi_recommend_fragment_layout;
     }
@@ -64,7 +69,7 @@ public class BangumiRecommendFragment extends RxLazyFragment implements BangumiV
     @Override
     protected void init() {
         datas.clear();
-        presenter = new BangumiPresenterImpl(this);
+
 
         mRefreshLayout.setHeaderHeight(66);
         mRefreshLayout.setEnableLoadMore(false);

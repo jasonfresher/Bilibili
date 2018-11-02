@@ -15,9 +15,9 @@ import com.bilibili.live.player.R;
 import com.bilibili.live.player.R2;
 import com.bilibili.live.player.listener.DanmukuSwitchListener;
 import com.bilibili.live.player.listener.VideoBackListener;
-import com.bilibili.live.player.widget.MediaController;
-import com.bilibili.live.player.widget.VideoGestureRelativeLayout;
-import com.bilibili.live.player.widget.VideoPlayerView;
+import com.bilibili.live.player.core.MediaController;
+import com.bilibili.live.player.core.VideoGestureRelativeLayout;
+import com.bilibili.live.player.core.VideoPlayerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,8 +84,8 @@ public class VideoPlayerActivity extends AppCompatActivity{
      */
     private void initAnimation() {
         mVideoPrepareLayout.setVisibility(View.VISIBLE);
-        startText = startText + "【完成】\n解析视频地址...【完成】\n全舰弹幕填装...";
-        mPrepareText.setText(startText);
+//        startText = startText + "【完成】\n解析视频地址...【完成】\n全舰弹幕填装...";
+//        mPrepareText.setText(startText);
         mLoadingAnim = (AnimationDrawable) mAnimImageView.getBackground();
         mLoadingAnim.start();
     }
@@ -94,6 +94,7 @@ public class VideoPlayerActivity extends AppCompatActivity{
         //配置播放器
         mMediaController.setTitle(title);
         mPlayerView.setMediaController(mMediaController);
+        mPlayerView.setVideoGestureView(mVideoGestureView);
         mPlayerView.setHardDecode(hardDecode);
         mPlayerView.setMediaBufferingIndicator(mBufferingIndicator);
         mPlayerView.requestFocus();
@@ -154,12 +155,9 @@ public class VideoPlayerActivity extends AppCompatActivity{
             @Override
             public void onPrepared(IMediaPlayer iMediaPlayer) {
                 mLoadingAnim.stop();
-                startText = startText + "【完成】\n视频缓冲中...";
-                mPrepareText.setText(startText);
+//                startText = startText + "【完成】\n视频缓冲中...";
+//                mPrepareText.setText(startText);
                 mVideoPrepareLayout.setVisibility(View.GONE);
-                if(iMediaPlayer.getDuration() > 0){
-                    mPlayerView.setVideoGestureView(mVideoGestureView);
-                }
             }
         });
     }

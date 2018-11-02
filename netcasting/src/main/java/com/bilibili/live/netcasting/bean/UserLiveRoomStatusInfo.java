@@ -1,5 +1,6 @@
 package com.bilibili.live.netcasting.bean;
 
+import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -146,7 +147,6 @@ public class UserLiveRoomStatusInfo implements Parcelable {
 
 
     public int getOnline() {
-
       return online;
     }
 

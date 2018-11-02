@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Bilibili.iml" filepath="$PROJECT_DIR$/Bilibili.iml" />
       <module fileurl="file://$PROJECT_DIR$/bangumi/bangumi.iml" filepath="$PROJECT_DIR$/bangumi/bangumi.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/details/details.iml" filepath="$PROJECT_DIR$/details/details.iml" />
       <module fileurl="file://$PROJECT_DIR$/home/home.iml" filepath="$PROJECT_DIR$/home/home.iml" />
       <module fileurl="file://$PROJECT_DIR$/netcasting/netcasting.iml" filepath="$PROJECT_DIR$/netcasting/netcasting.iml" />
       <module fileurl="file://$PROJECT_DIR$/player/player.iml" filepath="$PROJECT_DIR$/player/player.iml" />
