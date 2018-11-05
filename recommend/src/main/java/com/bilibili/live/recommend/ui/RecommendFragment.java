@@ -6,12 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.constants.ParamsConstant;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.widget.CustomEmptyView;
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.R2;
 import com.bilibili.live.recommend.adapter.RecommendRvAdapter;
+import com.bilibili.live.recommend.bean.RecommendBannerInfo;
 import com.bilibili.live.recommend.bean.RecommendInfo;
 import com.bilibili.live.recommend.entity.RecommendEntity;
 import com.bilibili.live.recommend.mvp.presenter.RecommendPresenter;
@@ -104,28 +106,11 @@ public class RecommendFragment extends RxLazyFragment<IRecommendView,BasePresent
                 }
             }
         });
-        multipleItemAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                RecommendEntity recommendEntity = data.get(position);
-                if(recommendEntity instanceof  RecommendInfo.ResultBean.BodyBean){
-                    RecommendInfo.ResultBean.BodyBean item = (RecommendInfo.ResultBean.BodyBean) recommendEntity;
-                    String param = item.getParam();
-                    String cover = item.getCover();
-                    CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
-                                .addParam("extra_av",Integer.parseInt(param))
-                                .addParam("extra_img_url",cover)
-                                .build()
-                                .call();
-                }
-            }
-        });
         mRecyclerView.setAdapter(multipleItemAdapter);
     }
 
     @Override
     public void loadRecommendBannerInfo(RecommendEntity recommendBannerEntity) {
-//        mRefreshLayout.finishRefresh(true);
         data.add(recommendBannerEntity);
         multipleItemAdapter.notifyDataSetChanged();
         recommendPresenter.getRecommendContentData();

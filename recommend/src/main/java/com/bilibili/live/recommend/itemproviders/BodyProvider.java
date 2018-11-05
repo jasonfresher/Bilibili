@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bilibili.live.base.constants.ParamsConstant;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.bean.RecommendInfo;
@@ -75,4 +76,18 @@ public class BodyProvider extends BaseItemProvider<RecommendInfo.ResultBean.Body
                 .into(videoImg);
     }
 
+    @Override
+    public void onClick(BaseViewHolder helper, RecommendInfo.ResultBean.BodyBean bodyBean, int position) {
+        if(!bodyBean.getTitleType().equals("live")) {
+            String param = bodyBean.getParam();
+            String cover = bodyBean.getCover();
+            CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
+                    .addParam(ParamsConstant.EXTRA_AV, Integer.parseInt(param))
+                    .addParam(ParamsConstant.EXTRA_IMG_URL, cover)
+                    .build()
+                    .call();
+        }else{
+
+        }
+    }
 }

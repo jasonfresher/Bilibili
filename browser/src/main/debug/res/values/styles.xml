@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="browser_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/browser_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/browser_colorPrimaryDark</item>
+        <item name="colorAccent">@color/browser_colorAccent</item>
+    </style>
+
+</resources>

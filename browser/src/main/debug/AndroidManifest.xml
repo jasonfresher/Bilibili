@@ -1,0 +1,44 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bilibili.live.browser">
+
+    <permission
+        android:name="cc.permission.com.billy.cc.demo.REMOTE_CC"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="cc.permission.com.billy.cc.demo.REMOTE_CC" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.bilibili.live.base.application.BilibiliApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/browser_demo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:label,android:icon,android:theme,android:allowBackup">
+
+        <activity
+            android:name="debug.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.BrowserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+
+        <receiver
+            android:name="com.billy.cc.core.component.ComponentBroadcastReceiver"
+            android:permission="cc.permission.com.billy.cc.demo.REMOTE_CC" />
+    </application>
+</manifest>

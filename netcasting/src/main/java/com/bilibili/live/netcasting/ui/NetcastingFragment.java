@@ -119,7 +119,6 @@ public class NetcastingFragment extends RxLazyFragment<INetcastingView,BasePrese
             }
         });
         mRecyclerView.setAdapter(multipleItemAdapter);
-
     }
 
     @Override

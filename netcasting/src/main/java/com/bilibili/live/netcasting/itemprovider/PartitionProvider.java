@@ -2,9 +2,12 @@ package com.bilibili.live.netcasting.itemprovider;
 
 import android.widget.ImageView;
 
+import com.bilibili.live.base.constants.ParamsConstant;
+import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.netcasting.R;
 import com.bilibili.live.netcasting.bean.LiveAppIndexInfo;
 import com.bilibili.live.netcasting.entity.NetcastingEntity;
+import com.billy.cc.core.component.CC;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -49,4 +52,15 @@ public class PartitionProvider extends BaseItemProvider<NetcastingEntity<LiveApp
         helper.setText(R.id.item_live_count,String.valueOf(livesBean.getOnline()));
     }
 
+    @Override
+    public void onClick(BaseViewHolder helper, NetcastingEntity<LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean> data, int position) {
+        LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean content = data.content;
+        String param = content.getArea_id() + "";
+        String cover = content.getOwner().getFace();
+        CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
+                .addParam(ParamsConstant.EXTRA_AV, Integer.parseInt(param))
+                .addParam(ParamsConstant.EXTRA_IMG_URL, cover)
+                .build()
+                .call();
+    }
 }

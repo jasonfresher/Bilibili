@@ -1,10 +1,5 @@
 package com.bilibili.live.details.utils;
 
-/**
- * Created by hcc on 2016/10/11 14:35
- * 100332338@qq.com
- */
-
 public class NumberUtil {
 
   public static String converString(int num) {

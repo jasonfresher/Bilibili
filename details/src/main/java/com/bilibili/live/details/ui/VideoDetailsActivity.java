@@ -10,7 +10,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
@@ -110,16 +112,13 @@ public class VideoDetailsActivity extends RxBaseActivity implements IDetailsView
                     //展开状态
                     mTvPlayer.setVisibility(View.GONE);
                     mAvText.setVisibility(View.VISIBLE);
-//                    mToolbar.setContentInsetsRelative(DisplayUtil.dp2px(VideoDetailsActivity.this, 15), 0);
                 } else if (state == State.COLLAPSED) {
                     //折叠状态
                     mTvPlayer.setVisibility(View.VISIBLE);
                     mAvText.setVisibility(View.GONE);
-//                    mToolbar.setContentInsetsRelative(DisplayUtil.dp2px(VideoDetailsActivity.this, 150), 0);
                 } else {
                     mTvPlayer.setVisibility(View.GONE);
                     mAvText.setVisibility(View.VISIBLE);
-//                    mToolbar.setContentInsetsRelative(DisplayUtil.dp2px(VideoDetailsActivity.this, 15), 0);
                 }
             }
         });
@@ -136,6 +135,12 @@ public class VideoDetailsActivity extends RxBaseActivity implements IDetailsView
 
     @Override
     public void initToolBar() {
+        mToolbar.setTitle("");
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         mAvText.setVisibility(View.VISIBLE);
     }
 
@@ -233,5 +238,13 @@ public class VideoDetailsActivity extends RxBaseActivity implements IDetailsView
                 .setInterpolator(new AccelerateInterpolator())
                 .start();
         mFAB.setClickable(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

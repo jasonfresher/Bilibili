@@ -6,6 +6,9 @@ import android.widget.ImageView;
 import com.bilibili.live.bangumi.R;
 import com.bilibili.live.bangumi.bean.RegionRecommendInfo;
 import com.bilibili.live.bangumi.entity.BangumiEntity;
+import com.bilibili.live.base.constants.ParamsConstant;
+import com.bilibili.live.base.constants.RouteInfo;
+import com.billy.cc.core.component.CC;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -43,13 +46,6 @@ public class BangumiRecommendProvider<T> extends BaseItemProvider<BangumiEntity<
             fillContent(helper, mImage ,dynamicBean.getCover(),dynamicBean.getTitle(),
                     String.valueOf(dynamicBean.getPlay()),String.valueOf(dynamicBean.getDanmaku()));
         }
-
-        helper.setOnClickListener(R.id.card_view, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     private void fillContent(BaseViewHolder helper, ImageView mImage,String imageUrl,String title,String playNum,String danmaku) {
@@ -65,4 +61,28 @@ public class BangumiRecommendProvider<T> extends BaseItemProvider<BangumiEntity<
         helper.setText(R.id.item_review,danmaku);
     }
 
+    @Override
+    public void onClick(BaseViewHolder helper, BangumiEntity<T> data, int position) {
+        T t = data.content;
+        String param = "";
+        String cover = "";
+        if(t instanceof RegionRecommendInfo.DataBean.NewBean){
+            RegionRecommendInfo.DataBean.NewBean content = (RegionRecommendInfo.DataBean.NewBean) t;
+            param = content.getParam();
+            cover = content.getCover();
+        }else if(t instanceof  RegionRecommendInfo.DataBean.RecommendBean){
+            RegionRecommendInfo.DataBean.RecommendBean content = (RegionRecommendInfo.DataBean.RecommendBean) t;
+            param = content.getParam();
+            cover = content.getCover();
+        }else if(t instanceof  RegionRecommendInfo.DataBean.DynamicBean){
+            RegionRecommendInfo.DataBean.DynamicBean content = (RegionRecommendInfo.DataBean.DynamicBean) t;
+            param = content.getParam();
+            cover = content.getCover();
+        }
+        CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
+                .addParam(ParamsConstant.EXTRA_AV, Integer.parseInt(param))
+                .addParam(ParamsConstant.EXTRA_IMG_URL, cover)
+                .build()
+                .call();
+    }
 }

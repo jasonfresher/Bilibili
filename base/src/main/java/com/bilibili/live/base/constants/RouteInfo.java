@@ -11,4 +11,5 @@ public class RouteInfo {
     public static final String PLAYER_COMPONENT_NAME = "com.bilibili.live.player";
     public static final String REGION_COMPONENT_NAME = "com.bilibili.live.region";
     public static final String VIDEODETAILS_COMPONENT_NAME = "com.bilibili.live.details";
+    public static final String BROWSER_COMPONENT_NAME = "com.bilibili.live.browser";
 }

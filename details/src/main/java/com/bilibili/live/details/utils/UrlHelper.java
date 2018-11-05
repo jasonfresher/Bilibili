@@ -14,13 +14,11 @@ public class UrlHelper {
 
 
   private static boolean isVideoUrl(String url) {
-
     return url.contains("bilibili.com/video/av");
   }
 
 
   public static int getAVfromVideoUrl(String url) {
-
     if (!isVideoUrl(url)) {
       return -1;
     }

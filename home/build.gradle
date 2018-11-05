@@ -49,6 +49,7 @@ dependencies {
     addComponent 'region'
     addComponent 'details'
     addComponent 'player'
+    addComponent 'browser'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation 'com.jakewharton:butterknife:8.4.0'
     compile 'com.android.support:multidex:1.0.1'
