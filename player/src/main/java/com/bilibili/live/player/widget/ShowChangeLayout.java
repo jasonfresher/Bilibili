@@ -33,7 +33,7 @@ public class ShowChangeLayout extends RelativeLayout {
     }
 
     private void init(Context context){
-        LayoutInflater.from(context).inflate(R.layout.layout_show_change,this);
+        LayoutInflater.from(context).inflate(R.layout.show_change_layout,this);
         mCenter = findViewById(R.id.iv_center);
         mPb = findViewById(R.id.pb);
         mCurrentTime = findViewById(R.id.current_time);

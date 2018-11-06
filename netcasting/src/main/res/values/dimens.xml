@@ -33,4 +33,5 @@
 
     <dimen name="circle_default_width">1dp</dimen>
     <dimen name="user_avatar_small_size">30dp</dimen>
+
 </resources>

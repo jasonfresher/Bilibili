@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bilibili.live.base.RxBaseActivity;
+import com.bilibili.live.base.constants.ParamsConstant;
+import com.bilibili.live.base.constants.RouteActionName;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.base.constants.VideoPlayURL;
 import com.bilibili.live.base.mvp.BasePresenter;
@@ -96,8 +98,8 @@ public class VideoDetailsActivity extends RxBaseActivity implements IDetailsView
     public void initViews(Bundle savedInstanceState) {
         Intent intent = getIntent();
         if (intent != null) {
-            av = intent.getIntExtra("extra_av", -1);
-            imgUrl = intent.getStringExtra("extra_img_url");
+            av = intent.getIntExtra(ParamsConstant.EXTRA_AV, -1);
+            imgUrl = intent.getStringExtra(ParamsConstant.EXTRA_IMG_URL);
         }
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
@@ -153,11 +155,11 @@ public class VideoDetailsActivity extends RxBaseActivity implements IDetailsView
             public void onClick(View view) {
                 Random random=new Random();
                 String playUrl = VideoPlayURL.playUrl[random.nextInt(VideoPlayURL.playUrl.length-1)];
-                System.out.println(playUrl);
                 CC.obtainBuilder(RouteInfo.PLAYER_COMPONENT_NAME)
-                        .addParam("playUrl", playUrl)
-                        .addParam("hardDecode",false)
-                        .addParam("title",info.getTitle())
+                        .setActionName(RouteActionName.NORMAL_PLAYER)
+                        .addParam(ParamsConstant.EXTRA_PLAYER_URL, playUrl)
+                        .addParam(ParamsConstant.EXTRA_PLAYER_HARDDECODE,false)
+                        .addParam(ParamsConstant.EXTRA_PLAYER_TITLE,info.getTitle())
                         .build().call();
             }
         });

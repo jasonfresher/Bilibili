@@ -1,34 +1,30 @@
 package com.bilibili.live.player.ui;
 
-import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.constants.ParamsConstant;
+import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.player.R;
 import com.bilibili.live.player.R2;
-import com.bilibili.live.player.listener.DanmukuSwitchListener;
-import com.bilibili.live.player.listener.VideoBackListener;
 import com.bilibili.live.player.core.MediaController;
 import com.bilibili.live.player.core.VideoGestureRelativeLayout;
 import com.bilibili.live.player.core.VideoPlayerView;
+import com.bilibili.live.player.listener.DanmukuSwitchListener;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
- * Created by jason on 2018/10/10.
+ * Created by jason on 2018/11/6.
  */
 
-public class VideoPlayerActivity extends AppCompatActivity{
+public class VideoPlayerFragment extends RxLazyFragment {
 
     @BindView(R2.id.playerView)
     VideoPlayerView mPlayerView;
@@ -57,24 +53,37 @@ public class VideoPlayerActivity extends AppCompatActivity{
 
     private String title = "";
 
-    private String startText;
-
     private boolean hardDecode;
 
+
+    public static VideoPlayerFragment newInstance(boolean isLazyLoad,String playUrl,String playTitle,boolean hardDecode) {
+        Bundle args = new Bundle();
+        args.putBoolean(RxLazyFragment.INTENT_BOOLEAN_LAZYLOAD, isLazyLoad);
+        args.putString(ParamsConstant.EXTRA_PLAYER_URL,playUrl);
+        args.putString(ParamsConstant.EXTRA_PLAYER_TITLE,playTitle);
+        args.putBoolean(ParamsConstant.EXTRA_PLAYER_HARDDECODE, hardDecode);
+        VideoPlayerFragment fragment = new VideoPlayerFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setBackgroundDrawable(null);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.activity_video_player_layout);
-        ButterKnife.bind(this);
-        Intent intent = getIntent();
-        if (intent != null) {
-            playUrl = intent.getStringExtra(ParamsConstant.EXTRA_PLAYER_URL);
-            title = intent.getStringExtra(ParamsConstant.EXTRA_PLAYER_TITLE);
-            hardDecode = intent.getBooleanExtra(ParamsConstant.EXTRA_PLAYER_HARDDECODE,false);
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.fragment_video_player_layout;
+    }
+
+    @Override
+    protected void init() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            playUrl = bundle.getString(ParamsConstant.EXTRA_PLAYER_URL);
+            title = bundle.getString(ParamsConstant.EXTRA_PLAYER_TITLE);
+            hardDecode = bundle.getBoolean(ParamsConstant.EXTRA_PLAYER_HARDDECODE,false);
         }
         initAnimation();
         initMediaPlayer();
@@ -85,8 +94,6 @@ public class VideoPlayerActivity extends AppCompatActivity{
      */
     private void initAnimation() {
         mVideoPrepareLayout.setVisibility(View.VISIBLE);
-//        startText = startText + "【完成】\n解析视频地址...【完成】\n全舰弹幕填装...";
-//        mPrepareText.setText(startText);
         mLoadingAnim = (AnimationDrawable) mAnimImageView.getBackground();
         mLoadingAnim.start();
     }
@@ -94,6 +101,7 @@ public class VideoPlayerActivity extends AppCompatActivity{
     private void initMediaPlayer() {
         //配置播放器
         mMediaController.setTitle(title);
+        mMediaController.disappearHeader();
         mPlayerView.setMediaController(mMediaController);
         mPlayerView.setVideoGestureView(mVideoGestureView);
         mPlayerView.setHardDecode(hardDecode);
@@ -144,13 +152,6 @@ public class VideoPlayerActivity extends AppCompatActivity{
 
             }
         });
-        //设置返回键监听
-        mMediaController.setVideoBackEvent(new VideoBackListener() {
-            @Override
-            public void back() {
-                onBackPressed();
-            }
-        });
         mPlayerView.setVideoPath(playUrl);
         mPlayerView.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
             @Override
@@ -162,5 +163,4 @@ public class VideoPlayerActivity extends AppCompatActivity{
             }
         });
     }
-
 }

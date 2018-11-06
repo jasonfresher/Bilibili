@@ -12,4 +12,5 @@
     <string name="video_init">init player…</string>
 
     <string name="show_change_time_separator">/</string>
+    <string name="add_follow">+follow</string>
 </resources>

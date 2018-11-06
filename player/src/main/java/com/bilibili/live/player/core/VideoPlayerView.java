@@ -14,7 +14,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewParent;
 
 
 import com.bilibili.live.player.R;
@@ -369,7 +371,6 @@ public class VideoPlayerView extends SurfaceView implements IMediaPlayer {
       }
       mSurfaceHeight = mVideoHeight;
       mSurfaceWidth = mVideoWidth;
-
       if (VIDEO_LAYOUT_ORIGIN == layout && mSurfaceWidth < windowWidth
           && mSurfaceHeight < windowHeight) {
         lp.width = (int) (mSurfaceHeight * videoRatio);
@@ -387,6 +388,12 @@ public class VideoPlayerView extends SurfaceView implements IMediaPlayer {
                                                        : (int) (windowWidth / videoRatio);
       }
       setLayoutParams(lp);
+//      View parent = (View) getParent();
+//      if(parent != null && parent instanceof ViewGroup) {
+//        LayoutParams parentLayoutParams = parent.getLayoutParams();
+//        parentLayoutParams.height = lp.height;
+//        parent.setLayoutParams(parentLayoutParams);
+//      }
       getHolder().setFixedSize(mSurfaceWidth, mSurfaceHeight);
     }
     mVideoLayout = layout;

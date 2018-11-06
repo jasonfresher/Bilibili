@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextAppearance="@style/ToolBar.TitleText" />
+
+    <FrameLayout
+        android:id="@+id/live_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/user_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/live_user_layout_height"
+        android:background="@color/card_view_background">
+
+
+        <com.bilibili.live.base.widget.CircleImageView
+            android:id="@+id/user_pic"
+            android:layout_width="@dimen/user_avatar_size"
+            android:layout_height="@dimen/user_avatar_size"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/default_general_margin"
+            android:padding="@dimen/default_tiny_padding"
+            android:src="@drawable/ico_user_default" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/default_general_margin"
+            android:layout_toRightOf="@+id/user_pic"
+            android:padding="@dimen/default_tiny_padding"
+            android:textColor="@color/pink_text_color"
+            android:textSize="@dimen/default_tiny_text_size" />
+
+
+        <TextView
+            android:id="@+id/live_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/default_general_margin"
+            android:layout_toRightOf="@+id/user_name"
+            android:drawableLeft="@drawable/ic_watching"
+            android:drawablePadding="@dimen/default_tiny_padding"
+            android:padding="@dimen/default_tiny_padding"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/default_tiny_text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/default_general_margin"
+            android:background="@drawable/btn_pin_bg"
+            android:gravity="center"
+            android:text="@string/add_follow"
+            android:textColor="@color/focus_text_color" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/line_bg" />
+</LinearLayout>

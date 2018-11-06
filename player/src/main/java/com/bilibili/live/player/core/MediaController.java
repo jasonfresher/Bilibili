@@ -31,8 +31,6 @@ import com.bilibili.live.player.listener.VideoBackListener;
 import com.bilibili.live.player.utils.TimeFormatUtils;
 import com.bilibili.live.player.widget.OutlineTextView;
 
-import java.util.Locale;
-
 
 public class MediaController extends FrameLayout {
 
@@ -253,7 +251,7 @@ public class MediaController extends FrameLayout {
     protected View makeControllerView() {
         return ((LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
-                R.layout.layout_media_controller, this);
+                R.layout.media_controller_layout, this);
     }
 
 
@@ -601,6 +599,10 @@ public class MediaController extends FrameLayout {
         super.setEnabled(enabled);
     }
 
+    public void disappearHeader(){
+        if(findViewById(R.id.media_controller_header) != null)
+            findViewById(R.id.media_controller_header).setVisibility(View.GONE);
+    }
 
     public interface OnShownListener {
         void onShown();

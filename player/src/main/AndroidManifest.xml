@@ -12,6 +12,10 @@
             android:screenOrientation="landscape"
             android:theme="@style/ColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".ui.LivePlayerActivity"
+            android:theme="@style/ColorTranslucentTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
     </application>
 </manifest>
 

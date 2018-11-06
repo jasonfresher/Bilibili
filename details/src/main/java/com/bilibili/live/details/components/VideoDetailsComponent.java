@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.bilibili.live.base.constants.ParamsConstant;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.details.ui.VideoDetailsActivity;
 import com.billy.cc.core.component.CC;
@@ -24,10 +25,10 @@ public class VideoDetailsComponent implements IComponent {
     public boolean onCall(CC cc) {
         Context context = cc.getContext();
         Intent intent = new Intent(context, VideoDetailsActivity.class);
-        int av = cc.getParamItem("extra_av");
-        String imgUrl = cc.getParamItem("extra_img_url");
-        intent.putExtra("extra_av",av);
-        intent.putExtra("extra_img_url",imgUrl);
+        int av = cc.getParamItem(ParamsConstant.EXTRA_AV);
+        String imgUrl = cc.getParamItem(ParamsConstant.EXTRA_IMG_URL);
+        intent.putExtra(ParamsConstant.EXTRA_AV,av);
+        intent.putExtra(ParamsConstant.EXTRA_IMG_URL,imgUrl);
         if (!(context instanceof Activity)) {
             //调用方没有设置context或app间组件跳转，context为application
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

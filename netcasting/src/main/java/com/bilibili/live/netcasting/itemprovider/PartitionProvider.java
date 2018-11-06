@@ -3,11 +3,13 @@ package com.bilibili.live.netcasting.itemprovider;
 import android.widget.ImageView;
 
 import com.bilibili.live.base.constants.ParamsConstant;
+import com.bilibili.live.base.constants.RouteActionName;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.netcasting.R;
 import com.bilibili.live.netcasting.bean.LiveAppIndexInfo;
 import com.bilibili.live.netcasting.entity.NetcastingEntity;
 import com.billy.cc.core.component.CC;
+import com.billy.cc.core.component.CCResult;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -55,12 +57,32 @@ public class PartitionProvider extends BaseItemProvider<NetcastingEntity<LiveApp
     @Override
     public void onClick(BaseViewHolder helper, NetcastingEntity<LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean> data, int position) {
         LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean content = data.content;
-        String param = content.getArea_id() + "";
+        String param = String.valueOf(content.getArea_id());
         String cover = content.getOwner().getFace();
-        CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
-                .addParam(ParamsConstant.EXTRA_AV, Integer.parseInt(param))
-                .addParam(ParamsConstant.EXTRA_IMG_URL, cover)
-                .build()
-                .call();
+        int mid = content.getOwner().getMid();
+        String face = content.getOwner().getFace();
+        String name = content.getOwner().getName();
+        int online = content.getOnline();
+        String title = content.getTitle();
+        int cid = content.getRoom_id();
+        boolean hardDecode = false;
+        if(position%2 == 0){
+            CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
+                    .addParam(ParamsConstant.EXTRA_AV, Integer.parseInt(param))
+                    .addParam(ParamsConstant.EXTRA_IMG_URL, cover)
+                    .build()
+                    .call();
+        }else{
+            CC.obtainBuilder(RouteInfo.PLAYER_COMPONENT_NAME)
+                    .addParam(ParamsConstant.EXTRA_MID,mid)
+                    .addParam(ParamsConstant.EXTRA_CID,cid)
+                    .addParam(ParamsConstant.EXTRA_TITLE,title)
+                    .addParam(ParamsConstant.EXTRA_PLAYER_HARDDECODE,hardDecode)
+                    .addParam(ParamsConstant.EXTRA_ONLINE,online)
+                    .addParam(ParamsConstant.EXTRA_FACE,face)
+                    .addParam(ParamsConstant.EXTRA_NAME,name)
+                    .setActionName(RouteActionName.LIVE_PLAYER)
+                    .build().call();
+        }
     }
 }

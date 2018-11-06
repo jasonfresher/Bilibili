@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.constants.ParamsConstant;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.details.R;
@@ -38,7 +39,7 @@ public class VideoIntroductionFragment extends RxLazyFragment<IDetailsView,BaseP
     public static VideoIntroductionFragment newInstance(int aid, boolean isLazyLoad) {
         Bundle args = new Bundle();
         args.putBoolean(RxLazyFragment.INTENT_BOOLEAN_LAZYLOAD, isLazyLoad);
-        args.putInt("extra_av",aid);
+        args.putInt(ParamsConstant.EXTRA_AV,aid);
         VideoIntroductionFragment fragment = new VideoIntroductionFragment();
         fragment.setArguments(args);
         return fragment;
@@ -59,7 +60,7 @@ public class VideoIntroductionFragment extends RxLazyFragment<IDetailsView,BaseP
     protected void init() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            aid  = bundle.getInt("extra_av");
+            aid  = bundle.getInt(ParamsConstant.EXTRA_AV);
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -80,8 +81,8 @@ public class VideoIntroductionFragment extends RxLazyFragment<IDetailsView,BaseP
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 VideoDetailsInfo.DataBean.RelatesBean info = relates.get(position);
                 CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
-                        .addParam("extra_av",info.getAid())
-                        .addParam("extra_img_url",info.getPic())
+                        .addParam(ParamsConstant.EXTRA_AV,info.getAid())
+                        .addParam(ParamsConstant.EXTRA_IMG_URL,info.getPic())
                         .build()
                         .call();
             }

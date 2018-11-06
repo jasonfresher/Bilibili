@@ -11,5 +11,5 @@
 
     <string name="video_loading">加载中...</string>
     <string name="video_init">初始化播放器...</string>
-
+    <string name="add_follow">+关注</string>
 </resources>

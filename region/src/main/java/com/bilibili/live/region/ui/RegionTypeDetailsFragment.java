@@ -38,7 +38,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment<IRegionDetailsView
     public static RegionTypeDetailsFragment newInstance(boolean isLazyLoad, int rid) {
         Bundle args = new Bundle();
         args.putBoolean(RxLazyFragment.INTENT_BOOLEAN_LAZYLOAD, isLazyLoad);
-        args.putInt("rid",rid);
+        args.putInt(ParamsConstant.EXTRA_RID,rid);
         RegionTypeDetailsFragment fragment = new RegionTypeDetailsFragment();
         fragment.setArguments(args);
         return fragment;
@@ -73,7 +73,7 @@ public class RegionTypeDetailsFragment extends RxLazyFragment<IRegionDetailsView
     protected void init() {
         Bundle bundle = getArguments();
         if (bundle != null) {
-            rid  = bundle.getInt("rid");
+            rid  = bundle.getInt(ParamsConstant.EXTRA_RID);
         }
         datas = new ArrayList<>();
 

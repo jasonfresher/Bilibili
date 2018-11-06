@@ -29,4 +29,13 @@
 
     <dimen name="show_change_progress_min_height">10dp</dimen>
     <dimen name="show_change_progress_max_height">10dp</dimen>
+
+    <dimen name="live_user_layout_height">70dp</dimen>
+    <dimen name="default_tiny_padding">5dp</dimen>
+    <dimen name="line_height">1dp</dimen>
+
+    <dimen name="user_avatar_size">38dp</dimen>
+    <dimen name="user_avatar_margin">4dp</dimen>
+
+    <dimen name="live_video_height">202dp</dimen>
 </resources>
