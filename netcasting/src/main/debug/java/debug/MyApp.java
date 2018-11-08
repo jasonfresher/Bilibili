@@ -1,19 +1,14 @@
 package debug;
 
-import android.app.Application;
-
-import com.billy.cc.core.component.CC;
+import com.bilibili.live.base.application.BaseApplication;
 
 /**
  * @author billy.qi
  * @since 17/11/20 20:02
  */
-public class MyApp extends Application {
+public class MyApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        CC.enableVerboseLog(true);
-        CC.enableDebug(true);
-        CC.enableRemoteCC(true);
     }
 }

@@ -7,7 +7,7 @@ import com.bilibili.live.bangumi.api.BangumiApi;
 import com.bilibili.live.bangumi.bean.RegionRecommendInfo;
 import com.bilibili.live.bangumi.bean.RegionTypesInfo;
 import com.bilibili.live.base.api.ApiConstants;
-import com.bilibili.live.base.application.BilibiliApp;
+import com.bilibili.live.base.application.BaseApplication;
 import com.bilibili.live.base.helper.RetrofitHelper;
 import com.google.gson.Gson;
 
@@ -119,7 +119,7 @@ public class BangumiModel implements IBangumiModel {
      * 读取assets下的json数据
      */
     private String readAssetsJson() {
-        AssetManager assetManager = BilibiliApp.getInstance().getAssets();
+        AssetManager assetManager = BaseApplication.getInstance().getAssets();
         try {
             InputStream is = assetManager.open("region.json");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));

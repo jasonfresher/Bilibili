@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
-    <string name="app_name">details_demo</string>
     <string name="play_immediately">play immediately</string>
     <string name="about_menu_action_share">share</string>
     <string name="coin">coin</string>

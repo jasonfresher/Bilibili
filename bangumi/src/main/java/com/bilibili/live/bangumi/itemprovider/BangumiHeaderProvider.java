@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.bilibili.live.bangumi.R;
 import com.bilibili.live.bangumi.bean.RegionHeaderInfo;
 import com.bilibili.live.bangumi.entity.BangumiEntity;
-import com.bilibili.live.base.application.BilibiliApp;
+import com.bilibili.live.base.application.BaseApplication;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.provider.BaseItemProvider;
 
@@ -34,7 +34,7 @@ public class BangumiHeaderProvider extends BaseItemProvider<BangumiEntity<Region
             helper.setVisible(R.id.item_type_rank_btn,true);
             TextView subTv = helper.getView(R.id.item_type_rank_btn);
             if(headerInfo.drawableLeft > 0)
-                subTv.setCompoundDrawablesWithIntrinsicBounds(BilibiliApp.mInstance.getResources().getDrawable(headerInfo.drawableLeft),null,null,null);
+                subTv.setCompoundDrawablesWithIntrinsicBounds(BaseApplication.mInstance.getResources().getDrawable(headerInfo.drawableLeft),null,null,null);
             helper.setText(R.id.item_type_rank_btn,headerInfo.subTitle);
         }else{
             helper.setVisible(R.id.item_type_rank_btn,false);

@@ -1,10 +1,12 @@
 package com.bilibili.live.recommend.itemproviders;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bilibili.live.base.constants.ParamsConstant;
+import com.bilibili.live.base.constants.RouteActionName;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.bean.RecommendInfo;
@@ -78,16 +80,30 @@ public class BodyProvider extends BaseItemProvider<RecommendInfo.ResultBean.Body
 
     @Override
     public void onClick(BaseViewHolder helper, RecommendInfo.ResultBean.BodyBean bodyBean, int position) {
+        String cover = bodyBean.getCover();
+        int cid = Integer.parseInt(bodyBean.getParam());
+        String face = bodyBean.getUpFace();
+        String name = bodyBean.getUp();
+        int online = bodyBean.getOnline();
+        String title = bodyBean.getTitle();
+        boolean hardDecode = false;
         if(!bodyBean.getTitleType().equals("live")) {
-            String param = bodyBean.getParam();
-            String cover = bodyBean.getCover();
             CC.obtainBuilder(RouteInfo.VIDEODETAILS_COMPONENT_NAME)
-                    .addParam(ParamsConstant.EXTRA_AV, Integer.parseInt(param))
+                    .addParam(ParamsConstant.EXTRA_AV, cid)
                     .addParam(ParamsConstant.EXTRA_IMG_URL, cover)
                     .build()
                     .call();
         }else{
-
+            CC.obtainBuilder(RouteInfo.PLAYER_COMPONENT_NAME)
+                    .addParam(ParamsConstant.EXTRA_MID,0)
+                    .addParam(ParamsConstant.EXTRA_CID,cid)
+                    .addParam(ParamsConstant.EXTRA_TITLE,title)
+                    .addParam(ParamsConstant.EXTRA_PLAYER_HARDDECODE,hardDecode)
+                    .addParam(ParamsConstant.EXTRA_ONLINE,online)
+                    .addParam(ParamsConstant.EXTRA_FACE,face)
+                    .addParam(ParamsConstant.EXTRA_NAME,name)
+                    .setActionName(RouteActionName.LIVE_PLAYER)
+                    .build().call();
         }
     }
 }

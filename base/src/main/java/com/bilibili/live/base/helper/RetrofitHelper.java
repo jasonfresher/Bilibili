@@ -2,7 +2,7 @@ package com.bilibili.live.base.helper;
 
 
 import com.bilibili.live.base.api.ApiConstants;
-import com.bilibili.live.base.application.BilibiliApp;
+import com.bilibili.live.base.application.BaseApplication;
 import com.bilibili.live.base.utils.CommonUtil;
 
 import java.io.File;
@@ -69,7 +69,7 @@ public class RetrofitHelper {
       synchronized (RetrofitHelper.class) {
         if (mOkHttpClient == null) {
           //设置Http缓存
-          Cache cache = new Cache(new File(BilibiliApp.getInstance()
+          Cache cache = new Cache(new File(BaseApplication.getInstance()
               .getCacheDir(), "HttpCache"), 1024 * 1024 * 10);
 
           mOkHttpClient = new OkHttpClient.Builder()
@@ -117,7 +117,7 @@ public class RetrofitHelper {
       // 无网络时，设置超时为1天
       int maxStale = 60 * 60 * 24;
       Request request = chain.request();
-      if (CommonUtil.isNetworkAvailable(BilibiliApp.getInstance())) {
+      if (CommonUtil.isNetworkAvailable(BaseApplication.getInstance())) {
         //有网络时只从网络获取
         request = request.newBuilder()
             .cacheControl(CacheControl.FORCE_NETWORK)
@@ -129,7 +129,7 @@ public class RetrofitHelper {
             .build();
       }
       Response response = chain.proceed(request);
-      if (CommonUtil.isNetworkAvailable(BilibiliApp.getInstance())) {
+      if (CommonUtil.isNetworkAvailable(BaseApplication.getInstance())) {
         response = response.newBuilder()
             .removeHeader("Pragma")
             .header("Cache-Control", "public, max-age=" + maxAge)

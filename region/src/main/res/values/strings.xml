@@ -1,6 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
-    <string name="region_app_name">region_demo</string>
-
     <string name="hot_videos">Hot Videos</string>
     <string name="news_videos">News Videos</string>
     <string name="goin_and_see">Go And See</string>

@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
-    <string name="app_name">details_demo</string>
     <string name="play_immediately">立即播放</string>
     <string name="about_menu_action_share">分享</string>
     <string name="coin">投硬币</string>

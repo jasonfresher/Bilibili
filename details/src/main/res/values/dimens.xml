@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"  tools:ignore="ResourceName">
-
     <dimen name="appbar_parallax_max_height">226dp</dimen>
     <dimen name="floating_action_button_margin">16dp</dimen>
     <dimen name="floating_action_button_size_half">32dp</dimen>

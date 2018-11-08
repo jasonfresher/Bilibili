@@ -1,19 +1,13 @@
-package debug;
+package com.bilibili.live.home.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
-import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.home.R;
-import com.bilibili.live.home.ui.HomeFragment;
-import com.billy.cc.core.component.CC;
-import com.billy.cc.core.component.CCResult;
-
-import java.lang.reflect.Method;
 
 /**
  * Created by jason on 2018/9/17.

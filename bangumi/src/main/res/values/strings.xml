@@ -1,6 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
-    <string name="app_name">bangumi</string>
-
     <string name="hot_recommend">Hot recommend</string>
     <string name="rank">Ranking</string>
     <string name="new_videos">New video</string>

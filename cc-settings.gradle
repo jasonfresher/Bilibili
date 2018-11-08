@@ -12,7 +12,7 @@ try {
 }
 //读取build.gradle中的设置
 // 2018-04-06修改：
-//  为了更利于理解，将ext.runAsApp 改名为 ext.mainApp
+//  为了更利于理解，将ext.runAsApp 改名为 exproject.ext.runAsAppt.mainApp
 //  ext.mainApp的将仅代表是否作为主app，为true时以application方式编译，为false或未配置时以local.properties中的配置为准
 //  兼容以前的runAsApp设置，ext.runAsApp的功能保持不变，runAsApp优先级高于local.properties
 def runAsApp = ext.has('runAsApp')
@@ -45,7 +45,8 @@ if (runAsApp) {
 ext.addComponent = { dependencyName, realDependency = null ->
     def curModuleIsBuildingApk = false //当前task是否为给本module打apk包
     def taskNames = project.gradle.startParameter.taskNames
-    def regex = "((.*:)?${project.name.toUpperCase()}:)?((ASSEMBLE)|(INSTALL)).*"
+//    def regex = "((.*:)?${project.name.toUpperCase()}:)?((ASSEMBLE)|(INSTALL)).*"
+    def regex = "((.*:)?${project.name.toUpperCase()}:)?((ASSEMBLE)|(INSTALL)|((BUILD)?TINKER)).*"
     def taskBuildApkPattern = Pattern.compile(regex)
     for (String task : taskNames) {
         if (taskBuildApkPattern.matcher(task.toUpperCase()).matches()) {

@@ -66,6 +66,7 @@ public class BrowserActivity extends RxBaseActivity {
 
     @Override
     protected void initToolBar() {
+        mToolbar.setTitle(mTitle);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

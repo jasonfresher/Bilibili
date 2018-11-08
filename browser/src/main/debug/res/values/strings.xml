@@ -1,4 +1,3 @@
 <resources>
-    <string name="browser_demo">browser_demo</string>
-    <string name="app_name">browser</string>
+    <string name="browser_module">browser_module</string>
 </resources>
