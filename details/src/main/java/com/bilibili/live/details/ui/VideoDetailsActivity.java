@@ -82,6 +82,10 @@ public class VideoDetailsActivity extends RxBaseActivity implements IDetailsView
 
     private DetailsPresenter detailsPresenter;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     protected BasePresenter createPresenter() {

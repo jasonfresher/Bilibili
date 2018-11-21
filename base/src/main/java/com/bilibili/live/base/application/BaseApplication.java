@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.billy.cc.core.component.CC;
 
+
 public class BaseApplication extends Application {
 
     public static BaseApplication mInstance;

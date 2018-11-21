@@ -32,18 +32,13 @@
         <activity android:name=".ui.VideoPlayerActivity"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-            android:theme="@style/ColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
             android:name=".ui.LivePlayerActivity"
-            android:theme="@style/ColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
 
         <receiver

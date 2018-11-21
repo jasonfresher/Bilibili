@@ -16,7 +16,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/details_module"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/BaseAppTheme"
         tools:replace="android:name,android:label,android:icon,android:theme,android:allowBackup">
 
         <activity
@@ -34,7 +34,7 @@
         <activity
             android:name=".ui.VideoDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
 
         <receiver

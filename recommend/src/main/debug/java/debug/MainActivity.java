@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.bilibili.live.recommend.R;
 import com.bilibili.live.recommend.ui.RecommendFragment;
 
+import skin.support.SkinCompatManager;
+
 /**
  * Created by jason on 2018/9/17.
  */

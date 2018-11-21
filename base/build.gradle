@@ -22,6 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-night']
+        }
+    }
 }
 
 dependencies {
@@ -63,12 +69,19 @@ dependencies {
     compile 'cn.bingoogolapple:bga-banner:2.2.4@aar'
     implementation 'com.android.support:support-v4:27.0.2'
 
+    //检测内存泄漏库
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
-    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
-    compile 'com.zhy:flowlayout-lib:1.0.1'
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar' //tablayout导航栏库
+    compile 'com.zhy:flowlayout-lib:1.0.1' //标签库
+
+    compile 'me.imid.swipebacklayout.lib:library:1.1.0' //左滑退出库
+
+    compile 'skin.support:skin-support:3.1.1'    // skin-support 基础控件支持
+    compile 'skin.support:skin-support-design:3.1.1' // skin-support-design material design 控件支持[可选]
+    compile 'skin.support:skin-support-cardview:3.1.1'   // skin-support-cardview CardView 控件支持[可选]
 
 //    testImplementation 'junit:junit:4.12'
 //    androidTestImplementation 'com.android.support.test:runner:1.0.2'

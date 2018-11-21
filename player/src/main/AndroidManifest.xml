@@ -6,11 +6,11 @@
             android:name=".ui.VideoPlayerActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:screenOrientation="landscape"
-            android:theme="@style/ColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".ui.LivePlayerActivity"
-            android:theme="@style/ColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
     </application>
 </manifest>

@@ -4,11 +4,11 @@
     <application>
         <activity
             android:name="com.bilibili.live.region.ui.RegionTypeDetailsActivity"
-            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name="com.bilibili.live.region.ui.LiveAppActivity"
-            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
     </application>
 </manifest>

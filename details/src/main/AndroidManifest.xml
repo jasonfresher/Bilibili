@@ -4,7 +4,7 @@
     <application>
         <activity
             android:name="com.bilibili.live.details.ui.VideoDetailsActivity"
-            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
     </application>
 </manifest>

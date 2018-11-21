@@ -5,7 +5,7 @@
         <activity
             android:name=".ui.BrowserActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainActivityColorTranslucentTheme"
+            android:theme="@style/OtherActivityColorTranslucentTheme"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
     </application>
 
