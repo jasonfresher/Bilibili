@@ -235,6 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:textColor="@color/font_normal"
             android:layout_toRightOf="@+id/user_avatar"
             android:minWidth="@dimen/user_name_min_width" />
 
@@ -243,7 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:background="@drawable/btn_pin_bg"
+            android:background="@drawable/btn_pin_bg_night"
             android:gravity="center"
             android:text="@string/add_follow"
             android:textColor="@color/focus_text_color" />

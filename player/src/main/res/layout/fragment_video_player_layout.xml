@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/live_video_height"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="ResourceName">
 
     <com.bilibili.live.player.core.VideoPlayerView
@@ -37,13 +37,13 @@
         android:visibility="gone">
 
 
-        <com.bilibili.live.player.widget.CircleProgressView
+        <com.bilibili.live.base.skin.SkinCompatCircleProgressView
             android:id="@+id/video_loading_progress"
             android:layout_width="@dimen/circle_progress_view_small_size"
             android:layout_height="@dimen/circle_progress_view_small_size"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            app:matProg_barColor="?attr/colorPrimary"
+            app:matProg_barColor="@color/colorPrimary"
             app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"
             app:matProg_progressIndeterminate="true" />
 

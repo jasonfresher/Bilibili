@@ -1,11 +1,15 @@
 package com.bilibili.live.home.application;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
 import com.bilibili.live.base.application.BaseApplication;
+import com.bilibili.live.base.constants.ConstantUtil;
+import com.bilibili.live.base.utils.PreferenceUtil;
 import com.bilibili.live.home.BuildConfig;
+import com.bilibili.live.home.R;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.tinker.entry.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
@@ -26,15 +30,21 @@ public class BilibiliApp extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        initTinkerPatch();
-        if (BuildConfig.DEBUG)
-            LeakCanary.install(this);
         SkinCompatManager.withoutActivity(this)                         // 基础控件换肤初始化
                 .addInflater(new SkinMaterialViewInflater())            // material design 控件换肤初始化[可选]
                 .addInflater(new SkinCardViewInflater())                // CardView v7 控件换肤初始化[可选]
                 .setSkinStatusBarColorEnable(true)                     // 关闭状态栏换肤，默认打开[可选]
                 .setSkinWindowBackgroundEnable(true)                   // 关闭windowBackground换肤，默认打开[可选]
                 .loadSkin();
+        boolean flag = PreferenceUtil.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
+        if (flag) {
+            SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
+        } else {
+            SkinCompatManager.getInstance().restoreDefaultTheme();
+        }
+        initTinkerPatch();
+        if (BuildConfig.DEBUG)
+            LeakCanary.install(this);
     }
 
     private void initTinkerPatch() {

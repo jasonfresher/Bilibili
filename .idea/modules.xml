@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/player/player.iml" filepath="$PROJECT_DIR$/player/player.iml" />
       <module fileurl="file://$PROJECT_DIR$/recommend/recommend.iml" filepath="$PROJECT_DIR$/recommend/recommend.iml" />
       <module fileurl="file://$PROJECT_DIR$/region/region.iml" filepath="$PROJECT_DIR$/region/region.iml" />
+      <module fileurl="file://$PROJECT_DIR$/streamer/streamer.iml" filepath="$PROJECT_DIR$/streamer/streamer.iml" />
     </modules>
   </component>
 </project>

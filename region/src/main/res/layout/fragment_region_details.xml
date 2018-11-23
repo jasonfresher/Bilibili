@@ -16,13 +16,13 @@
         android:scrollbars="none" />
 
 
-    <com.bilibili.live.base.widget.CircleProgressView
+    <com.bilibili.live.base.skin.SkinCompatCircleProgressView
         android:id="@+id/circle_progress"
         android:layout_width="@dimen/circle_progress_view_default_size"
         android:layout_height="@dimen/circle_progress_view_default_size"
         android:layout_gravity="top|center"
         android:layout_marginTop="@dimen/default_grow_margin"
-        app:matProg_barColor="?attr/colorPrimary"
+        app:matProg_barColor="@color/colorPrimary"
         app:matProg_barWidth="@dimen/circle_progress_view_default_border_width" />
 
 

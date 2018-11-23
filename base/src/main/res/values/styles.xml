@@ -28,10 +28,10 @@
     </style>
 
     <style name="HoloThemeActivityAnimation" parent="@android:style/Animation.Translucent">
-        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <!--<item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
         <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
         <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
-        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>-->
     </style>
 
 

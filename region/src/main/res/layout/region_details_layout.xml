@@ -10,6 +10,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="@dimen/app_bar_elevation">
 
@@ -17,19 +18,17 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleTextAppearance="@style/ToolBar.TitleText" />
 
-        <com.flyco.tablayout.SlidingTabLayout
+        <com.bilibili.live.base.skin.SkinCompatSlidingTabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tab_layout_default_height"
             android:layout_marginEnd="@dimen/default_general_margin"
             android:layout_marginStart="@dimen/default_general_margin"
-            android:background="@color/colorPrimary"
             app:tl_indicator_corner_radius="@dimen/tab_indicator_corner_tiny_radius"
             app:tl_indicator_height="@dimen/tab_indicator_small_height"
             app:tl_indicator_width="@dimen/tab_indicator_center_width"

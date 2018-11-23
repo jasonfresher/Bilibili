@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.bilibili.live.base.RxLazyFragment;
+import com.bilibili.live.base.constants.ConstantUtil;
 import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.base.mvp.BasePresenter;
+import com.bilibili.live.base.utils.PreferenceUtil;
 import com.bilibili.live.home.R;
 import com.bilibili.live.home.R2;
 import com.bilibili.live.home.adapter.HomePagerAdapter;
@@ -15,7 +19,6 @@ import com.billy.cc.core.component.CC;
 import com.billy.cc.core.component.CCResult;
 import com.flyco.tablayout.SlidingTabLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,6 +27,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import skin.support.SkinCompatManager;
 
 /**
  * Created by jason on 2018/9/28.
@@ -39,6 +43,9 @@ public class HomeFragment extends RxLazyFragment {
 
     @BindView(R2.id.tab_layout)
     protected SlidingTabLayout mTabLayout;
+
+    @BindView(R2.id.iv_head_switch_mode)
+    protected ImageView skinSwitch;
 
     private String[] fragmentRes = {
             RouteInfo.NETCASTING_COMPONENT_NAME,
@@ -62,11 +69,25 @@ public class HomeFragment extends RxLazyFragment {
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.home_fragment_layout;
+        return R.layout.home_activity_layout;
     }
+
 
     @Override
     protected void init() {
+        boolean flag = PreferenceUtil.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
+        if (flag) {
+            skinSwitch.setImageResource(R.drawable.ic_switch_daily);
+        } else {
+            skinSwitch.setImageResource(R.drawable.ic_switch_night);
+        }
+        skinSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchNightMode();
+            }
+        });
+
         Observable.fromArray(fragmentRes)
                 .map(new Function<String, Fragment>() {
                     @Override
@@ -90,4 +111,23 @@ public class HomeFragment extends RxLazyFragment {
                     }
                 });
     }
+
+    /**
+     * 日夜间模式切换
+     */
+    private void switchNightMode() {
+        boolean isNight = PreferenceUtil.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
+        if (isNight) {
+            // 日间模式
+            SkinCompatManager.getInstance().restoreDefaultTheme();
+            skinSwitch.setImageResource(R.drawable.ic_switch_night);
+            PreferenceUtil.putBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
+        } else {
+            // 夜间模式
+            SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
+            skinSwitch.setImageResource(R.drawable.ic_switch_daily);
+            PreferenceUtil.putBoolean(ConstantUtil.SWITCH_MODE_KEY, true);
+        }
+    }
+
 }

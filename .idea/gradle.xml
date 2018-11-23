@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/player" />
             <option value="$PROJECT_DIR$/recommend" />
             <option value="$PROJECT_DIR$/region" />
+            <option value="$PROJECT_DIR$/streamer" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

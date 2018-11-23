@@ -17,4 +17,7 @@
     <dimen name="tab_layout_default_height">48dp</dimen>
     <dimen name="tab_indicator_small_height">2dp</dimen>
     <dimen name="tab_indicator_default_height">3dp</dimen>
+
+    <dimen name="splash_logo_margin">60dp</dimen>
+
 </resources>

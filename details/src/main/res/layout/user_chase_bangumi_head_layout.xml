@@ -42,7 +42,7 @@
         android:background="@drawable/btn_pin_solid_bg"
         android:gravity="center"
         android:text="@string/charg"
-        android:textColor="@color/white"
+        android:textColor="@color/font_special"
         android:textSize="@dimen/default_small_text_size"
         android:layout_marginRight="@dimen/default_general_margin" />
 

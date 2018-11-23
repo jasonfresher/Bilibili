@@ -21,5 +21,6 @@ public class MyApp extends BaseApplication {
                 .setSkinWindowBackgroundEnable(true)
                 .loadSkin();
         SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
+        SkinCompatManager.getInstance().restoreDefaultTheme();
     }
 }

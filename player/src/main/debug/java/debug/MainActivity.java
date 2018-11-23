@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println("@@@===>" + videoPath);
         CCResult call = CC.obtainBuilder(RouteInfo.PLAYER_COMPONENT_NAME)
                 .addParam("playUrl",
-                        videoPath
+//                        videoPath
+                        "rtmp://47.98.113.140:1935/live/jason"
 //                        "http://vjs.zencdn.net/v/oceans.mp4"
 //                        "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"
 //                        "http://ivi.bupt.edu.cn/hls/btv1hd.m3u8"
