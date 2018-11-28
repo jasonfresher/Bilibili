@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+    <dimen name="discover_card_view_height">45dp</dimen>
+    <dimen name="discover_text_margin">40dp</dimen>
+    <dimen name="discover_item_layout_height">46dp</dimen>
+
+    <dimen name="line_height">1dp</dimen>
+    <dimen name="app_bar_default_elevation">0dp</dimen>
+
+    <dimen name="default_tiny_padding">5dp</dimen>
+    <dimen name="default_long_margin">30dp</dimen>
+
+    <dimen name="default_tiny_text_size">12sp</dimen>
+    <dimen name="default_grow_margin">20dp</dimen>
+
+    <dimen name="default_tiny_margin">3dp</dimen>
+    <dimen name="tab_bar_item_padding">15dp</dimen>
+
+
+</resources>

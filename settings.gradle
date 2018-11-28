@@ -1,5 +1,6 @@
-include ':base', ':bangumi', ':player', ':region', ':browser', ':streamer'
+include ':base', ':bangumi', ':player', ':region', ':browser', ':discovery'
 include ':recommend'
 include ':home'
 include ':details'
 include ':netcasting'
+include ':streamer'

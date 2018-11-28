@@ -1,5 +1,6 @@
 package com.bilibili.live.streamer.ui;
 
+import com.bilibili.live.base.application.BaseApplication;
 import com.bilibili.live.streamer.R;
 import com.bilibili.live.streamer.jni.PushNative;
 import com.bilibili.live.streamer.listener.LiveStateChangeListener;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import debug.BilibiliApp;
 
 public class MainActivity extends Activity implements LiveStateChangeListener {
 
@@ -26,11 +26,11 @@ public class MainActivity extends Activity implements LiveStateChangeListener {
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case PushNative.CONNECT_FAILED:
-				Toast.makeText(BilibiliApp.getInstance(), "连接失败", Toast.LENGTH_SHORT).show();
+				Toast.makeText(BaseApplication.getInstance(), "连接失败", Toast.LENGTH_SHORT).show();
 				//Log.d("jason", "连接失败..");
 				break;
 			case PushNative.INIT_FAILED:
-				Toast.makeText(BilibiliApp.getInstance(), "初始化失败", Toast.LENGTH_SHORT).show();
+				Toast.makeText(BaseApplication.getInstance(), "初始化失败", Toast.LENGTH_SHORT).show();
 				break;	
 			default:
 				break;
@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements LiveStateChangeListener {
 		setContentView(R.layout.activity_main);
 		SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surface);
 		//相机图像的预览
-		live = new LivePusher(surfaceView.getHolder());
+		live = new LivePusher(surfaceView);
 	}
 
 	/**

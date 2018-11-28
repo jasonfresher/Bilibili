@@ -20,4 +20,9 @@
 
     <dimen name="splash_logo_margin">60dp</dimen>
 
+    <dimen name="head_switch_margin_right">20dp</dimen>
+    <dimen name="head_switch_width">21dp</dimen>
+    <dimen name="head_switch_height">21dp</dimen>
+
+
 </resources>

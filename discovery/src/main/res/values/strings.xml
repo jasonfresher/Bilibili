@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+    <string name="app_name">discovery</string>
+    <string name="discover_search_hint">Search video up or av</string>
+    <string name="everyone_in_the_search">Everyone is searching</string>
+    <string name="look_more">Look more</string>
+    <string name="interest_in_circle">Interest circle</string>
+    <string name="topic_center">Topic center</string>
+    <string name="activity_center">Activity center</string>
+    <string name="original_rank">Original rank</string>
+    <string name="all_rank">All rank</string>
+    <string name="game_center">Game center</string>
+    <string name="shop">Shop</string>
+</resources>

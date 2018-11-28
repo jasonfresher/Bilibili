@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.bilibili.live.base.RxLazyFragment;
 import com.bilibili.live.base.constants.ParamsConstant;
-import com.bilibili.live.base.constants.RouteInfo;
 import com.bilibili.live.base.mvp.BasePresenter;
 import com.bilibili.live.base.widget.CircleProgressView;
 import com.bilibili.live.region.R;
@@ -15,11 +14,8 @@ import com.bilibili.live.region.R2;
 import com.bilibili.live.region.adapter.RegionDetailsAdapter;
 import com.bilibili.live.region.bean.RegionDetailsInfo;
 import com.bilibili.live.region.entity.RegionEntity;
-import com.bilibili.live.region.mvp.presenter.IRegionDetailsPresenter;
 import com.bilibili.live.region.mvp.presenter.RegionDetailsPresenter;
 import com.bilibili.live.region.mvp.view.IRegionDetailsView;
-import com.billy.cc.core.component.CC;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

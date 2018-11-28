@@ -5,6 +5,7 @@
         <item>@string/section_recommend</item>
         <item>@string/section_bangumi</item>
         <item>@string/section_more</item>
+        <item>@string/section_discover</item>
     </string-array>
 
     <string name="app_name">bilibili</string>

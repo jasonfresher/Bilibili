@@ -77,9 +77,9 @@ public class HomeFragment extends RxLazyFragment {
     protected void init() {
         boolean flag = PreferenceUtil.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
         if (flag) {
-            skinSwitch.setImageResource(R.drawable.ic_switch_daily);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_daily);
         } else {
-            skinSwitch.setImageResource(R.drawable.ic_switch_night);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_night);
         }
         skinSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,12 +120,12 @@ public class HomeFragment extends RxLazyFragment {
         if (isNight) {
             // 日间模式
             SkinCompatManager.getInstance().restoreDefaultTheme();
-            skinSwitch.setImageResource(R.drawable.ic_switch_night);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_night);
             PreferenceUtil.putBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
         } else {
             // 夜间模式
             SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
-            skinSwitch.setImageResource(R.drawable.ic_switch_daily);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_daily);
             PreferenceUtil.putBoolean(ConstantUtil.SWITCH_MODE_KEY, true);
         }
     }

@@ -5,4 +5,5 @@
     <dimen name="default_general_margin">10dp</dimen>
     <dimen name="default_small_text_size">14sp</dimen>
     <dimen name="app_bar_elevation">3dp</dimen>
+    <dimen name="tags_radius">50dp</dimen>
 </resources>

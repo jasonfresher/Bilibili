@@ -1,10 +1,14 @@
 package com.bilibili.live.streamer.pusher;
 
 
+import android.content.Context;
 import android.hardware.Camera.CameraInfo;
+import android.util.Pair;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
 
+import com.bilibili.live.base.utils.ScreenResolution;
 import com.bilibili.live.streamer.jni.PushNative;
 import com.bilibili.live.streamer.listener.LiveStateChangeListener;
 import com.bilibili.live.streamer.params.AudioParam;
@@ -16,9 +20,11 @@ public class LivePusher implements Callback {
 	private VideoPusher videoPusher;
 	private AudioPusher audioPusher;
 	private PushNative pushNative;
+	private Context mContext;
 
-	public LivePusher(SurfaceHolder surfaceHolder) {
-		this.surfaceHolder = surfaceHolder;
+	public LivePusher(SurfaceView surfaceView) {
+		mContext = surfaceView.getContext();
+		this.surfaceHolder = surfaceView.getHolder();
 		surfaceHolder.addCallback(this);
 		prepare();
 	}
@@ -28,9 +34,9 @@ public class LivePusher implements Callback {
 	 */
 	private void prepare() {
 		pushNative = new PushNative();
-		
+		Pair<Integer, Integer> res = ScreenResolution.getResolution(mContext);
 		//实例化视频推流器
-		VideoParam videoParam = new VideoParam(480, 320, CameraInfo.CAMERA_FACING_BACK);
+		VideoParam videoParam = new VideoParam(640, 480, CameraInfo.CAMERA_FACING_BACK);
 		videoPusher = new VideoPusher(surfaceHolder,videoParam,pushNative);
 		
 		//实例化音频推流器

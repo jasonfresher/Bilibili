@@ -3,13 +3,13 @@ package com.bilibili.live.home.application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.bilibili.live.base.application.BaseApplication;
 import com.bilibili.live.base.constants.ConstantUtil;
 import com.bilibili.live.base.utils.PreferenceUtil;
 import com.bilibili.live.home.BuildConfig;
-import com.bilibili.live.home.R;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.tinker.entry.ApplicationLike;
 import com.tinkerpatch.sdk.TinkerPatch;
@@ -71,6 +71,12 @@ public class BilibiliApp extends BaseApplication {
             //TinkerPatch.with().fetchPatchUpdateAndPollWithInterval();
             new FetchPatchHandler().fetchPatchWithInterval(1);
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     public class FetchPatchHandler extends Handler {

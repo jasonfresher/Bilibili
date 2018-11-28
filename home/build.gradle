@@ -60,8 +60,10 @@ dependencies {
     addComponent 'details'
     addComponent 'player'
     addComponent 'browser'
+    addComponent 'discovery'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     implementation 'com.jakewharton:butterknife:8.4.0'
+
     compile 'com.android.support:multidex:1.0.1'
 
     annotationProcessor("com.tinkerpatch.tinker:tinker-android-anno:1.9.9")

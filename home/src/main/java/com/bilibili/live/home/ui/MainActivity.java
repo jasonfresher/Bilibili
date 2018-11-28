@@ -51,7 +51,8 @@ public class MainActivity extends RxBaseActivity {
             RouteInfo.NETCASTING_COMPONENT_NAME,
             RouteInfo.RECOMMEND_COMPONENT_NAME,
             RouteInfo.BANGUMI_COMPONENT_NAME,
-            RouteInfo.REGION_COMPONENT_NAME
+            RouteInfo.REGION_COMPONENT_NAME,
+            RouteInfo.DISCOVERY_COMPONENT_NAME
     };
 
 //    @Override
@@ -79,9 +80,9 @@ public class MainActivity extends RxBaseActivity {
         setSwipeBackEnable(false);
         boolean flag = PreferenceUtil.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
         if (flag) {
-            skinSwitch.setImageResource(R.drawable.ic_switch_daily);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_daily);
         } else {
-            skinSwitch.setImageResource(R.drawable.ic_switch_night);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_night);
         }
         skinSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,12 +128,12 @@ public class MainActivity extends RxBaseActivity {
         boolean isNight = PreferenceUtil.getBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
         if (isNight) {
             // 日间模式
-            skinSwitch.setImageResource(R.drawable.ic_switch_night);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_night);
             SkinCompatManager.getInstance().restoreDefaultTheme();
             PreferenceUtil.putBoolean(ConstantUtil.SWITCH_MODE_KEY, false);
         } else {
             // 夜间模式
-            skinSwitch.setImageResource(R.drawable.ic_switch_daily);
+            skinSwitch.setImageResource(R.drawable.home_ic_switch_daily);
             SkinCompatManager.getInstance().loadSkin("night", SkinCompatManager.SKIN_LOADER_STRATEGY_BUILD_IN); // 后缀加载
             PreferenceUtil.putBoolean(ConstantUtil.SWITCH_MODE_KEY, true);
         }

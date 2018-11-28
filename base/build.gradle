@@ -67,7 +67,7 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'
 
     compile 'cn.bingoogolapple:bga-banner:2.2.4@aar'
-    implementation 'com.android.support:support-v4:27.0.2'
+    compile 'com.android.support:support-v4:27.0.2'
 
     //检测内存泄漏库
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'

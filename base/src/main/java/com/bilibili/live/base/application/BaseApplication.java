@@ -1,6 +1,7 @@
 package com.bilibili.live.base.application;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.bilibili.live.base.BuildConfig;
 import com.billy.cc.core.component.CC;
@@ -23,5 +24,4 @@ public class BaseApplication extends Application {
     public static BaseApplication getInstance() {
         return mInstance;
     }
-
 }
